@@ -91,20 +91,28 @@ extension HomeViewController: SidebarViewDelegate {
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
         }
         switch row {
-        case .editProfile:
+        case .cronograma:
             let vc=EditProfileVC()
             self.navigationController?.pushViewController(vc, animated: true)
-        case .messages:
+        case .notas:
             calender()
-        case .contact:
+        case .frequencia:
             print("Contact")
-        case .settings:
+        case .financeiro:
             print("Settings")
-        case .history:
+        case .secretaria:
             print("History")
-        case .help:
+        case .divulgacao:
             print("Help")
-        case .signOut:
+        case .conveniencia:
+            print("conveniencia")
+        case .estagios:
+            print("estagios")
+        case .ambiente:
+            print("ambiente")
+        case .suporte:
+            print("suporte")
+        case .sair:
             signOut()
         case .none:
             break

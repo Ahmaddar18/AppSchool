@@ -14,24 +14,32 @@ protocol SidebarViewDelegate: class {
 }
 
 enum Row: String {
-    case editProfile
-    case messages
-    case contact
-    case settings
-    case history
-    case help
-    case signOut
+    case cronograma
+    case notas
+    case frequencia
+    case financeiro
+    case secretaria
+    case divulgacao
+    case conveniencia
+    case estagios
+    case ambiente
+    case suporte
+    case sair
     case none
     
     init(row: Int) {
         switch row {
-        case 0: self = .editProfile
-        case 1: self = .messages
-        case 2: self = .contact
-        case 3: self = .settings
-        case 4: self = .history
-        case 5: self = .help
-        case 6: self = .signOut
+        case 0: self = .cronograma
+        case 1: self = .notas
+        case 2: self = .frequencia
+        case 3: self = .financeiro
+        case 4: self = .secretaria
+        case 5: self = .divulgacao
+        case 6: self = .conveniencia
+        case 7: self = .estagios
+        case 8: self = .ambiente
+        case 9: self = .suporte
+        case 10: self = .sair
         default: self = .none
         }
     }
@@ -48,7 +56,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.backgroundColor=UIColor(red: 54/255, green: 55/255, blue: 56/255, alpha: 1.0)
         self.clipsToBounds=true
         
-        titleArr = ["Akhilendra Singh", "Messages", "Contact", "Settings", "History", "Help", "Sign Out"]
+        titleArr = ["CRONOGRAMA", "NOTAS", "FREQUENCIA", "FINANCEIRO", "SECRETARIA ON-LINE", "DIVULGACAO E INSCRICOES","CONVENIENCIA","ESTAGIOS","AMBIENTE EAD","SUPORTE","Sair"]
         
         setupViews()
         
