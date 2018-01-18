@@ -30,7 +30,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func doLogin(_ sender: Any) {
         print("doLogin")
-        
         let email = EmailTextView.text
         let senha = SenhaTextField.text
         
@@ -42,7 +41,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return
         } else {
             self.loadIndicator = UIHelper.activityIndicator(uiController: self, title: "Carregando")
-            doLoginRequest(email: email!, senha: senha!)
+           // doLoginRequest(email: email!, senha: senha!)
+            let viewController: HomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            
+            self.navigationController?.pushViewController(viewController, animated: false)
         }
     }
     
@@ -88,34 +90,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         UIHelper.stopsIndicator(view: self.loadIndicator)
                         print("ok")
                                 self.window = UIWindow(frame:UIScreen.main.bounds)
-//                                if let window = self.window{
-//                                    window.backgroundColor = UIColor.white
-//                                    let nav = UINavigationController()
-//                                    let mainView = HomeViewController()
-//                                    nav.viewControllers = [mainView]
-//                                    window.rootViewController = nav
-//                                    window.makeKeyAndVisible()
-//                                }
-                        
-//        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
-//
-//        self.present(homeViewController!, animated: true, completion: nil)
-//        self.window?.makeKeyAndVisible()
+
         
         let viewController: HomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
 
         self.navigationController?.pushViewController(viewController, animated: false)
-                        
-                        //
-                        //                        self.window?.rootViewController =
-                        
-                        
-                        //                        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-                        //                        let redViewController = mainStoryBoard.instantiateViewController(withIdentifier: "GradesViewController") as! GradesViewController
-                        //                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        //                        appDelegate.window?.rootViewController = redViewController
-                        
-                        
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -130,12 +109,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func goToEsqueciSenha(_ sender: Any) {
         print("doEsqueciSenha")
-        let lostPasswordViewController = self.storyboard?.instantiateViewController(withIdentifier: "forgotPasswordViewController")
-        self.present(lostPasswordViewController!, animated: true, completion: nil)
+        let viewController: ForgotPasswordViewController = self.storyboard?.instantiateViewController(withIdentifier: "ForgotPasswordViewController") as! ForgotPasswordViewController
+        self.navigationController?.pushViewController(viewController, animated: false)
     }
     
     @IBAction func goToSuporte(_ sender: Any) {
-        print("doSuporte")
+        let viewController: SupportViewController = self.storyboard?.instantiateViewController(withIdentifier: "SupportVC") as! SupportViewController
+        
+        self.navigationController?.pushViewController(viewController, animated: false)
     }
     
     override func viewDidLoad() {
