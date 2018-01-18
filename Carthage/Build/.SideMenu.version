@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "85730455258e522779a2661b42cb39af64d9b714",
+  "iOS" : [
+    {
+      "name" : "SideMenu",
+      "hash" : "e522009884a413130d78cac58768b93b120a85e0cc2ea3b3f1acb2223fce02c2"
+    }
+  ]
+}
