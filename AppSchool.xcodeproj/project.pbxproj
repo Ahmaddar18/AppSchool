@@ -98,6 +98,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E01C72732013DD590007D4DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E01C72742013DD660007D4DF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E08B94522007F81700F128E3 /* SidebarView.swift */,
+				E0B75C672007AFEE0061784B /* LaunchScreen.storyboard */,
+				E0B75C622007AFEE0061784B /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E02D79BA2008A15400DBE49E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,21 +133,24 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		E096DC082010E934008F4404 /* VC */ = {
+		E096DC082010E934008F4404 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E08B94542007F82B00F128E3 /* EditProfileVC.swift */,
+				E0B75C602007AFEE0061784B /* ViewController.swift */,
 				E096DC0A2010E95C008F4404 /* ForgotPasswordViewController.swift */,
 				E096DC0B2010E95C008F4404 /* SuccessForgottenPasswordViewController.swift */,
 				E096DC092010E95C008F4404 /* SupportViewController.swift */,
 				E069F3CC200A4C1900F17E10 /* HomeViewController.swift */,
 				E00F36F7200E5C6D0078CFFD /* CalenderVC.swift */,
 			);
-			path = VC;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		E0B75C522007AFED0061784B = {
 			isa = PBXGroup;
 			children = (
+				E0B75C5E2007AFEE0061784B /* AppDelegate.swift */,
 				E0B75C5D2007AFEE0061784B /* AppSchool */,
 				E02D79BA2008A15400DBE49E /* Helpers */,
 				E069F3C52009F94F00F17E10 /* Assets */,
@@ -151,14 +171,10 @@
 		E0B75C5D2007AFEE0061784B /* AppSchool */ = {
 			isa = PBXGroup;
 			children = (
-				E096DC082010E934008F4404 /* VC */,
-				E0B75C5E2007AFEE0061784B /* AppDelegate.swift */,
-				E0B75C602007AFEE0061784B /* ViewController.swift */,
-				E08B94522007F81700F128E3 /* SidebarView.swift */,
-				E08B94542007F82B00F128E3 /* EditProfileVC.swift */,
-				E0B75C622007AFEE0061784B /* Main.storyboard */,
+				E01C72742013DD660007D4DF /* Views */,
+				E01C72732013DD590007D4DF /* Models */,
+				E096DC082010E934008F4404 /* Controllers */,
 				E0B75C652007AFEE0061784B /* Assets.xcassets */,
-				E0B75C672007AFEE0061784B /* LaunchScreen.storyboard */,
 				E0B75C6A2007AFEE0061784B /* Info.plist */,
 			);
 			path = AppSchool;

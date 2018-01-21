@@ -41,10 +41,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return
         } else {
             self.loadIndicator = UIHelper.activityIndicator(uiController: self, title: "Carregando")
-           // doLoginRequest(email: email!, senha: senha!)
-            let viewController: HomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            
-            self.navigationController?.pushViewController(viewController, animated: false)
+            doLoginRequest(email: email!, senha: senha!)
+//            let viewController: HomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//
+//            self.navigationController?.pushViewController(viewController, animated: false)
         }
     }
     
