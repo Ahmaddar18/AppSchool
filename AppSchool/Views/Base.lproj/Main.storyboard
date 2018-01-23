@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2rx-WS-7L7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2rx-WS-7L7">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,14 +25,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brazil-flag.svg.png" translatesAutoresizingMaskIntoConstraints="NO" id="IYm-AE-rcN">
-                                <rect key="frame" x="10" y="84" width="355" height="120"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="IYm-AE-rcN">
+                                <rect key="frame" x="10" y="84" width="355" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="8Zx-qM-vRg"/>
+                                    <constraint firstAttribute="height" constant="100" id="8Zx-qM-vRg"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Senha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDM-gv-adQ">
-                                <rect key="frame" x="30" y="320" width="315" height="20.5"/>
+                                <rect key="frame" x="30" y="300" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.94450396299999995" green="0.50400447849999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -57,25 +57,25 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r8h-bC-3Df">
-                                <rect key="frame" x="30" y="350.5" width="315" height="30"/>
+                                <rect key="frame" x="30" y="330.5" width="315" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4gb-XR-PME">
-                                <rect key="frame" x="30" y="280" width="315" height="30"/>
+                                <rect key="frame" x="30" y="260" width="315" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="E-mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXt-IT-gYN">
-                                <rect key="frame" x="30" y="249" width="315" height="21"/>
+                                <rect key="frame" x="30" y="229" width="315" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.94450396299999995" green="0.50400447849999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAQ-6x-T4N">
-                                <rect key="frame" x="155.5" y="390.5" width="64" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAQ-6x-T4N">
+                                <rect key="frame" x="139" y="371" width="100" height="36"/>
                                 <color key="backgroundColor" red="1" green="0.4579687301" blue="0.14118015789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="8" maxX="8" maxY="10"/>
@@ -101,7 +101,7 @@
                             <constraint firstItem="zM2-tT-zZh" firstAttribute="bottom" secondItem="uww-34-LKY" secondAttribute="bottom" constant="20" id="SWQ-5A-5Wn"/>
                             <constraint firstItem="zM2-tT-zZh" firstAttribute="trailing" secondItem="EXt-IT-gYN" secondAttribute="trailing" constant="30" id="TcJ-sA-fBQ"/>
                             <constraint firstItem="uww-34-LKY" firstAttribute="trailing" secondItem="DoA-u0-sKB" secondAttribute="trailingMargin" id="VCg-KT-gj6"/>
-                            <constraint firstItem="yAQ-6x-T4N" firstAttribute="centerX" secondItem="DoA-u0-sKB" secondAttribute="centerX" id="a92-F4-mFZ"/>
+                            <constraint firstItem="yAQ-6x-T4N" firstAttribute="centerX" secondItem="DoA-u0-sKB" secondAttribute="centerX" constant="1.5" id="a92-F4-mFZ"/>
                             <constraint firstItem="r8h-bC-3Df" firstAttribute="centerX" secondItem="DoA-u0-sKB" secondAttribute="centerX" id="aMP-4c-tFr"/>
                             <constraint firstAttribute="trailing" secondItem="IYm-AE-rcN" secondAttribute="trailing" constant="10" id="bOS-sJ-hbO"/>
                             <constraint firstItem="r8h-bC-3Df" firstAttribute="top" secondItem="qDM-gv-adQ" secondAttribute="bottom" constant="10" id="dgb-vS-zNI"/>
@@ -524,6 +524,6 @@
     </scenes>
     <resources>
         <image name="approval-96.png" width="96" height="96"/>
-        <image name="brazil-flag.svg.png" width="2000" height="1400"/>
+        <image name="logo" width="74" height="43"/>
     </resources>
 </document>

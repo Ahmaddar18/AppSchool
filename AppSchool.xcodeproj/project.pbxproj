@@ -15,7 +15,6 @@
 		B833C81120173F3A00F9CE31 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C81020173F3900F9CE31 /* Home.swift */; };
 		E00F36F8200E5C6D0078CFFD /* CalenderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00F36F7200E5C6D0078CFFD /* CalenderVC.swift */; };
 		E02D79BC2008A16F00DBE49E /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D79BB2008A16F00DBE49E /* UIHelper.swift */; };
-		E069F3C92009F96C00F17E10 /* brazil-flag.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = E069F3C62009F96B00F17E10 /* brazil-flag.svg.png */; };
 		E069F3CA2009F96C00F17E10 /* approval-96.png in Resources */ = {isa = PBXBuildFile; fileRef = E069F3C72009F96C00F17E10 /* approval-96.png */; };
 		E069F3CB2009F96C00F17E10 /* error-96.png in Resources */ = {isa = PBXBuildFile; fileRef = E069F3C82009F96C00F17E10 /* error-96.png */; };
 		E069F3CD200A4C1900F17E10 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E069F3CC200A4C1900F17E10 /* HomeViewController.swift */; };
@@ -53,7 +52,6 @@
 		D8B0878635F3D5E3104F90E5 /* Pods-AppSchool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSchool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppSchool/Pods-AppSchool.debug.xcconfig"; sourceTree = "<group>"; };
 		E00F36F7200E5C6D0078CFFD /* CalenderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderVC.swift; sourceTree = "<group>"; };
 		E02D79BB2008A16F00DBE49E /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
-		E069F3C62009F96B00F17E10 /* brazil-flag.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brazil-flag.svg.png"; sourceTree = "<group>"; };
 		E069F3C72009F96C00F17E10 /* approval-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "approval-96.png"; sourceTree = "<group>"; };
 		E069F3C82009F96C00F17E10 /* error-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error-96.png"; sourceTree = "<group>"; };
 		E069F3CC200A4C1900F17E10 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				E069F3C72009F96C00F17E10 /* approval-96.png */,
-				E069F3C62009F96B00F17E10 /* brazil-flag.svg.png */,
 				E069F3C82009F96C00F17E10 /* error-96.png */,
 			);
 			path = Assets;
@@ -271,7 +268,6 @@
 				E0B75C662007AFEE0061784B /* Assets.xcassets in Resources */,
 				E069F3CB2009F96C00F17E10 /* error-96.png in Resources */,
 				E0B75C642007AFEE0061784B /* Main.storyboard in Resources */,
-				E069F3C92009F96C00F17E10 /* brazil-flag.svg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
