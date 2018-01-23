@@ -14,8 +14,7 @@ class SuccessForgottenPasswordViewController: UIViewController {
     var status: String = ""
     
     @IBOutlet weak var successMessageTextView: UITextView!
-        @IBOutlet weak var successImageView: UIImageView!
-    
+    @IBOutlet weak var successImageView: UIImageView!
     
     
     override func viewDidLoad() {
@@ -39,14 +38,6 @@ class SuccessForgottenPasswordViewController: UIViewController {
         self.navigationController?.popViewController(animated: false)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

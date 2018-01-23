@@ -9,6 +9,7 @@
 import UIKit
 
 class SupportViewController: UIViewController, UITextViewDelegate {
+    
     struct Response : Codable {
         
         let RESPONSE: String
@@ -20,9 +21,58 @@ class SupportViewController: UIViewController, UITextViewDelegate {
    
     var loadIndicator: UIView = UIView()
     
-
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var emailTextView: UITextField!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        inittextView()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if messageTextView.textColor == UIColor.lightGray {
+            messageTextView.text = nil
+            messageTextView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if messageTextView.text.isEmpty {
+            messageTextView.text = "Digite a sua mensagem"
+            messageTextView.textColor = UIColor.lightGray
+        }
+    }
+    
+    func isDataValid() -> Bool{
+        let email = emailTextView.text
+        let message = messageTextView.text
+        
+        if email == "" {
+            UIHelper.showAlertController(uiController: self, message: "Por favor, preencha o e-mail")
+            return false
+        }
+        
+        if message == "" || message == "Digite a sua mensagem" {
+            UIHelper.showAlertController(uiController: self, message: "Por favor, a mensagem para o suporte")
+            return false
+        }
+        
+        return true
+    }
+    
+    func inittextView(){
+        messageTextView.text = "Digite a sua mensagem"
+        messageTextView.layer.borderWidth = 1
+        messageTextView.layer.cornerRadius = 5
+        messageTextView.textColor = UIColor.lightGray
+        messageTextView.layer.borderColor = UIColor.lightGray.cgColor
+    }
     
     @IBAction func submitSupportCall(_ sender: Any) {
         if isDataValid() {
@@ -91,51 +141,4 @@ class SupportViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    func isDataValid() -> Bool{
-        let email = emailTextView.text
-        let message = messageTextView.text
-        
-        if email == "" {
-            UIHelper.showAlertController(uiController: self, message: "Por favor, preencha o e-mail")
-            return false
-        }
-        
-        if message == "" || message == "Digite a sua mensagem" {
-            UIHelper.showAlertController(uiController: self, message: "Por favor, a mensagem para o suporte")
-            return false
-        }
-        
-        return true
-    }
-    
-    func inittextView(){
-        messageTextView.text = "Digite a sua mensagem"
-        messageTextView.layer.borderWidth = 1
-        messageTextView.layer.cornerRadius = 5
-        messageTextView.textColor = UIColor.lightGray
-        messageTextView.layer.borderColor = UIColor.lightGray.cgColor
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        inittextView()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if messageTextView.textColor == UIColor.lightGray {
-            messageTextView.text = nil
-            messageTextView.textColor = UIColor.black
-        }
-    }
-
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if messageTextView.text.isEmpty {
-            messageTextView.text = "Digite a sua mensagem"
-            messageTextView.textColor = UIColor.lightGray
-        }
-    }
 }

@@ -8,21 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		205BD244F1CBC85E5222AE3E /* Pods_AppSchool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B20D4093C89A9D92CAD0699B /* Pods_AppSchool.framework */; };
+		B833C7F620171D0900F9CE31 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F520171D0900F9CE31 /* SidebarView.swift */; };
+		B833C7FA20171FC500F9CE31 /* UIViewController+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F820171FC500F9CE31 /* UIViewController+Helper.swift */; };
+		B833C7FB20171FC500F9CE31 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F920171FC500F9CE31 /* UIColor+Colors.swift */; };
+		B833C80F2017372000F9CE31 /* HomeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C80E2017372000F9CE31 /* HomeCellView.swift */; };
+		B833C81120173F3A00F9CE31 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C81020173F3900F9CE31 /* Home.swift */; };
 		E00F36F8200E5C6D0078CFFD /* CalenderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00F36F7200E5C6D0078CFFD /* CalenderVC.swift */; };
 		E02D79BC2008A16F00DBE49E /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D79BB2008A16F00DBE49E /* UIHelper.swift */; };
-		E04C7C6B200D499D009BF0D4 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04C7C6A200D499D009BF0D4 /* SideMenu.framework */; };
-		E04C7C6C200D499D009BF0D4 /* SideMenu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E04C7C6A200D499D009BF0D4 /* SideMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E069F3C92009F96C00F17E10 /* brazil-flag.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = E069F3C62009F96B00F17E10 /* brazil-flag.svg.png */; };
 		E069F3CA2009F96C00F17E10 /* approval-96.png in Resources */ = {isa = PBXBuildFile; fileRef = E069F3C72009F96C00F17E10 /* approval-96.png */; };
 		E069F3CB2009F96C00F17E10 /* error-96.png in Resources */ = {isa = PBXBuildFile; fileRef = E069F3C82009F96C00F17E10 /* error-96.png */; };
 		E069F3CD200A4C1900F17E10 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E069F3CC200A4C1900F17E10 /* HomeViewController.swift */; };
-		E08B94532007F81700F128E3 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B94522007F81700F128E3 /* SidebarView.swift */; };
 		E08B94552007F82B00F128E3 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B94542007F82B00F128E3 /* EditProfileVC.swift */; };
 		E096DC0C2010E95C008F4404 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E096DC092010E95C008F4404 /* SupportViewController.swift */; };
 		E096DC0D2010E95C008F4404 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E096DC0A2010E95C008F4404 /* ForgotPasswordViewController.swift */; };
 		E096DC0E2010E95C008F4404 /* SuccessForgottenPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E096DC0B2010E95C008F4404 /* SuccessForgottenPasswordViewController.swift */; };
 		E0B75C5F2007AFEE0061784B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B75C5E2007AFEE0061784B /* AppDelegate.swift */; };
-		E0B75C612007AFEE0061784B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B75C602007AFEE0061784B /* ViewController.swift */; };
+		E0B75C612007AFEE0061784B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B75C602007AFEE0061784B /* LoginViewController.swift */; };
 		E0B75C642007AFEE0061784B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0B75C622007AFEE0061784B /* Main.storyboard */; };
 		E0B75C662007AFEE0061784B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0B75C652007AFEE0061784B /* Assets.xcassets */; };
 		E0B75C692007AFEE0061784B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0B75C672007AFEE0061784B /* LaunchScreen.storyboard */; };
@@ -35,7 +37,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E04C7C6C200D499D009BF0D4 /* SideMenu.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,22 +45,25 @@
 
 /* Begin PBXFileReference section */
 		B20D4093C89A9D92CAD0699B /* Pods_AppSchool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSchool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B833C7F520171D0900F9CE31 /* SidebarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		B833C7F820171FC500F9CE31 /* UIViewController+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helper.swift"; sourceTree = "<group>"; };
+		B833C7F920171FC500F9CE31 /* UIColor+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
+		B833C80E2017372000F9CE31 /* HomeCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCellView.swift; path = AppSchool/UITableViewCell/HomeCellView.swift; sourceTree = SOURCE_ROOT; };
+		B833C81020173F3900F9CE31 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		D8B0878635F3D5E3104F90E5 /* Pods-AppSchool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSchool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppSchool/Pods-AppSchool.debug.xcconfig"; sourceTree = "<group>"; };
 		E00F36F7200E5C6D0078CFFD /* CalenderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderVC.swift; sourceTree = "<group>"; };
 		E02D79BB2008A16F00DBE49E /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
-		E04C7C6A200D499D009BF0D4 /* SideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SideMenu.framework; path = Carthage/Build/iOS/SideMenu.framework; sourceTree = "<group>"; };
 		E069F3C62009F96B00F17E10 /* brazil-flag.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brazil-flag.svg.png"; sourceTree = "<group>"; };
 		E069F3C72009F96C00F17E10 /* approval-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "approval-96.png"; sourceTree = "<group>"; };
 		E069F3C82009F96C00F17E10 /* error-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error-96.png"; sourceTree = "<group>"; };
 		E069F3CC200A4C1900F17E10 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		E08B94522007F81700F128E3 /* SidebarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		E08B94542007F82B00F128E3 /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		E096DC092010E95C008F4404 /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		E096DC0A2010E95C008F4404 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		E096DC0B2010E95C008F4404 /* SuccessForgottenPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessForgottenPasswordViewController.swift; sourceTree = "<group>"; };
 		E0B75C5B2007AFEE0061784B /* AppSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0B75C5E2007AFEE0061784B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E0B75C602007AFEE0061784B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E0B75C602007AFEE0061784B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E0B75C632007AFEE0061784B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E0B75C652007AFEE0061784B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0B75C682007AFEE0061784B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -72,7 +76,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E04C7C6B200D499D009BF0D4 /* SideMenu.framework in Frameworks */,
 				205BD244F1CBC85E5222AE3E /* Pods_AppSchool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,10 +83,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3960B3CB20164BC200BADA7A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B833C81020173F3900F9CE31 /* Home.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8533A4F6D39214263E7A049E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E04C7C6A200D499D009BF0D4 /* SideMenu.framework */,
 				B20D4093C89A9D92CAD0699B /* Pods_AppSchool.framework */,
 			);
 			name = Frameworks;
@@ -98,17 +108,27 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E01C72732013DD590007D4DF /* Models */ = {
+		B833C7F720171F7D00F9CE31 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B833C7F920171FC500F9CE31 /* UIColor+Colors.swift */,
+				B833C7F820171FC500F9CE31 /* UIViewController+Helper.swift */,
 			);
-			path = Models;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B833C80D2017370C00F9CE31 /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B833C80E2017372000F9CE31 /* HomeCellView.swift */,
+			);
+			name = UITableViewCell;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		E01C72742013DD660007D4DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E08B94522007F81700F128E3 /* SidebarView.swift */,
 				E0B75C672007AFEE0061784B /* LaunchScreen.storyboard */,
 				E0B75C622007AFEE0061784B /* Main.storyboard */,
 			);
@@ -118,6 +138,7 @@
 		E02D79BA2008A15400DBE49E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B833C7F520171D0900F9CE31 /* SidebarView.swift */,
 				E02D79BB2008A16F00DBE49E /* UIHelper.swift */,
 			);
 			path = Helpers;
@@ -136,12 +157,12 @@
 		E096DC082010E934008F4404 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E08B94542007F82B00F128E3 /* EditProfileVC.swift */,
-				E0B75C602007AFEE0061784B /* ViewController.swift */,
 				E096DC0A2010E95C008F4404 /* ForgotPasswordViewController.swift */,
+				E0B75C602007AFEE0061784B /* LoginViewController.swift */,
+				E069F3CC200A4C1900F17E10 /* HomeViewController.swift */,
 				E096DC0B2010E95C008F4404 /* SuccessForgottenPasswordViewController.swift */,
 				E096DC092010E95C008F4404 /* SupportViewController.swift */,
-				E069F3CC200A4C1900F17E10 /* HomeViewController.swift */,
+				E08B94542007F82B00F128E3 /* EditProfileVC.swift */,
 				E00F36F7200E5C6D0078CFFD /* CalenderVC.swift */,
 			);
 			path = Controllers;
@@ -150,9 +171,7 @@
 		E0B75C522007AFED0061784B = {
 			isa = PBXGroup;
 			children = (
-				E0B75C5E2007AFEE0061784B /* AppDelegate.swift */,
 				E0B75C5D2007AFEE0061784B /* AppSchool */,
-				E02D79BA2008A15400DBE49E /* Helpers */,
 				E069F3C52009F94F00F17E10 /* Assets */,
 				E0B75C5C2007AFEE0061784B /* Products */,
 				AF30782883EF297FC7BE70A5 /* Pods */,
@@ -171,9 +190,13 @@
 		E0B75C5D2007AFEE0061784B /* AppSchool */ = {
 			isa = PBXGroup;
 			children = (
-				E01C72742013DD660007D4DF /* Views */,
-				E01C72732013DD590007D4DF /* Models */,
+				E0B75C5E2007AFEE0061784B /* AppDelegate.swift */,
+				E02D79BA2008A15400DBE49E /* Helpers */,
+				3960B3CB20164BC200BADA7A /* Models */,
 				E096DC082010E934008F4404 /* Controllers */,
+				E01C72742013DD660007D4DF /* Views */,
+				B833C80D2017370C00F9CE31 /* UITableViewCell */,
+				B833C7F720171F7D00F9CE31 /* Resources */,
 				E0B75C652007AFEE0061784B /* Assets.xcassets */,
 				E0B75C6A2007AFEE0061784B /* Info.plist */,
 			);
@@ -278,10 +301,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AppSchool/Pods-AppSchool-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -313,15 +342,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B833C7FA20171FC500F9CE31 /* UIViewController+Helper.swift in Sources */,
+				B833C7FB20171FC500F9CE31 /* UIColor+Colors.swift in Sources */,
 				E00F36F8200E5C6D0078CFFD /* CalenderVC.swift in Sources */,
-				E0B75C612007AFEE0061784B /* ViewController.swift in Sources */,
+				E0B75C612007AFEE0061784B /* LoginViewController.swift in Sources */,
 				E096DC0C2010E95C008F4404 /* SupportViewController.swift in Sources */,
 				E0B75C5F2007AFEE0061784B /* AppDelegate.swift in Sources */,
+				B833C81120173F3A00F9CE31 /* Home.swift in Sources */,
 				E08B94552007F82B00F128E3 /* EditProfileVC.swift in Sources */,
 				E096DC0D2010E95C008F4404 /* ForgotPasswordViewController.swift in Sources */,
+				B833C80F2017372000F9CE31 /* HomeCellView.swift in Sources */,
 				E096DC0E2010E95C008F4404 /* SuccessForgottenPasswordViewController.swift in Sources */,
+				B833C7F620171D0900F9CE31 /* SidebarView.swift in Sources */,
 				E02D79BC2008A16F00DBE49E /* UIHelper.swift in Sources */,
-				E08B94532007F81700F128E3 /* SidebarView.swift in Sources */,
 				E069F3CD200A4C1900F17E10 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
