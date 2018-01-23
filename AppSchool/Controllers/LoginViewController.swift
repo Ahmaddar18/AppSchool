@@ -132,7 +132,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func goToSuporte(_ sender: Any) {
         let viewController: SupportViewController = self.storyboard?.instantiateViewController(withIdentifier: "SupportVC") as! SupportViewController
-        
         self.navigationController?.pushViewController(viewController, animated: false)
     }
     
