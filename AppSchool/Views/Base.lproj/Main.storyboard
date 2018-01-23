@@ -275,11 +275,51 @@
                                     <constraint firstAttribute="height" constant="39" id="uOB-c1-cGc"/>
                                 </constraints>
                             </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GOy-xM-IQC" customClass="Koyomi" customModule="Koyomi">
+                                <rect key="frame" x="37" y="70" width="301" height="260"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="260" id="C8K-1R-Kg3"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RhS-WU-3uZ">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aGE-TX-Lhg">
+                                        <rect key="frame" x="0.0" y="0.0" width="43" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="43" height="25"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="sectionSpace">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cellSpace">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="weekHeight">
+                                        <real key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="weekCellHeight">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="GOy-xM-IQC" firstAttribute="top" secondItem="B6B-ML-BH6" secondAttribute="top" constant="50" id="ITk-tS-8aa"/>
                             <constraint firstItem="mYS-CK-cPk" firstAttribute="centerX" secondItem="amj-jI-sBN" secondAttribute="centerX" id="OZO-Pd-OEn"/>
+                            <constraint firstItem="GOy-xM-IQC" firstAttribute="leading" secondItem="B6B-ML-BH6" secondAttribute="leading" constant="37" id="dcm-Ul-8F2"/>
                             <constraint firstItem="B6B-ML-BH6" firstAttribute="bottom" secondItem="mYS-CK-cPk" secondAttribute="bottom" constant="30" id="hBM-Ab-Lh9"/>
+                            <constraint firstItem="B6B-ML-BH6" firstAttribute="trailing" secondItem="GOy-xM-IQC" secondAttribute="trailing" constant="37" id="iLY-D8-3i4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B6B-ML-BH6"/>
                     </view>
