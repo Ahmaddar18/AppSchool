@@ -47,6 +47,8 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
         mainText.setContentOffset(CGPoint.zero, animated: false)
     }
     
+    // MARK: - Helper
+    
     func doForgotPasswordRequest(email: String){
         let postString = """
         {
@@ -106,6 +108,8 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
         }
         task.resume()
     }
+    
+    // MARK: - Action Methods
     
     @IBAction func doForgotPassword(_ sender: Any) {
         let email = emailTextField.text

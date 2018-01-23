@@ -33,6 +33,8 @@ class SuccessForgottenPasswordViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Action Methods
+    
     @IBAction func dismissViewController(_ sender: Any) {
        // dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: false)

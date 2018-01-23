@@ -49,6 +49,8 @@ class SupportViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    // MARK: - Helper
+    
     func isDataValid() -> Bool{
         let email = emailTextView.text
         let message = messageTextView.text

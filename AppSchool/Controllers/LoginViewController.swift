@@ -52,6 +52,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: - UITextFields Delagate
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         SenhaTextField.resignFirstResponder()
         return true
@@ -64,6 +66,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         //   ScrollView.setContentOffset(CGPoint(x: 0,y: 0), animated: true)
     }
+    
+    // MARK: - Helper
     
     func doLoginRequest(email: String, senha: String){
         let postString = """
@@ -123,6 +127,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         task.resume()
     }
+    
+    // MARK: - Action Methods
     
     @IBAction func goToEsqueciSenha(_ sender: Any) {
         print("doEsqueciSenha")
