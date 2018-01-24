@@ -276,10 +276,10 @@
                                 </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GOy-xM-IQC" customClass="Koyomi" customModule="Koyomi">
-                                <rect key="frame" x="37" y="70" width="301" height="260"/>
+                                <rect key="frame" x="20" y="80" width="335" height="220"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="260" id="C8K-1R-Kg3"/>
+                                    <constraint firstAttribute="height" constant="220" id="C8K-1R-Kg3"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RhS-WU-3uZ">
                                     <size key="itemSize" width="50" height="50"/>
@@ -289,10 +289,10 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aGE-TX-Lhg">
-                                        <rect key="frame" x="0.0" y="0.0" width="43" height="25"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="47.857142857142854" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="43" height="25"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="47.857142857142854" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                     </collectionViewCell>
@@ -312,17 +312,61 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </collectionView>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qu-R6-IVV">
+                                <rect key="frame" x="315" y="30" width="40" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="O5x-LU-3RB"/>
+                                    <constraint firstAttribute="width" constant="40" id="rpv-so-aAs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="tappedControl:" destination="ke1-XE-JiO" eventType="touchUpInside" id="ou7-DB-Cds"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kED-KC-5cf">
+                                <rect key="frame" x="20" y="30" width="49" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DmS-3z-4NB"/>
+                                    <constraint firstAttribute="width" constant="49" id="VE1-NG-6D0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Previous"/>
+                                <connections>
+                                    <action selector="tappedControl:" destination="ke1-XE-JiO" eventType="touchUpInside" id="USB-r3-ivU"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feb" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYh-DP-KQ8">
+                                <rect key="frame" x="70" y="35" width="235" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="hWQ-ki-dgk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="GOy-xM-IQC" firstAttribute="top" secondItem="B6B-ML-BH6" secondAttribute="top" constant="50" id="ITk-tS-8aa"/>
+                            <constraint firstItem="oYh-DP-KQ8" firstAttribute="leading" secondItem="kED-KC-5cf" secondAttribute="trailing" constant="1" id="2wT-oF-W63"/>
+                            <constraint firstItem="0qu-R6-IVV" firstAttribute="leading" secondItem="oYh-DP-KQ8" secondAttribute="trailing" constant="10" id="7ct-WO-lfa"/>
+                            <constraint firstItem="kED-KC-5cf" firstAttribute="leading" secondItem="B6B-ML-BH6" secondAttribute="leading" constant="20" id="AY6-ZT-Dqb"/>
+                            <constraint firstItem="GOy-xM-IQC" firstAttribute="top" secondItem="B6B-ML-BH6" secondAttribute="top" constant="60" id="ITk-tS-8aa"/>
+                            <constraint firstItem="kED-KC-5cf" firstAttribute="top" secondItem="B6B-ML-BH6" secondAttribute="top" constant="10" id="NxU-gL-d1e"/>
                             <constraint firstItem="mYS-CK-cPk" firstAttribute="centerX" secondItem="amj-jI-sBN" secondAttribute="centerX" id="OZO-Pd-OEn"/>
-                            <constraint firstItem="GOy-xM-IQC" firstAttribute="leading" secondItem="B6B-ML-BH6" secondAttribute="leading" constant="37" id="dcm-Ul-8F2"/>
+                            <constraint firstItem="0qu-R6-IVV" firstAttribute="top" secondItem="B6B-ML-BH6" secondAttribute="top" constant="10" id="Zh9-e8-9QY"/>
+                            <constraint firstItem="oYh-DP-KQ8" firstAttribute="top" secondItem="B6B-ML-BH6" secondAttribute="top" constant="15" id="bzO-Le-dKg"/>
+                            <constraint firstItem="GOy-xM-IQC" firstAttribute="leading" secondItem="B6B-ML-BH6" secondAttribute="leading" constant="20" id="dcm-Ul-8F2"/>
                             <constraint firstItem="B6B-ML-BH6" firstAttribute="bottom" secondItem="mYS-CK-cPk" secondAttribute="bottom" constant="30" id="hBM-Ab-Lh9"/>
-                            <constraint firstItem="B6B-ML-BH6" firstAttribute="trailing" secondItem="GOy-xM-IQC" secondAttribute="trailing" constant="37" id="iLY-D8-3i4"/>
+                            <constraint firstItem="B6B-ML-BH6" firstAttribute="trailing" secondItem="GOy-xM-IQC" secondAttribute="trailing" constant="20" id="iLY-D8-3i4"/>
+                            <constraint firstItem="B6B-ML-BH6" firstAttribute="trailing" secondItem="0qu-R6-IVV" secondAttribute="trailing" constant="20" id="ony-yb-11L"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B6B-ML-BH6"/>
                     </view>
+                    <connections>
+                        <outlet property="koyomi" destination="GOy-xM-IQC" id="rmf-Ss-9fq"/>
+                        <outlet property="lblMonth" destination="oYh-DP-KQ8" id="2CY-mj-xgF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IgK-vX-OOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

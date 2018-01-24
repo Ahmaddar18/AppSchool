@@ -236,7 +236,7 @@ final public class Koyomi: UICollectionView {
             reloadData()
         }
     }
-    @IBInspectable public var currentDateFormat: String = "M/yyyy"
+    @IBInspectable public var currentDateFormat: String = "MMMM yyyy"
     
     // Color properties of the appearance
     @IBInspectable public var sectionSeparatorColor: UIColor = UIColor.KoyomiColor.lightGray {
@@ -319,7 +319,7 @@ final public class Koyomi: UICollectionView {
         return self
     }
     
-    public func currentDateString(withFormat format: String = "M/yyyy") -> String {
+    public func currentDateString(withFormat format: String = "MMMM yyyy") -> String {
         return model.dateString(in: .current, withFormat: format)
     }
     
@@ -431,9 +431,9 @@ private extension Koyomi {
                     } else if let end = model.indexAtEnd(in: .current), indexPath.row > end {
                         return otherMonthColor
                     } else if let type = DateModel.WeekType(indexPath), type == .sunday {
-                        return holidayColor.sunday
+                        return weekdayColor //holidayColor.sunday
                     } else if let type = DateModel.WeekType(indexPath), type == .saturday {
-                        return holidayColor.saturday
+                        return weekdayColor//holidayColor.saturday
                     } else {
                         return weekdayColor
                     }

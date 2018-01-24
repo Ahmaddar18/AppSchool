@@ -2,8 +2,8 @@
 //  Jobs.swift
 //  JennairInstaller
 //
-//  Created by kwanso-ios on 1/1/18.
-//  Copyright © 2018 kwanso-ios. All rights reserved.
+//  Created by Safyan on 23/01/18.
+//  Copyright © 2018 Safyan. All rights reserved.
 //
 
 import Foundation

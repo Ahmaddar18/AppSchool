@@ -68,7 +68,7 @@ extension KoyomiLayout {
 private extension KoyomiLayout {
     struct Constant {
         static let maxLineSpaceCount = 5
-        static let maxRowCount = 6
+        static let maxRowCount = 5
         static var columnCount: CGFloat {
             return CGFloat(DateModel.dayCountPerRow)
         }

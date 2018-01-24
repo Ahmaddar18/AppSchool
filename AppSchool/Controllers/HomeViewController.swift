@@ -36,7 +36,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let EMAILUSER: String?
     }
     
-    @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
     var loadIndicator: UIView = UIView()
@@ -125,10 +124,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("httpStatus = \(String(describing: httpStatus))")
             do {
                 let siteData = try JSONDecoder().decode(webData.self, from: data)
-                print(" Worked")
-                print("description = ",siteData.TYPE!)
-                print("fuck you matder chod", siteData.NOTICIA[0].Imagem!)
-                
                 let resultList = siteData.NOTICIA
                 
                 for item in resultList {

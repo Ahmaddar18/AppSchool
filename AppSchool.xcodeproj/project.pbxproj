@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		205BD244F1CBC85E5222AE3E /* Pods_AppSchool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B20D4093C89A9D92CAD0699B /* Pods_AppSchool.framework */; };
+		39AC4CCF20190BA200A976F1 /* CalenderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC4CCE20190BA100A976F1 /* CalenderModel.swift */; };
 		B833C7F620171D0900F9CE31 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F520171D0900F9CE31 /* SidebarView.swift */; };
 		B833C7FA20171FC500F9CE31 /* UIViewController+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F820171FC500F9CE31 /* UIViewController+Helper.swift */; };
 		B833C7FB20171FC500F9CE31 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F920171FC500F9CE31 /* UIColor+Colors.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		39AC4CCE20190BA100A976F1 /* CalenderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalenderModel.swift; sourceTree = "<group>"; };
 		B20D4093C89A9D92CAD0699B /* Pods_AppSchool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSchool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B833C7F520171D0900F9CE31 /* SidebarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		B833C7F820171FC500F9CE31 /* UIViewController+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helper.swift"; sourceTree = "<group>"; };
@@ -85,8 +87,16 @@
 			isa = PBXGroup;
 			children = (
 				B833C81020173F3900F9CE31 /* Home.swift */,
+				39AC4CCE20190BA100A976F1 /* CalenderModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		39AC4CCD2018E53E00A976F1 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		8533A4F6D39214263E7A049E /* Frameworks */ = {
@@ -187,6 +197,7 @@
 		E0B75C5D2007AFEE0061784B /* AppSchool */ = {
 			isa = PBXGroup;
 			children = (
+				39AC4CCD2018E53E00A976F1 /* Constants */,
 				E0B75C5E2007AFEE0061784B /* AppDelegate.swift */,
 				E02D79BA2008A15400DBE49E /* Helpers */,
 				3960B3CB20164BC200BADA7A /* Models */,
@@ -354,6 +365,7 @@
 				B833C7F620171D0900F9CE31 /* SidebarView.swift in Sources */,
 				E02D79BC2008A16F00DBE49E /* UIHelper.swift in Sources */,
 				E069F3CD200A4C1900F17E10 /* HomeViewController.swift in Sources */,
+				39AC4CCF20190BA200A976F1 /* CalenderModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

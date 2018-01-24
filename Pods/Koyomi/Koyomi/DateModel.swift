@@ -14,7 +14,7 @@ final class DateModel: NSObject {
     
     // Type properties
     static let dayCountPerRow = 7
-    static let maxCellCount   = 42
+    static let maxCellCount   = 35
     
     // Week text
     var weeks: (String, String, String, String, String, String, String) = ("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
