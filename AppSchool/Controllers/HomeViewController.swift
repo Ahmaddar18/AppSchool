@@ -93,6 +93,31 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.pushViewController(viewController, animated: false)
     }
     
+    func openNotesView(){
+        let viewController: NotesViewController = self.storyboard?.instantiateViewController(withIdentifier: "NotesViewController") as! NotesViewController
+        self.navigationController?.pushViewController(viewController, animated: false)
+    }
+    
+    func openFrequencyView(){
+        let viewController: FrequencyVC = self.storyboard?.instantiateViewController(withIdentifier: "FrequencyVC") as! FrequencyVC
+        self.navigationController?.pushViewController(viewController, animated: false)
+    }
+    
+    func openFinancialView(){
+        let viewController: FinancialVC = self.storyboard?.instantiateViewController(withIdentifier: "FinancialVC") as! FinancialVC
+        self.navigationController?.pushViewController(viewController, animated: false)
+    }
+    
+    func openSecretaryView(){
+        let viewController: SecretaryVC = self.storyboard?.instantiateViewController(withIdentifier: "SecretaryVC") as! SecretaryVC
+        self.navigationController?.pushViewController(viewController, animated: false)
+    }
+    
+    func openDisclosureView(){
+        let viewController: DisclosureVC = self.storyboard?.instantiateViewController(withIdentifier: "DisclosureVC") as! DisclosureVC
+        self.navigationController?.pushViewController(viewController, animated: false)
+    }
+    
     func signOut(){
         print("signout")
         
@@ -258,14 +283,19 @@ extension HomeViewController: SidebarViewDelegate {
             openCalenderView()
         case .notas:
             print("Notes")
+            openNotesView()
         case .frequencia:
             print("Frequency")
+            openFrequencyView()
         case .financeiro:
             print("Financial")
+            openFinancialView()
         case .secretaria:
             print("Secretary")
+            openSecretaryView()
         case .divulgacao:
             print("Disclosure")
+            openDisclosureView()
         case .conveniencia:
             print("convenience")
         case .estagios:

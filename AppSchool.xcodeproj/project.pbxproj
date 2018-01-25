@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		205BD244F1CBC85E5222AE3E /* Pods_AppSchool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B20D4093C89A9D92CAD0699B /* Pods_AppSchool.framework */; };
+		39173166201A60AD0016DF09 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39173165201A60AD0016DF09 /* NotesViewController.swift */; };
+		39173168201A61E80016DF09 /* FrequencyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39173167201A61E80016DF09 /* FrequencyVC.swift */; };
+		3917316A201A62600016DF09 /* FinancialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39173169201A62600016DF09 /* FinancialVC.swift */; };
+		3917316C201A62830016DF09 /* SecretaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917316B201A62830016DF09 /* SecretaryVC.swift */; };
+		3917316E201A64210016DF09 /* DisclosureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917316D201A64210016DF09 /* DisclosureVC.swift */; };
 		39AC4CCF20190BA200A976F1 /* CalenderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC4CCE20190BA100A976F1 /* CalenderModel.swift */; };
 		B833C7F620171D0900F9CE31 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F520171D0900F9CE31 /* SidebarView.swift */; };
 		B833C7FA20171FC500F9CE31 /* UIViewController+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F820171FC500F9CE31 /* UIViewController+Helper.swift */; };
@@ -45,6 +50,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		39173165201A60AD0016DF09 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		39173167201A61E80016DF09 /* FrequencyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyVC.swift; sourceTree = "<group>"; };
+		39173169201A62600016DF09 /* FinancialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialVC.swift; sourceTree = "<group>"; };
+		3917316B201A62830016DF09 /* SecretaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretaryVC.swift; sourceTree = "<group>"; };
+		3917316D201A64210016DF09 /* DisclosureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureVC.swift; sourceTree = "<group>"; };
 		39AC4CCE20190BA100A976F1 /* CalenderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalenderModel.swift; sourceTree = "<group>"; };
 		B20D4093C89A9D92CAD0699B /* Pods_AppSchool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSchool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B833C7F520171D0900F9CE31 /* SidebarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
@@ -182,6 +192,11 @@
 				E096DC092010E95C008F4404 /* SupportViewController.swift */,
 				E08B94542007F82B00F128E3 /* EditProfileVC.swift */,
 				E00F36F7200E5C6D0078CFFD /* CalenderVC.swift */,
+				39173165201A60AD0016DF09 /* NotesViewController.swift */,
+				39173167201A61E80016DF09 /* FrequencyVC.swift */,
+				39173169201A62600016DF09 /* FinancialVC.swift */,
+				3917316B201A62830016DF09 /* SecretaryVC.swift */,
+				3917316D201A64210016DF09 /* DisclosureVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -360,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3917316E201A64210016DF09 /* DisclosureVC.swift in Sources */,
 				B833C7FA20171FC500F9CE31 /* UIViewController+Helper.swift in Sources */,
 				B833C7FB20171FC500F9CE31 /* UIColor+Colors.swift in Sources */,
 				E00F36F8200E5C6D0078CFFD /* CalenderVC.swift in Sources */,
@@ -367,8 +383,11 @@
 				E096DC0C2010E95C008F4404 /* SupportViewController.swift in Sources */,
 				E0B75C5F2007AFEE0061784B /* AppDelegate.swift in Sources */,
 				B833C81120173F3A00F9CE31 /* Home.swift in Sources */,
+				39173168201A61E80016DF09 /* FrequencyVC.swift in Sources */,
 				E08B94552007F82B00F128E3 /* EditProfileVC.swift in Sources */,
+				39173166201A60AD0016DF09 /* NotesViewController.swift in Sources */,
 				B8F4CD482019E7B1008C325A /* UtilityHelper.swift in Sources */,
+				3917316C201A62830016DF09 /* SecretaryVC.swift in Sources */,
 				E096DC0D2010E95C008F4404 /* ForgotPasswordViewController.swift in Sources */,
 				B833C80F2017372000F9CE31 /* HomeCellView.swift in Sources */,
 				E096DC0E2010E95C008F4404 /* SuccessForgottenPasswordViewController.swift in Sources */,
@@ -378,6 +397,7 @@
 				B8F4CD442019E746008C325A /* ConstantDevices.swift in Sources */,
 				E069F3CD200A4C1900F17E10 /* HomeViewController.swift in Sources */,
 				39AC4CCF20190BA200A976F1 /* CalenderModel.swift in Sources */,
+				3917316A201A62600016DF09 /* FinancialVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
