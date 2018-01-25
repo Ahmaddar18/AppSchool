@@ -101,7 +101,7 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
                     pVC?.delegate = self
                     pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
                    // self.present(popupVC, animated: true, completion: nil)
-                    self.navigationController?.pushViewController(popupVC, animated: true)
+                    self.navigationController?.pushViewController(popupVC, animated: false)
                     UIHelper.stopsIndicator(view: self.loadIndicator)
                 }
             }

@@ -559,7 +559,7 @@ extension Koyomi: UICollectionViewDelegate {
         }
         
         model.select(with: indexPath)
-        reloadData()
+        //reloadData()
         
         calendarDelegate?.koyomi?(self, didSelect: date, forItemAt: indexPath)
     }

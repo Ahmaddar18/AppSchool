@@ -92,6 +92,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print("error=\(String(describing: error))")
                 
                 UIHelper.showAlertController(uiController: self, message: "Não foi possível conectar ao servidor", title: "Erro")
+                UIHelper.stopsIndicator(view: self.loadIndicator)
                 return
             }
             

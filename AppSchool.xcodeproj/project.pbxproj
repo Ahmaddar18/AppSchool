@@ -14,10 +14,11 @@
 		B833C7FB20171FC500F9CE31 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F920171FC500F9CE31 /* UIColor+Colors.swift */; };
 		B833C80F2017372000F9CE31 /* HomeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C80E2017372000F9CE31 /* HomeCellView.swift */; };
 		B833C81120173F3A00F9CE31 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C81020173F3900F9CE31 /* Home.swift */; };
+		B8F4CD442019E746008C325A /* ConstantDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F4CD422019E746008C325A /* ConstantDevices.swift */; };
+		B8F4CD452019E746008C325A /* ConstantShortcutsMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F4CD432019E746008C325A /* ConstantShortcutsMacros.swift */; };
+		B8F4CD482019E7B1008C325A /* UtilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F4CD472019E7B1008C325A /* UtilityHelper.swift */; };
 		E00F36F8200E5C6D0078CFFD /* CalenderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00F36F7200E5C6D0078CFFD /* CalenderVC.swift */; };
 		E02D79BC2008A16F00DBE49E /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D79BB2008A16F00DBE49E /* UIHelper.swift */; };
-		E069F3CA2009F96C00F17E10 /* approval-96.png in Resources */ = {isa = PBXBuildFile; fileRef = E069F3C72009F96C00F17E10 /* approval-96.png */; };
-		E069F3CB2009F96C00F17E10 /* error-96.png in Resources */ = {isa = PBXBuildFile; fileRef = E069F3C82009F96C00F17E10 /* error-96.png */; };
 		E069F3CD200A4C1900F17E10 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E069F3CC200A4C1900F17E10 /* HomeViewController.swift */; };
 		E08B94552007F82B00F128E3 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B94542007F82B00F128E3 /* EditProfileVC.swift */; };
 		E096DC0C2010E95C008F4404 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E096DC092010E95C008F4404 /* SupportViewController.swift */; };
@@ -51,11 +52,12 @@
 		B833C7F920171FC500F9CE31 /* UIColor+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
 		B833C80E2017372000F9CE31 /* HomeCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCellView.swift; path = AppSchool/UITableViewCell/HomeCellView.swift; sourceTree = SOURCE_ROOT; };
 		B833C81020173F3900F9CE31 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		B8F4CD422019E746008C325A /* ConstantDevices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantDevices.swift; sourceTree = "<group>"; };
+		B8F4CD432019E746008C325A /* ConstantShortcutsMacros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantShortcutsMacros.swift; sourceTree = "<group>"; };
+		B8F4CD472019E7B1008C325A /* UtilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityHelper.swift; sourceTree = "<group>"; };
 		D8B0878635F3D5E3104F90E5 /* Pods-AppSchool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSchool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppSchool/Pods-AppSchool.debug.xcconfig"; sourceTree = "<group>"; };
 		E00F36F7200E5C6D0078CFFD /* CalenderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderVC.swift; sourceTree = "<group>"; };
 		E02D79BB2008A16F00DBE49E /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
-		E069F3C72009F96C00F17E10 /* approval-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "approval-96.png"; sourceTree = "<group>"; };
-		E069F3C82009F96C00F17E10 /* error-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error-96.png"; sourceTree = "<group>"; };
 		E069F3CC200A4C1900F17E10 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E08B94542007F82B00F128E3 /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		E096DC092010E95C008F4404 /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,8 @@
 		39AC4CCD2018E53E00A976F1 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				B8F4CD422019E746008C325A /* ConstantDevices.swift */,
+				B8F4CD432019E746008C325A /* ConstantShortcutsMacros.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -134,6 +138,22 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		B8F4CD462019E79C008C325A /* UtilityFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				B8F4CD472019E7B1008C325A /* UtilityHelper.swift */,
+			);
+			path = UtilityFunctions;
+			sourceTree = "<group>";
+		};
+		B8F4CD492019E851008C325A /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				E0B75C5E2007AFEE0061784B /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
 		E01C72742013DD660007D4DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,15 +170,6 @@
 				E02D79BB2008A16F00DBE49E /* UIHelper.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		E069F3C52009F94F00F17E10 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				E069F3C72009F96C00F17E10 /* approval-96.png */,
-				E069F3C82009F96C00F17E10 /* error-96.png */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 		E096DC082010E934008F4404 /* Controllers */ = {
@@ -179,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				E0B75C5D2007AFEE0061784B /* AppSchool */,
-				E069F3C52009F94F00F17E10 /* Assets */,
 				E0B75C5C2007AFEE0061784B /* Products */,
 				AF30782883EF297FC7BE70A5 /* Pods */,
 				8533A4F6D39214263E7A049E /* Frameworks */,
@@ -197,10 +207,11 @@
 		E0B75C5D2007AFEE0061784B /* AppSchool */ = {
 			isa = PBXGroup;
 			children = (
+				B8F4CD462019E79C008C325A /* UtilityFunctions */,
 				39AC4CCD2018E53E00A976F1 /* Constants */,
-				E0B75C5E2007AFEE0061784B /* AppDelegate.swift */,
 				E02D79BA2008A15400DBE49E /* Helpers */,
 				3960B3CB20164BC200BADA7A /* Models */,
+				B8F4CD492019E851008C325A /* AppDelegate */,
 				E096DC082010E934008F4404 /* Controllers */,
 				E01C72742013DD660007D4DF /* Views */,
 				B833C80D2017370C00F9CE31 /* UITableViewCell */,
@@ -247,7 +258,7 @@
 				TargetAttributes = {
 					E0B75C5A2007AFED0061784B = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -275,9 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0B75C692007AFEE0061784B /* LaunchScreen.storyboard in Resources */,
-				E069F3CA2009F96C00F17E10 /* approval-96.png in Resources */,
 				E0B75C662007AFEE0061784B /* Assets.xcassets in Resources */,
-				E069F3CB2009F96C00F17E10 /* error-96.png in Resources */,
 				E0B75C642007AFEE0061784B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,11 +368,14 @@
 				E0B75C5F2007AFEE0061784B /* AppDelegate.swift in Sources */,
 				B833C81120173F3A00F9CE31 /* Home.swift in Sources */,
 				E08B94552007F82B00F128E3 /* EditProfileVC.swift in Sources */,
+				B8F4CD482019E7B1008C325A /* UtilityHelper.swift in Sources */,
 				E096DC0D2010E95C008F4404 /* ForgotPasswordViewController.swift in Sources */,
 				B833C80F2017372000F9CE31 /* HomeCellView.swift in Sources */,
 				E096DC0E2010E95C008F4404 /* SuccessForgottenPasswordViewController.swift in Sources */,
 				B833C7F620171D0900F9CE31 /* SidebarView.swift in Sources */,
+				B8F4CD452019E746008C325A /* ConstantShortcutsMacros.swift in Sources */,
 				E02D79BC2008A16F00DBE49E /* UIHelper.swift in Sources */,
+				B8F4CD442019E746008C325A /* ConstantDevices.swift in Sources */,
 				E069F3CD200A4C1900F17E10 /* HomeViewController.swift in Sources */,
 				39AC4CCF20190BA200A976F1 /* CalenderModel.swift in Sources */,
 			);
@@ -504,8 +516,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 65XGKTAVL9;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -527,8 +539,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 65XGKTAVL9;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

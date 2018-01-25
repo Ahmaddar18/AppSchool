@@ -14,6 +14,7 @@ protocol SidebarViewDelegate: class {
 }
 
 enum Row: String {
+    case profile
     case cronograma
     case notas
     case frequencia
@@ -29,17 +30,18 @@ enum Row: String {
     
     init(row: Int) {
         switch row {
-        case 0: self = .cronograma
-        case 1: self = .notas
-        case 2: self = .frequencia
-        case 3: self = .financeiro
-        case 4: self = .secretaria
-        case 5: self = .divulgacao
-        case 6: self = .conveniencia
-        case 7: self = .estagios
-        case 8: self = .ambiente
-        case 9: self = .suporte
-        case 10: self = .sair
+        case 0: self = .profile
+        case 1: self = .cronograma
+        case 2: self = .notas
+        case 3: self = .frequencia
+        case 4: self = .financeiro
+        case 5: self = .secretaria
+        case 6: self = .divulgacao
+        case 7: self = .conveniencia
+        case 8: self = .estagios
+        case 9: self = .ambiente
+        case 10: self = .suporte
+        case 11: self = .sair
         default: self = .none
         }
     }
@@ -56,7 +58,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.backgroundColor=UIColor(red: 54/255, green: 55/255, blue: 56/255, alpha: 1.0)
         self.clipsToBounds=true
         
-        titleArr = ["CRONOGRAMA", "NOTAS", "FREQUENCIA", "FINANCEIRO", "SECRETARIA ON-LINE", "DIVULGACAO E INSCRICOES","CONVENIENCIA","ESTAGIOS","AMBIENTE EAD","SUPORTE","Sair"]
+        titleArr = ["PROFILE","CRONOGRAMA", "NOTAS", "FREQUÊNCIA", "FINANCEIRO", "SECRETARIA ON-LINE", "DIVULGAÇÃO E INSCRIÇÕES","CONVENIÊNCIA","ESTÁGIOS","AMBIENTE EAD","SUPORTE","SAIR"]
         
         setupViews()
         
@@ -125,7 +127,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             return 100
         } else {
-            return 60
+            return 50
         }
     }
     

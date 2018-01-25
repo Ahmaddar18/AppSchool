@@ -22,7 +22,7 @@ class SuccessForgottenPasswordViewController: UIViewController {
         super.viewDidLoad()
         successMessageTextView.text? = "Envio de dados realizado com sucesso. Conforme orientações no e-mail efetue seu acesso clicando no botão abaixo"
         if status == "ERRO" {
-            successImageView.image = UIImage(named: "error-96.png")
+            successImageView.image = UIImage(named: "ic_action_close")
         }
         
         // Do any additional setup after loading the view.

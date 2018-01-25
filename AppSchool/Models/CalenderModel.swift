@@ -15,7 +15,10 @@ class CalenderModel: NSObject {
     var Horario: String
     var Latitude: String
     var TextoDescricao: String
-    var dateString: String
+    var DateString: String
+    var Title: String
+    var Month: String
+    var Year: String
     
     
     override init() {
@@ -25,7 +28,10 @@ class CalenderModel: NSObject {
         self.Horario = ""
         self.Latitude = ""
         self.TextoDescricao = ""
-        self.dateString = ""
+        self.DateString = ""
+        self.Title = ""
+        self.Month = ""
+        self.Year = ""
 
     }
     

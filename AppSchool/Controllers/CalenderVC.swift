@@ -12,31 +12,16 @@ import Koyomi
 let MONTH = "01"
 let YEAR = "2018"
 
-let d1 = "01"
-let d2 = "02"
-let d5 = "05"
+let Titulo = "Titulo"
+let Professor = "Professor"
+let Horario = "Horario"
+let Latitude = "Latitude"
+let Longitude = "Longitude"
+let TextoDescricao = "TextoDescricao"
+let TituloCurso = "TituloCurso"
+let CURSO = "CURSO"
+let Meses = "Meses"
 
-struct calenderData : Decodable {
-    let RESPONSE : String?
-    let MENSAGEMERRO : String?
-    let CURSO : [calNestedData]
-}
-struct calNestedData : Decodable {
-    let TituloCurso : String?
-    let ano : String?
-    var Meses: [String: String]
-}
-struct mesesData : Decodable {
-    let mes : String?
-}
-struct dayData : Decodable {
-    let Titulo : String?
-    let Longitude : String?
-    let twProfessoro : String?
-    let Horario : String?
-    let Latitude : String?
-    let TextoDescricao : String?
-}
 
 
 class CalenderVC: UIViewController {
@@ -59,9 +44,17 @@ class CalenderVC: UIViewController {
     }
     
     @IBOutlet weak var lblMonth: UILabel!
+    @IBOutlet weak var viewPopup: UIView!
+    @IBOutlet weak var lblPopTitle: UILabel!
+    @IBOutlet weak var lblPopAula: UILabel!
+    @IBOutlet weak var lblPopHorario: UILabel!
+    @IBOutlet weak var lblPopDocente: UILabel!
+    @IBOutlet weak var lblPopLocal: UILabel!
+    @IBOutlet weak var lblPopDescricao: UILabel!
     
     var loadIndicator: UIView = UIView()
     var allDays = [CalenderModel]()
+    var selectedDays: [Date] = []
     
     fileprivate let invalidPeriodLength = 90
     
@@ -71,6 +64,10 @@ class CalenderVC: UIViewController {
         // Do any additional setup after loading the view.
         
         initializing()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,24 +91,20 @@ class CalenderVC: UIViewController {
         let today = Date()
         print(today)
         
-        var selectedDays: [Date] = []
-        
         for obj in allDays {
-            let date = self.convertStrIntoDate(str: obj.dateString)
+            let date = self.convertStrIntoDate(str: obj.DateString)
             print(date)
             selectedDays.append(date)
         }
         
-        //self.updateCalender(selectedDays: selectedDays)
         koyomi.select(dates: selectedDays)
-        self.view.layoutIfNeeded()
-        //self.setNeedsFocusUpdate()
+        self.koyomi.reloadData()
     }
     
     func convertStrIntoDate(str: String) -> Date {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd"// HH:mm:ss
         let date = dateFormatter.date(from: str)!
         
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -121,6 +114,38 @@ class CalenderVC: UIViewController {
         let date2 = dateFormatter.date(from: timeStamp)!
         
         return date2
+    }
+    
+    func findDateAndLoadPopup(_ date:String) {
+        
+        for dayObj in allDays {
+            if dayObj.DateString.contains(date) {
+                print("date found")
+                addPopupView(dayObj)
+                break
+            }
+            
+        }
+    }
+    
+    func addPopupView(_ obj: CalenderModel){
+        
+        let frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        viewPopup.frame = frame
+        AppDel.window?.addSubview(viewPopup)
+        
+        setPopupValue(obj)
+    }
+    
+    func setPopupValue(_ obj: CalenderModel) {
+        
+        lblPopTitle.text = obj.Titulo
+        let date = UtilityHelper.convertStringDate(obj.DateString, formatFrom: "yyyy-MM-dd", formatTo: "dd/MM/yyy")
+        lblPopAula.text = String(format:"Aula: %@",date)
+        lblPopHorario.text = String(format:"Horario: %@",obj.Horario)
+        lblPopDocente.text = String(format:"Docente: %@",obj.Professor)
+        lblPopLocal.text = String(format:"Local: %@","Laboratorio de Procedimentos")
+        lblPopDescricao.text = String(format:"Descricao: %@",obj.TextoDescricao)
     }
     
     // MARK: - API Methods
@@ -162,38 +187,46 @@ class CalenderVC: UIViewController {
                         if httpStatus?.statusCode == 200 {
                             
                             DispatchQueue.main.async{
-                                let results = jsonResult["CURSO"] as? NSArray!
-                                let curcoData = results![0] as! NSDictionary
                                 
-                                let mesesResult = curcoData["Meses"] as! NSArray
-                                let messData = mesesResult[0] as! NSDictionary
+                                if jsonResult["RESPONSE"] as? String == "200" {
                                 
-                                let year = curcoData["ano"] as! String
-                                let title = curcoData["TituloCurso"] as! String
-                                let month = messData["mes"] as! String
-                                
-                                var keys = messData.allKeys as! [String]
-                                keys = keys.filter(){$0 != "mes"}
-                                print(keys)
-                                
-                                for key in keys {
-                                    let dayResult = messData[key] as! NSArray
-                                    let dayData = dayResult[0] as! NSDictionary
+                                    let results = jsonResult[CURSO] as? NSArray!
+                                    let curcoData = results![0] as! NSDictionary
                                     
-                                    let day = CalenderModel()
+                                    let mesesResult = curcoData[Meses] as! NSArray
+                                    let messData = mesesResult[0] as! NSDictionary
                                     
-                                    day.Titulo = dayData["Titulo"] as! String
-                                    day.Longitude = dayData["Longitude"] as! String
-                                    day.Professor = dayData["Professor"] as! String
-                                    day.Horario = dayData["Horario"] as! String
-                                    day.Latitude = dayData["Latitude"] as! String
-                                    day.TextoDescricao = dayData["TextoDescricao"] as! String
-                                    day.dateString = String(format:"%@-%@-%@ 10:30:55",year,month,key)
+                                    let year = curcoData["ano"] as! String
+                                    let title = curcoData[TituloCurso] as! String
+                                    let month = messData["mes"] as! String
                                     
-                                    self.allDays.append(day)
+                                    var keys = messData.allKeys as! [String]
+                                    keys = keys.filter(){$0 != "mes"}
+                                    print(keys)
+                                    
+                                    for key in keys {
+                                        let dayResult = messData[key] as! NSArray
+                                        let dayData = dayResult[0] as! NSDictionary
+                                        
+                                        let day = CalenderModel()
+                                        
+                                        day.Title = title
+                                        day.Month = month
+                                        day.Year = year
+                                        day.Titulo = dayData[Titulo] as! String
+                                        day.Longitude = dayData[Longitude] as! String
+                                        day.Professor = dayData[Professor] as! String
+                                        day.Horario = dayData[Horario] as! String
+                                        day.Latitude = dayData[Latitude] as! String
+                                        day.TextoDescricao = dayData[TextoDescricao] as! String
+                                        day.DateString = String(format:"%@-%@-%@",year,month,key)// 10:30:55
+                                        
+                                        self.allDays.append(day)
+                                    }
+                                    
+                                    print(self.allDays)
+
                                 }
-                                
-                                print(self.allDays)
                             }
                         }
                         
@@ -222,6 +255,17 @@ class CalenderVC: UIViewController {
         task.resume()
     }
     
+    // MARK: - Action Methods
+    
+    @IBAction func actionClosePopup(_ sender: UIButton) {
+        viewPopup.removeFromSuperview()
+    }
+    
+    @IBAction func actionGoBack(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
 }
 
 extension CalenderVC {
@@ -238,9 +282,6 @@ extension CalenderVC {
         koyomi.display(in: month)
     }
     
-    func updateCalender(selectedDays: [Date]) {
-        koyomi.select(dates: selectedDays)
-    }
 }
 
 // MARK: - KoyomiDelegate -
@@ -248,10 +289,20 @@ extension CalenderVC {
 extension CalenderVC: KoyomiDelegate {
     func koyomi(_ koyomi: Koyomi, didSelect date: Date?, forItemAt indexPath: IndexPath) {
         print("You Selected: ",date!)
+        
+        let datee = UtilityHelper.convertDateToString(date!, withFormat: "yyyy-MM-dd'T'HH:mm:ss")
+        let date = UtilityHelper.convertStringDate(datee, formatFrom: "yyyy-MM-dd'T'HH:mm:ss", formatTo: "yyyy-MM-dd")
+        print(date)
+        
+        findDateAndLoadPopup(date)
     }
     
     func koyomi(_ koyomi: Koyomi, currentDateString dateString: String) {
         lblMonth.text = dateString
+        
+        let month = UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "MM")
+        let year = UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "yyyy")
+        callCalenderApi(month: month, year: year)
     }
     
     @objc(koyomi:shouldSelectDates:to:withPeriodLength:)
