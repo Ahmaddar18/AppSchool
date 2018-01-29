@@ -8,17 +8,20 @@
 
 import UIKit
 
-class SecretaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
+class SecretaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var viewOptions: UIView!
     @IBOutlet weak var optionsPickerView: UIPickerView!
     @IBOutlet weak var tfOption: UITextField!
+    @IBOutlet weak var tvMessage: UITextView!
     
     var loadIndicator: UIView = UIView()
     var secretaryList = [NotesList]()
     var periodoList = [NotesList]()
+    var strDocId : String = ""
+    var strPeriodoId : String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +78,7 @@ class SecretaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         let obj = periodoList[row]
         self.tfOption.text = obj.name
         self.view.reloadInputViews()
+        strPeriodoId = obj.value
     }
     
     // MARK: - API Methods
@@ -166,8 +170,6 @@ class SecretaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     func callPeriodoApi(docId: String){
         
         self.loadIndicator = UIHelper.activityIndicator(view: self.viewOptions, title: "Carregando")
-        //self.viewOptions.superview?.bringSubview(toFront: loadIndicator)
-        //self.loadIndicator.superview?.bringSubview(toFront: viewOptions)
         
         let postString = """
         {
@@ -226,8 +228,6 @@ class SecretaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
                                             self.periodoList.append(listObj)   
                                         }
                                     }
-                                    // reload picker view
-                                    self.tableView.reloadData()
                                 }
                             }
                         }
@@ -253,16 +253,87 @@ class SecretaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         task.resume()
     }
+
+    func callSubmitOnlineApi(docId: String, periodoId: String, message: String){
+        
+        self.loadIndicator = UIHelper.activityIndicator(view: self.viewOptions, title: "Carregando")
+        
+        let postString = """
+        {
+        \"setIdDoc\"    :"\(docId)",
+        \"setPeriodoLetivo\"    :"\(periodoId)",
+        \"setMensagem\"    :"\(message)",
+        }
+        """
+        
+        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/secretariaonline")!)
+        request.httpMethod = "POST"
+        request.addValue("PROD", forHTTPHeaderField: "TAmb")
+        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.httpBody = postString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            guard error == nil else {
+                // check for fundamental networking error
+                print("error=\(String(describing: error))")
+                
+                UIHelper.showAlertController(uiController: self, message: "Não foi possível conectar ao servidor", title: "Erro")
+                return
+            }
+            
+            let httpStatus = response as? HTTPURLResponse
+            
+            if let data = data {
+                do {
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
+                        
+                        if httpStatus?.statusCode == 200 {
+                            
+                            DispatchQueue.main.async{
+                                
+                                if jsonResult["RESPONSE"] as? String == "200" {
+                                    
+                                    //let results = jsonResult["DOCUMENTO"] as? NSArray!
+                                    
+                                    self.actionHideView(self)
+                                }
+                            }
+                        }
+                        
+                        DispatchQueue.main.async {
+                            UIHelper.stopsIndicator(view: self.loadIndicator)
+                        }
+                    }
+                    
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                    DispatchQueue.main.async {
+                        UIHelper.stopsIndicator(view: self.loadIndicator)
+                    }
+                }
+            } else if let error = error {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    UIHelper.stopsIndicator(view: self.loadIndicator)
+                }
+            }
+        }
+        
+        task.resume()
+    }
+
     
     // MARK: - Action Methods
     
-    @IBAction func actionHideView(_ sender: UIButton) {
+    @IBAction func actionHideView(_ sender: AnyObject) {
         viewOptions.removeFromSuperview()
         btnBack.isHidden = true
     }
     
     @IBAction func actionSubmit(_ sender: UIButton) {
         
+        callSubmitOnlineApi(docId: strDocId, periodoId: strPeriodoId, message: self.tvMessage.text)
     }
     
     // MARK: - Table view data source
@@ -297,6 +368,7 @@ class SecretaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         tableView.deselectRow(at: indexPath, animated: true)
         showOptionView()
         let obj = self.secretaryList[indexPath.row]
+        strDocId = obj.value
         callPeriodoApi(docId: obj.value)
     }
     
