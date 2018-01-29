@@ -24,11 +24,10 @@ class UIHelper{
         alertController.view.layer.cornerRadius = 0.1 * alertController.view.bounds.size.width
     }
     
-    static func activityIndicator(uiController: UIViewController, title: String) -> UIView {
+    static func activityIndicator(view: UIView, title: String) -> UIView {
         var strLabel = UILabel()
         var activityIndicator = UIActivityIndicatorView()
         let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        let view: UIView = uiController.view
         
         let subView: UIView = UIView()
         view.addSubview(subView)

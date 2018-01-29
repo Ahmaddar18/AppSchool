@@ -131,7 +131,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func loadDataFromServer(){
        
-        self.loadIndicator = UIHelper.activityIndicator(uiController: self, title: "Carregando")
+        self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
         
         var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/bemvindohome")!)
         request.httpMethod = "POST"

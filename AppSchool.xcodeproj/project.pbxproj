@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		205BD244F1CBC85E5222AE3E /* Pods_AppSchool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B20D4093C89A9D92CAD0699B /* Pods_AppSchool.framework */; };
+		3901562A201CF4190072D865 /* Secretary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39015629201CF4190072D865 /* Secretary.swift */; };
+		3901562C201CFA9B0072D865 /* SecretrayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3901562B201CFA9B0072D865 /* SecretrayCellView.swift */; };
 		39173166201A60AD0016DF09 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39173165201A60AD0016DF09 /* NotesViewController.swift */; };
 		39173168201A61E80016DF09 /* FrequencyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39173167201A61E80016DF09 /* FrequencyVC.swift */; };
 		3917316A201A62600016DF09 /* FinancialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39173169201A62600016DF09 /* FinancialVC.swift */; };
@@ -19,6 +21,10 @@
 		B833C7FB20171FC500F9CE31 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F920171FC500F9CE31 /* UIColor+Colors.swift */; };
 		B833C80F2017372000F9CE31 /* HomeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C80E2017372000F9CE31 /* HomeCellView.swift */; };
 		B833C81120173F3A00F9CE31 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C81020173F3900F9CE31 /* Home.swift */; };
+		B86AF966201B0F5F003E1E61 /* NotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86AF965201B0F5F003E1E61 /* NotesModel.swift */; };
+		B86AF968201B0FAC003E1E61 /* NotesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86AF967201B0FAC003E1E61 /* NotesList.swift */; };
+		B86AF96A201B1779003E1E61 /* NoteCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86AF969201B1779003E1E61 /* NoteCellView.swift */; };
+		B86AF96C201B2DDA003E1E61 /* NoteSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86AF96B201B2DDA003E1E61 /* NoteSectionCell.swift */; };
 		B8F4CD442019E746008C325A /* ConstantDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F4CD422019E746008C325A /* ConstantDevices.swift */; };
 		B8F4CD452019E746008C325A /* ConstantShortcutsMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F4CD432019E746008C325A /* ConstantShortcutsMacros.swift */; };
 		B8F4CD482019E7B1008C325A /* UtilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F4CD472019E7B1008C325A /* UtilityHelper.swift */; };
@@ -50,6 +56,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		39015629201CF4190072D865 /* Secretary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secretary.swift; sourceTree = "<group>"; };
+		3901562B201CFA9B0072D865 /* SecretrayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretrayCellView.swift; sourceTree = "<group>"; };
 		39173165201A60AD0016DF09 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		39173167201A61E80016DF09 /* FrequencyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyVC.swift; sourceTree = "<group>"; };
 		39173169201A62600016DF09 /* FinancialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialVC.swift; sourceTree = "<group>"; };
@@ -62,6 +70,10 @@
 		B833C7F920171FC500F9CE31 /* UIColor+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
 		B833C80E2017372000F9CE31 /* HomeCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCellView.swift; path = AppSchool/UITableViewCell/HomeCellView.swift; sourceTree = SOURCE_ROOT; };
 		B833C81020173F3900F9CE31 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		B86AF965201B0F5F003E1E61 /* NotesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesModel.swift; sourceTree = "<group>"; };
+		B86AF967201B0FAC003E1E61 /* NotesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesList.swift; sourceTree = "<group>"; };
+		B86AF969201B1779003E1E61 /* NoteCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellView.swift; sourceTree = "<group>"; };
+		B86AF96B201B2DDA003E1E61 /* NoteSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSectionCell.swift; sourceTree = "<group>"; };
 		B8F4CD422019E746008C325A /* ConstantDevices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantDevices.swift; sourceTree = "<group>"; };
 		B8F4CD432019E746008C325A /* ConstantShortcutsMacros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantShortcutsMacros.swift; sourceTree = "<group>"; };
 		B8F4CD472019E7B1008C325A /* UtilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityHelper.swift; sourceTree = "<group>"; };
@@ -100,6 +112,9 @@
 			children = (
 				B833C81020173F3900F9CE31 /* Home.swift */,
 				39AC4CCE20190BA100A976F1 /* CalenderModel.swift */,
+				B86AF965201B0F5F003E1E61 /* NotesModel.swift */,
+				B86AF967201B0FAC003E1E61 /* NotesList.swift */,
+				39015629201CF4190072D865 /* Secretary.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -143,6 +158,9 @@
 			isa = PBXGroup;
 			children = (
 				B833C80E2017372000F9CE31 /* HomeCellView.swift */,
+				B86AF969201B1779003E1E61 /* NoteCellView.swift */,
+				B86AF96B201B2DDA003E1E61 /* NoteSectionCell.swift */,
+				3901562B201CFA9B0072D865 /* SecretrayCellView.swift */,
 			);
 			name = UITableViewCell;
 			path = "New Group";
@@ -380,13 +398,18 @@
 				B833C7FB20171FC500F9CE31 /* UIColor+Colors.swift in Sources */,
 				E00F36F8200E5C6D0078CFFD /* CalenderVC.swift in Sources */,
 				E0B75C612007AFEE0061784B /* LoginViewController.swift in Sources */,
+				B86AF968201B0FAC003E1E61 /* NotesList.swift in Sources */,
+				B86AF966201B0F5F003E1E61 /* NotesModel.swift in Sources */,
 				E096DC0C2010E95C008F4404 /* SupportViewController.swift in Sources */,
 				E0B75C5F2007AFEE0061784B /* AppDelegate.swift in Sources */,
 				B833C81120173F3A00F9CE31 /* Home.swift in Sources */,
+				3901562C201CFA9B0072D865 /* SecretrayCellView.swift in Sources */,
+				B86AF96C201B2DDA003E1E61 /* NoteSectionCell.swift in Sources */,
 				39173168201A61E80016DF09 /* FrequencyVC.swift in Sources */,
 				E08B94552007F82B00F128E3 /* EditProfileVC.swift in Sources */,
 				39173166201A60AD0016DF09 /* NotesViewController.swift in Sources */,
 				B8F4CD482019E7B1008C325A /* UtilityHelper.swift in Sources */,
+				B86AF96A201B1779003E1E61 /* NoteCellView.swift in Sources */,
 				3917316C201A62830016DF09 /* SecretaryVC.swift in Sources */,
 				E096DC0D2010E95C008F4404 /* ForgotPasswordViewController.swift in Sources */,
 				B833C80F2017372000F9CE31 /* HomeCellView.swift in Sources */,
@@ -394,6 +417,7 @@
 				B833C7F620171D0900F9CE31 /* SidebarView.swift in Sources */,
 				B8F4CD452019E746008C325A /* ConstantShortcutsMacros.swift in Sources */,
 				E02D79BC2008A16F00DBE49E /* UIHelper.swift in Sources */,
+				3901562A201CF4190072D865 /* Secretary.swift in Sources */,
 				B8F4CD442019E746008C325A /* ConstantDevices.swift in Sources */,
 				E069F3CD200A4C1900F17E10 /* HomeViewController.swift in Sources */,
 				39AC4CCF20190BA200A976F1 /* CalenderModel.swift in Sources */,

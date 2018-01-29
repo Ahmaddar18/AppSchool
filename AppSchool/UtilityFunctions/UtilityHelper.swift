@@ -115,8 +115,6 @@ class UtilityHelper
         }
     }
     
-    // MARK: - UIActionSheet (TODO)
-    
     // MARK: - Localization
     
     static func getFormattedStringFromNumber(_ number: Double) -> String
@@ -168,43 +166,6 @@ class UtilityHelper
         label.sizeToFit()
         
         return label.frame.height
-    }
-    
-    class func getDirectoryFolderName(name: String) -> String {
-        
-        let str = String(format:"/%@/",name)
-        return str
-    }
-
-    
-    class func rotateImageByDegrees(degrees: CGFloat, image:UIImage) -> UIImage {
-        
-        let degreesToRadians: (CGFloat) -> CGFloat = {
-            return $0 / 180.0 * CGFloat(Double.pi)
-        }
-        
-        // calculate the size of the rotated view's containing box for our drawing space
-        let rotatedViewBox = UIView(frame: CGRect(origin: CGPoint.zero, size: image.size))
-        let t = CGAffineTransform(rotationAngle: degreesToRadians(degrees));
-        rotatedViewBox.transform = t
-        let rotatedSize = rotatedViewBox.frame.size
-        
-        // Create the bitmap context
-        UIGraphicsBeginImageContext(rotatedSize)
-        let bitmap = UIGraphicsGetCurrentContext()
-        
-        // Move the origin to the middle of the image so we will rotate and scale around the center.
-        bitmap?.translateBy(x: rotatedSize.width / 2.0, y: rotatedSize.height / 2.0);
-        
-        // Rotate the image context
-        bitmap?.rotate(by: degreesToRadians(degrees));
-        
-        // Now, draw the rotated/scaled image into the context
-        bitmap?.scaleBy(x: 1.0, y: -1.0)
-        bitmap?.draw(image.cgImage!, in: CGRect(x: -image.size.width / 2, y: -image.size.height / 2, width: image.size.width, height: image.size.height))
-        
-        let cgimage:CGImage  = bitmap!.makeImage()!
-        return UIImage(cgImage: cgimage)
     }
     
     class func textfieldPaddingView(_ tf:UITextField) -> UITextField {
@@ -626,45 +587,7 @@ class UtilityHelper
         let shadowPath: UIBezierPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: 3)
         view.layer.shadowPath = shadowPath.cgPath
     }
-    // MARK: - Application Badge
-    
-    class func setApplicationBadgeNumber(_ number: Int) {
-        UIApplication.shared.applicationIconBadgeNumber = number
-    }
-    
-    class func increaseApplicationBadgeNumberByOne() {
-        let count: Int = UIApplication.shared.applicationIconBadgeNumber
-        UIApplication.shared.applicationIconBadgeNumber = count+1
-    }
-    
-    // MARK: -
-    // MARK: Session Save
-    // MARK: -
-    
-    class func saveSessionToDisk(_ Session: NSDictionary) {
-        let dictionary: NSMutableDictionary = NSMutableDictionary(dictionary: Session)
-        let archiveData: Data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-        var paths: [AnyObject] = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as [AnyObject]
-        let documentsDir: NSString = paths[0] as! String as NSString
-        let fullPath: NSString = documentsDir.appendingPathComponent("SavedSession.plist") as NSString
-        try? archiveData.write(to: URL(fileURLWithPath: fullPath as String), options: [.atomic])
-    }
-    
-    class func loadSessionFromDisk() -> NSDictionary? {
-        var paths: [AnyObject] = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as [AnyObject]
-        let documentsDir: NSString = paths[0] as! NSString
-        let fullPath: String = documentsDir.appendingPathComponent("SavedSession.plist")
-        print("\(fullPath)")
-        let fileManager: FileManager = FileManager.default
-        if fileManager.fileExists(atPath: fullPath) {
-            var dict: NSDictionary? = nil
-            let archiveData: Data = try! Data(contentsOf: URL(fileURLWithPath: fullPath))
-            dict = (NSKeyedUnarchiver.unarchiveObject(with: archiveData) as? NSMutableDictionary)
-            return dict
-        }
-        return nil
-    }
-    
+
     // MARK: - Key Window
     class func getKeyWindow() -> UIWindow? {
         return UIApplication.shared.keyWindow
@@ -673,56 +596,6 @@ class UtilityHelper
     class func getAppWindow() -> UIWindow? {
         let ad  = UIApplication.shared.delegate as! AppDelegate
         return ad.window
-    }
-    
-    // MARK: - Array Form / Dictionary Form
-    
-    /*
-     class MyClass {
-     var property1 = 1
-     var property2 = "Hi"
-     }
-     ArrayForm((0, 1, 2, 3))                 // [0, 1, 2, 3]
-     ArrayForm(MyClass())                    // [1, "Hi"]
-     */
-    
-    class func ArrayForm(_ value: Any) -> [Any] {
-        var mirror: Mirror? = Mirror(reflecting: value)
-        var propertyValues = [Any]()
-        
-        while let currentMirror = mirror {
-            propertyValues += currentMirror.children.map { $0.value }
-            
-            // Get superclass if it exists
-            mirror = currentMirror.superclassMirror
-        }
-        
-        return propertyValues
-    }
-    
-    
-    /*
-     class MyClass {
-     var property1 = 1
-     var property2 = "Hi"
-     }
-     DictionaryForm(MyClass())               // ["property1" : 1, "property2" : "Hi"]
-     */
-    
-    class func DictionaryForm(_ value: Any) -> [String : Any] {
-        var mirror: Mirror? = Mirror(reflecting: value)
-        var objectDictionary = [String : Any]()
-        
-        while let currentMirror = mirror {
-            for (propertyName, value) in currentMirror.children {
-                if let key = propertyName { objectDictionary[key] = value }
-            }
-            
-            // Get superclass if it exists
-            mirror = currentMirror.superclassMirror
-        }
-        
-        return objectDictionary
     }
     
     // MARK: - Measure height/width from String
@@ -753,50 +626,6 @@ class UtilityHelper
         label.text = text
         label.sizeToFit()
         return label.frame.height
-    }
-    
-    //    class func maxFontSizeForLabel(text:String,labelWidth:CGFloat,labelHeight:CGFloat, font:UIFont)->CGFloat{
-    //        var fontSize = font.pointSize
-    //        var currentHeight = requiredHeightForLabelWith(labelWidth, font: font, text: text)
-    //        while currentHeight >= labelHeight{
-    //            fontSize = fontSize - 1
-    //            font = font.fontWithSize(fontSize)
-    //            currentHeight = requiredHeightForLabelWith(labelWidth, font: font, text: text)
-    //        }
-    //        return fontSize
-    //    }
-    
-    // MARK: - GCD
-    /**
-     Perform a block on the specified queue. This is just a nicer wrapper around the dispatch_async()
-     Grand Central Dispatch function.
-     - Parameter queueType:  The queue to execute the block on
-     - Parameter closure:    The block to execute
-     *Example usage:*
-     ```
-     performOn(.Main) { self.tableView.reloadData() }
-     ```
-     */
-    class func performOn(_ queueType: QueueType, closure: @escaping () -> Void) {
-        queueType.queue.async(execute: closure)
-    }
-    
-    /**
-     Perform a block on a queue after waiting the specified time.
-     - Parameter delay:     Time to wait in seconds before performing the block
-     - Parameter queueType: Queue to execute the block on (default is the main queue)
-     - Parameter closure:   Block to execute after the time specified in delay has passed
-     *Example usage:*
-     ```
-     // Wait for 200ms then run the block on the main queue
-     delay(0.2) { alert.hide() }
-     // Wait for 1s then run the block on a background queue
-     delay(1.0, queueType: .Background) { alert.hide() }
-     ```
-     */
-    class func delay(_ delay: TimeInterval, queueType: QueueType = .Main, closure: @escaping () -> Void) {
-        let time = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-        queueType.queue.asyncAfter(deadline: time, execute: closure)
     }
     
     

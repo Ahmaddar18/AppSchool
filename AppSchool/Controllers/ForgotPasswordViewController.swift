@@ -117,7 +117,7 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
             UIHelper.showAlertController(uiController: self, message: "Por favor, preencha 0 e-mail")
             return
         } else {
-            self.loadIndicator =  UIHelper.activityIndicator(uiController: self, title: "Carregando")
+            self.loadIndicator =  UIHelper.activityIndicator(view: self.view, title: "Carregando")
             doForgotPasswordRequest(email: email!)
         }
     }

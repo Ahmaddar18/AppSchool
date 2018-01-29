@@ -79,7 +79,7 @@ class SupportViewController: UIViewController, UITextViewDelegate {
     @IBAction func submitSupportCall(_ sender: Any) {
         if isDataValid() {
             
-           loadIndicator = UIHelper.activityIndicator(uiController: self, title: "Enviando dados")
+           loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Enviando dados")
             
             let email = emailTextView.text!
             let message = messageTextView.text!

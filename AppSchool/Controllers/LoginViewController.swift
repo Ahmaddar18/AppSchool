@@ -154,7 +154,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             UIHelper.showAlertController(uiController: self, message: "Por favor, preencha a senha")
             return
         } else {
-            self.loadIndicator = UIHelper.activityIndicator(uiController: self, title: "Carregando")
+            self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
             doLoginRequest(email: email!, senha: senha!)
         }
     }

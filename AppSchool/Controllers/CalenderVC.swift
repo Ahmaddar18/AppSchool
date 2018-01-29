@@ -44,6 +44,8 @@ class CalenderVC: UIViewController {
     }
     
     @IBOutlet weak var lblMonth: UILabel!
+    
+    // Custom popup view
     @IBOutlet weak var viewPopup: UIView!
     @IBOutlet weak var lblPopTitle: UILabel!
     @IBOutlet weak var lblPopAula: UILabel!
@@ -53,9 +55,9 @@ class CalenderVC: UIViewController {
     @IBOutlet weak var lblPopDescricao: UILabel!
     
     var loadIndicator: UIView = UIView()
+    
     var allDays = [CalenderModel]()
     var selectedDays: [Date] = []
-    
     fileprivate let invalidPeriodLength = 90
     
     override func viewDidLoad() {
@@ -152,7 +154,7 @@ class CalenderVC: UIViewController {
     
     func callCalenderApi(month: String, year:String){
         
-        self.loadIndicator = UIHelper.activityIndicator(uiController: self, title: "Carregando")
+        self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
         
         let postString = """
         {
