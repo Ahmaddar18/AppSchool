@@ -114,9 +114,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 self.window = UIWindow(frame:UIScreen.main.bounds)
 
         
-        let viewController: HomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-
-        self.navigationController?.pushViewController(viewController, animated: false)
+                        //let viewController: HomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+                        //self.navigationController?.pushViewController(viewController, animated: false)
+                        self.setRootController(identifierName: "HomeViewController")
                     }
                 } else {
                     DispatchQueue.main.async {

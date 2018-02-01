@@ -23,7 +23,7 @@ struct nestedData : Decodable {
     let TituloNews : String?
 }
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     struct User : Codable {
         let RESPONSE: String
@@ -37,94 +37,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var btnCross: UIButton!
     
     var loadIndicator: UIView = UIView()
     var window: UIWindow?
     var dict: Dictionary = [String: String]()
     var allResults = [Home]()
     
-    var sidebarView: SidebarView!
-    var blackScreen: UIView!
-    
     // MARK: - Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialSettings()
+        
+        self.title = "Home"
+        loadDataFromServer()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Helper Methods
-    
-    func initialSettings()
-    {
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
-        self.navigationController?.navigationBar.barTintColor  = UIColor.blueColor()
-        self.title = "Home"
-        
-        let btnMenu = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(btnMenuAction))
-        btnMenu.tintColor=UIColor.white
-        self.navigationItem.leftBarButtonItem = btnMenu
-        
-        sidebarView=SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
-        sidebarView.delegate=self
-        sidebarView.layer.zPosition=100
-        self.view.isUserInteractionEnabled=true
-        self.navigationController?.view.addSubview(sidebarView)
-        
-        blackScreen=UIView(frame: self.view.bounds)
-        blackScreen.backgroundColor=UIColor(white: 0, alpha: 0.5)
-        blackScreen.isHidden=true
-        self.navigationController?.view.addSubview(blackScreen)
-        blackScreen.layer.zPosition=99
-        let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
-        blackScreen.addGestureRecognizer(tapGestRecognizer)
-        
-        loadDataFromServer()
-    }
-    
-    func openCalenderView()
-    {
-        let viewController: CalenderVC = self.storyboard?.instantiateViewController(withIdentifier: "calenderVC") as! CalenderVC
-        self.navigationController?.pushViewController(viewController, animated: false)
-    }
-    
-    func openNotesView(){
-        let viewController: NotesViewController = self.storyboard?.instantiateViewController(withIdentifier: "NotesViewController") as! NotesViewController
-        self.navigationController?.pushViewController(viewController, animated: false)
-    }
-    
-    func openFrequencyView(){
-        let viewController: FrequencyVC = self.storyboard?.instantiateViewController(withIdentifier: "FrequencyVC") as! FrequencyVC
-        self.navigationController?.pushViewController(viewController, animated: false)
-    }
-    
-    func openFinancialView(){
-        let viewController: FinancialVC = self.storyboard?.instantiateViewController(withIdentifier: "FinancialVC") as! FinancialVC
-        self.navigationController?.pushViewController(viewController, animated: false)
-    }
-    
-    func openSecretaryView(){
-        let viewController: SecretaryVC = self.storyboard?.instantiateViewController(withIdentifier: "SecretaryVC") as! SecretaryVC
-        self.navigationController?.pushViewController(viewController, animated: false)
-    }
-    
-    func openDisclosureView(){
-        let viewController: DisclosureVC = self.storyboard?.instantiateViewController(withIdentifier: "DisclosureVC") as! DisclosureVC
-        self.navigationController?.pushViewController(viewController, animated: false)
-    }
-    
-    func signOut(){
-        print("signout")
-        
-        self.navigationController?.popViewController(animated: false)
-        //    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        //    let newViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        //    self.present(newViewController, animated: true, completion: nil)
     }
     
     // MARK: - API Methods
@@ -179,31 +110,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
          
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.btnCross.isHidden = false
                 UIHelper.stopsIndicator(view: self.loadIndicator)
             }
             
         }
         
         task.resume()
-    }
-    
-    // MARK: - Side Menu Methods
-    
-    @objc func btnMenuAction() {
-        blackScreen.isHidden=false
-        UIView.animate(withDuration: 0.3, animations: {
-            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 300, height: self.sidebarView.frame.height)
-        }) { (complete) in
-            self.blackScreen.frame=CGRect(x: self.sidebarView.frame.width, y: 0, width: self.view.frame.width-self.sidebarView.frame.width, height: self.view.bounds.height+100)
-        }
-    }
-    
-    @objc func blackScreenTapAction(sender: UITapGestureRecognizer) {
-        blackScreen.isHidden=true
-        blackScreen.frame=self.view.bounds
-        UIView.animate(withDuration: 0.3) {
-            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
-        }
     }
     
     // MARK: - Table view data source
@@ -215,7 +128,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        var rowHeight = 240
+        var rowHeight = 280
         
         let obj = self.allResults[indexPath.row]
         
@@ -244,11 +157,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Configure the cell...
         
         let object = self.allResults[indexPath.row]
-        cell.indexRow = indexPath.row
         cell.obj = object
         
+        cell.btnLink.titleLabel?.text = object.LinkTexto
         cell.btnLink.addTarget(self, action: #selector(actionOpenWeb(_:)), for: .touchUpInside)
         cell.btnLink.tag = indexPath.row
+        cell.underline()
         
         return cell
     }
@@ -265,50 +179,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let btnsendtag: UIButton = sender
         let object = self.allResults[btnsendtag.tag]
         UIApplication.shared.openURL(URL(string: String(format: "http://%@",object.LinkDestino))!)
-    }
-}
-
-extension HomeViewController: SidebarViewDelegate {
-    func sidebarDidSelectRow(row: Row) {
-        blackScreen.isHidden=true
-        blackScreen.frame=self.view.bounds
-        UIView.animate(withDuration: 0.3) {
-            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
-        }
-        switch row {
-        case .profile:
-            let vc=EditProfileVC()
-            self.navigationController?.pushViewController(vc, animated: true)
-        case .cronograma:
-            openCalenderView()
-        case .notas:
-            print("Notes")
-            openNotesView()
-        case .frequencia:
-            print("Frequency")
-            openFrequencyView()
-        case .financeiro:
-            print("Financial")
-            openFinancialView()
-        case .secretaria:
-            print("Secretary")
-            openSecretaryView()
-        case .divulgacao:
-            print("Disclosure")
-            openDisclosureView()
-        case .conveniencia:
-            print("convenience")
-        case .estagios:
-            print("Stages")
-        case .ambiente:
-            print("Ambient")
-        case .suporte:
-            print("Support")
-        case .sair:
-            signOut()
-        case .none:
-            break
-        }
     }
 }
 

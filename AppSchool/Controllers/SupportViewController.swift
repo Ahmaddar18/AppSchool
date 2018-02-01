@@ -24,10 +24,14 @@ class SupportViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var emailTextView: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         inittextView()
+        
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
+        self.navigationController?.navigationBar.barTintColor  = UIColor.blueColor()
+        self.navigationController?.navigationBar.tintColor=UIColor.white
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -92,10 +96,12 @@ class SupportViewController: UIViewController, UITextViewDelegate {
             """
             
             print(postString)
-            var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/suportechamado")!)
+            
+            let urlLink = "http://52.10.244.229:8888/rest/wsapimob/suportechamado"
+            
+            var request = URLRequest(url: URL(string: urlLink)!)
             request.httpMethod = "POST"
             request.addValue("PROD", forHTTPHeaderField: "TAmb")
-            
             
             request.httpBody = postString.data(using: .utf8)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in

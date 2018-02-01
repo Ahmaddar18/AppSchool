@@ -55,4 +55,19 @@ extension UIViewController {
         }
         return rootVC
     }
+    
+    func setRootController(identifierName: String) {
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: identifierName)
+        let navC = UINavigationController(rootViewController: vc!)
+        let window = APPLICATION.delegate?.window
+        
+        window??.rootViewController = navC
+    }
+    
+    func goToViewControllerIdentifier(identifierName: String, animation: Bool) {
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: identifierName)
+        self.navigationController?.pushViewController(vc!, animated: animation)
+    }
 }

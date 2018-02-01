@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FrequencyVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FrequencyVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,7 +32,7 @@ class FrequencyVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     // MARK: - Helper
     
     func initializing () {
-        self.navigationController?.navigationBar.tintColor=UIColor.white
+        //self.navigationController?.navigationBar.tintColor=UIColor.white
         self.title = "FREQUÊNCIA"
         
         callApi()
@@ -92,6 +92,7 @@ class FrequencyVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                                 if jsonResult["RESPONSE"] as? String == "200" {
                                     
                                     let results = jsonResult[LISTA] as? NSArray!
+                                    self.frequencyList.removeAll()
                                     
                                     for result in results! {
                                         

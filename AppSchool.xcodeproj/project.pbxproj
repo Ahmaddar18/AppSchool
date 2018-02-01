@@ -16,15 +16,24 @@
 		3917316C201A62830016DF09 /* SecretaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917316B201A62830016DF09 /* SecretaryVC.swift */; };
 		3917316E201A64210016DF09 /* DisclosureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917316D201A64210016DF09 /* DisclosureVC.swift */; };
 		39AC4CCF20190BA200A976F1 /* CalenderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC4CCE20190BA100A976F1 /* CalenderModel.swift */; };
+		39C0A192202382E500562D15 /* Financial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C0A191202382E500562D15 /* Financial.swift */; };
+		39C0A1942023866B00562D15 /* FinancialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C0A1932023866B00562D15 /* FinancialCell.swift */; };
+		B817961D2023000F006449E2 /* SupportInnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B817961C2023000F006449E2 /* SupportInnerVC.swift */; };
 		B833C7F620171D0900F9CE31 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F520171D0900F9CE31 /* SidebarView.swift */; };
 		B833C7FA20171FC500F9CE31 /* UIViewController+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F820171FC500F9CE31 /* UIViewController+Helper.swift */; };
 		B833C7FB20171FC500F9CE31 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C7F920171FC500F9CE31 /* UIColor+Colors.swift */; };
 		B833C80F2017372000F9CE31 /* HomeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C80E2017372000F9CE31 /* HomeCellView.swift */; };
 		B833C81120173F3A00F9CE31 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833C81020173F3900F9CE31 /* Home.swift */; };
+		B852DA302022051100C67EB3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B852DA2F2022051100C67EB3 /* BaseViewController.swift */; };
 		B86AF966201B0F5F003E1E61 /* NotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86AF965201B0F5F003E1E61 /* NotesModel.swift */; };
 		B86AF968201B0FAC003E1E61 /* NotesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86AF967201B0FAC003E1E61 /* NotesList.swift */; };
 		B86AF96A201B1779003E1E61 /* NoteCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86AF969201B1779003E1E61 /* NoteCellView.swift */; };
 		B86AF96C201B2DDA003E1E61 /* NoteSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86AF96B201B2DDA003E1E61 /* NoteSectionCell.swift */; };
+		B886F4FD2020485F00901D75 /* WebCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886F4FC2020485F00901D75 /* WebCellView.swift */; };
+		B886F4FF202055F100901D75 /* EstagiosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886F4FE202055F100901D75 /* EstagiosVC.swift */; };
+		B886F5012020565900901D75 /* ConvenienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886F5002020565900901D75 /* ConvenienceVC.swift */; };
+		B886F5032020590100901D75 /* AmbienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886F5022020590100901D75 /* AmbienceVC.swift */; };
+		B886F5052020B58600901D75 /* ConvenienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886F5042020B58600901D75 /* ConvenienceCell.swift */; };
 		B8F4CD442019E746008C325A /* ConstantDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F4CD422019E746008C325A /* ConstantDevices.swift */; };
 		B8F4CD452019E746008C325A /* ConstantShortcutsMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F4CD432019E746008C325A /* ConstantShortcutsMacros.swift */; };
 		B8F4CD482019E7B1008C325A /* UtilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F4CD472019E7B1008C325A /* UtilityHelper.swift */; };
@@ -64,16 +73,25 @@
 		3917316B201A62830016DF09 /* SecretaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretaryVC.swift; sourceTree = "<group>"; };
 		3917316D201A64210016DF09 /* DisclosureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureVC.swift; sourceTree = "<group>"; };
 		39AC4CCE20190BA100A976F1 /* CalenderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalenderModel.swift; sourceTree = "<group>"; };
+		39C0A191202382E500562D15 /* Financial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Financial.swift; sourceTree = "<group>"; };
+		39C0A1932023866B00562D15 /* FinancialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialCell.swift; sourceTree = "<group>"; };
 		B20D4093C89A9D92CAD0699B /* Pods_AppSchool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSchool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B817961C2023000F006449E2 /* SupportInnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportInnerVC.swift; sourceTree = "<group>"; };
 		B833C7F520171D0900F9CE31 /* SidebarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		B833C7F820171FC500F9CE31 /* UIViewController+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helper.swift"; sourceTree = "<group>"; };
 		B833C7F920171FC500F9CE31 /* UIColor+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
 		B833C80E2017372000F9CE31 /* HomeCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCellView.swift; path = AppSchool/UITableViewCell/HomeCellView.swift; sourceTree = SOURCE_ROOT; };
 		B833C81020173F3900F9CE31 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		B852DA2F2022051100C67EB3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B86AF965201B0F5F003E1E61 /* NotesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesModel.swift; sourceTree = "<group>"; };
 		B86AF967201B0FAC003E1E61 /* NotesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesList.swift; sourceTree = "<group>"; };
 		B86AF969201B1779003E1E61 /* NoteCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellView.swift; sourceTree = "<group>"; };
 		B86AF96B201B2DDA003E1E61 /* NoteSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSectionCell.swift; sourceTree = "<group>"; };
+		B886F4FC2020485F00901D75 /* WebCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCellView.swift; sourceTree = "<group>"; };
+		B886F4FE202055F100901D75 /* EstagiosVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstagiosVC.swift; sourceTree = "<group>"; };
+		B886F5002020565900901D75 /* ConvenienceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenienceVC.swift; sourceTree = "<group>"; };
+		B886F5022020590100901D75 /* AmbienceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbienceVC.swift; sourceTree = "<group>"; };
+		B886F5042020B58600901D75 /* ConvenienceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenienceCell.swift; sourceTree = "<group>"; };
 		B8F4CD422019E746008C325A /* ConstantDevices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantDevices.swift; sourceTree = "<group>"; };
 		B8F4CD432019E746008C325A /* ConstantShortcutsMacros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantShortcutsMacros.swift; sourceTree = "<group>"; };
 		B8F4CD472019E7B1008C325A /* UtilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityHelper.swift; sourceTree = "<group>"; };
@@ -115,6 +133,7 @@
 				B86AF965201B0F5F003E1E61 /* NotesModel.swift */,
 				B86AF967201B0FAC003E1E61 /* NotesList.swift */,
 				39015629201CF4190072D865 /* Secretary.swift */,
+				39C0A191202382E500562D15 /* Financial.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -161,6 +180,9 @@
 				B86AF969201B1779003E1E61 /* NoteCellView.swift */,
 				B86AF96B201B2DDA003E1E61 /* NoteSectionCell.swift */,
 				3901562B201CFA9B0072D865 /* SecretrayCellView.swift */,
+				B886F4FC2020485F00901D75 /* WebCellView.swift */,
+				B886F5042020B58600901D75 /* ConvenienceCell.swift */,
+				39C0A1932023866B00562D15 /* FinancialCell.swift */,
 			);
 			name = UITableViewCell;
 			path = "New Group";
@@ -203,18 +225,23 @@
 		E096DC082010E934008F4404 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B852DA2F2022051100C67EB3 /* BaseViewController.swift */,
 				E096DC0A2010E95C008F4404 /* ForgotPasswordViewController.swift */,
+				E096DC0B2010E95C008F4404 /* SuccessForgottenPasswordViewController.swift */,
 				E0B75C602007AFEE0061784B /* LoginViewController.swift */,
 				E069F3CC200A4C1900F17E10 /* HomeViewController.swift */,
-				E096DC0B2010E95C008F4404 /* SuccessForgottenPasswordViewController.swift */,
-				E096DC092010E95C008F4404 /* SupportViewController.swift */,
-				E08B94542007F82B00F128E3 /* EditProfileVC.swift */,
 				E00F36F7200E5C6D0078CFFD /* CalenderVC.swift */,
 				39173165201A60AD0016DF09 /* NotesViewController.swift */,
 				39173167201A61E80016DF09 /* FrequencyVC.swift */,
 				39173169201A62600016DF09 /* FinancialVC.swift */,
 				3917316B201A62830016DF09 /* SecretaryVC.swift */,
 				3917316D201A64210016DF09 /* DisclosureVC.swift */,
+				B886F5002020565900901D75 /* ConvenienceVC.swift */,
+				B886F4FE202055F100901D75 /* EstagiosVC.swift */,
+				B886F5022020590100901D75 /* AmbienceVC.swift */,
+				E096DC092010E95C008F4404 /* SupportViewController.swift */,
+				E08B94542007F82B00F128E3 /* EditProfileVC.swift */,
+				B817961C2023000F006449E2 /* SupportInnerVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -394,32 +421,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				3917316E201A64210016DF09 /* DisclosureVC.swift in Sources */,
+				B886F5032020590100901D75 /* AmbienceVC.swift in Sources */,
 				B833C7FA20171FC500F9CE31 /* UIViewController+Helper.swift in Sources */,
 				B833C7FB20171FC500F9CE31 /* UIColor+Colors.swift in Sources */,
 				E00F36F8200E5C6D0078CFFD /* CalenderVC.swift in Sources */,
+				B852DA302022051100C67EB3 /* BaseViewController.swift in Sources */,
+				39C0A192202382E500562D15 /* Financial.swift in Sources */,
 				E0B75C612007AFEE0061784B /* LoginViewController.swift in Sources */,
 				B86AF968201B0FAC003E1E61 /* NotesList.swift in Sources */,
 				B86AF966201B0F5F003E1E61 /* NotesModel.swift in Sources */,
 				E096DC0C2010E95C008F4404 /* SupportViewController.swift in Sources */,
 				E0B75C5F2007AFEE0061784B /* AppDelegate.swift in Sources */,
 				B833C81120173F3A00F9CE31 /* Home.swift in Sources */,
+				B886F4FF202055F100901D75 /* EstagiosVC.swift in Sources */,
 				3901562C201CFA9B0072D865 /* SecretrayCellView.swift in Sources */,
+				39C0A1942023866B00562D15 /* FinancialCell.swift in Sources */,
 				B86AF96C201B2DDA003E1E61 /* NoteSectionCell.swift in Sources */,
 				39173168201A61E80016DF09 /* FrequencyVC.swift in Sources */,
 				E08B94552007F82B00F128E3 /* EditProfileVC.swift in Sources */,
 				39173166201A60AD0016DF09 /* NotesViewController.swift in Sources */,
+				B886F5052020B58600901D75 /* ConvenienceCell.swift in Sources */,
 				B8F4CD482019E7B1008C325A /* UtilityHelper.swift in Sources */,
 				B86AF96A201B1779003E1E61 /* NoteCellView.swift in Sources */,
 				3917316C201A62830016DF09 /* SecretaryVC.swift in Sources */,
 				E096DC0D2010E95C008F4404 /* ForgotPasswordViewController.swift in Sources */,
+				B886F5012020565900901D75 /* ConvenienceVC.swift in Sources */,
 				B833C80F2017372000F9CE31 /* HomeCellView.swift in Sources */,
 				E096DC0E2010E95C008F4404 /* SuccessForgottenPasswordViewController.swift in Sources */,
 				B833C7F620171D0900F9CE31 /* SidebarView.swift in Sources */,
 				B8F4CD452019E746008C325A /* ConstantShortcutsMacros.swift in Sources */,
 				E02D79BC2008A16F00DBE49E /* UIHelper.swift in Sources */,
+				B817961D2023000F006449E2 /* SupportInnerVC.swift in Sources */,
 				3901562A201CF4190072D865 /* Secretary.swift in Sources */,
 				B8F4CD442019E746008C325A /* ConstantDevices.swift in Sources */,
 				E069F3CD200A4C1900F17E10 /* HomeViewController.swift in Sources */,
+				B886F4FD2020485F00901D75 /* WebCellView.swift in Sources */,
 				39AC4CCF20190BA200A976F1 /* CalenderModel.swift in Sources */,
 				3917316A201A62600016DF09 /* FinancialVC.swift in Sources */,
 			);
@@ -569,7 +605,7 @@
 				INFOPLIST_FILE = AppSchool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cityjob.trovit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cityjob.trovittt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -592,7 +628,7 @@
 				INFOPLIST_FILE = AppSchool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cityjob.trovit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cityjob.trovittt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

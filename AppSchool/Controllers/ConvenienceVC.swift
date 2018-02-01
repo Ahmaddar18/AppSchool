@@ -1,21 +1,21 @@
 //
-//  DisclosureVC.swift
+//  ConvenienceVC.swift
 //  AppSchool
 //
-//  Created by Fasih on 1/26/18.
+//  Created by Fasih on 1/30/18.
 //  Copyright © 2018 Ahmad. All rights reserved.
 //
 
 import UIKit
 
-class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
-
+class ConvenienceVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet weak var tableView: UITableView!
     
     var refreshControl = UIRefreshControl()
     var loadIndicator: UIView = UIView()
-    var disclosureList = [NotesList]()
-    
+    var convenienceList = [NotesList]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,18 +28,16 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
     
-
     // MARK: - Helper
     
     func initializing () {
         self.navigationController?.navigationBar.tintColor=UIColor.white
-        self.title = "DIVULGAÇÃO"
+        self.title = "CONVENIÊNCIA"
         
         self.setupRefreshControl()
-        
-        callDisclosureApi()
+        callConvenienceApi()
     }
-    
+
     func setupRefreshControl() {
         
         refreshControl.tintColor = UIColor.black
@@ -52,12 +50,12 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
         // Do something
         
         if (UtilityHelper.isNetworkAvailable() == true) {
-            self.callDisclosureApi()
+            self.callConvenienceApi()
         }else{
             refreshControl.endRefreshing()
         }
     }
-
+    
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,24 +65,20 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 180
+        return 45
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.disclosureList.count
+        return self.convenienceList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let  cell = tableView.dequeueReusableCell(withIdentifier: "WebCell", for: indexPath) as! WebCellView
+        let  cell = tableView.dequeueReusableCell(withIdentifier: "ConvenCell", for: indexPath) as! ConvenienceCell
         
         // Configure the cell...
-        let obj = self.disclosureList[indexPath.row]
-        cell.btnWeb.titleLabel?.text = obj.name
-        cell.underline()
-        
-        cell.btnWeb.addTarget(self, action: #selector(actionOpenWeb(_:)), for: .touchUpInside)
-        cell.btnWeb.tag = indexPath.row
+        let obj = self.convenienceList[indexPath.row]
+        cell.lblTitle.text = obj.name
         
         return cell
     }
@@ -93,15 +87,17 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let object = self.convenienceList[indexPath.row]
+        UIApplication.shared.openURL(URL(string: object.value)!)
     }
     
     // MARK: - API Methods
     
-    func callDisclosureApi(){
+    func callConvenienceApi(){
         
         self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/divulgacaoinscricoes")!)
+        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/conveniencia")!)
         request.httpMethod = "POST"
         request.addValue("PROD", forHTTPHeaderField: "TAmb")
         request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
@@ -128,9 +124,9 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
                                 
                                 if jsonResult["RESPONSE"] as? String == "200" {
                                     
-                                    let results = jsonResult["DIVULGACAO"] as? NSArray!
+                                    let results = jsonResult["CONVENIENCIA"] as? NSArray!
                                     
-                                    self.disclosureList.removeAll()
+                                    self.convenienceList.removeAll()
                                     
                                     for result in results! {
                                         
@@ -145,7 +141,7 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
                                             listObj.name = key
                                             listObj.value = value
                                             
-                                            self.disclosureList.append(listObj)
+                                            self.convenienceList.append(listObj)
                                         }
                                     }
                                     self.tableView.reloadData()
@@ -177,13 +173,6 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
         
         task.resume()
     }
-    
-    // MARK: - Action Methods
-    
-    @IBAction func actionOpenWeb(_ sender: UIButton) {
-        let btnsendtag: UIButton = sender
-        let object = self.disclosureList[btnsendtag.tag]
-        UIApplication.shared.openURL(URL(string: String(format: "%@",object.value))!)
-    }
+
 
 }

@@ -11,7 +11,7 @@ import UIKit
 let LISTA = "LISTA"
 let Periodos = "Periodos"
 
-class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NotesViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -36,11 +36,9 @@ class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Helper
     
     func initializing () {
-        self.navigationController?.navigationBar.tintColor=UIColor.white
         self.title = "NOTAS"
         
-        callApi()
-        
+        callApi()        
         self.setupRefreshControl()
     }
     
@@ -96,6 +94,7 @@ class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                 if jsonResult["RESPONSE"] as? String == "200" {
                                     
                                     let results = jsonResult[LISTA] as? NSArray!
+                                    self.noteList.removeAll()
                                     
                                     for result in results! {
                                     

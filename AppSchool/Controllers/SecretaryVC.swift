@@ -8,11 +8,14 @@
 
 import UIKit
 
-class SecretaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
+let TextViewMsg = "mensagem"
+
+class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var viewOptions: UIView!
+    @IBOutlet weak var viewSuccess: UIView!
     @IBOutlet weak var optionsPickerView: UIPickerView!
     @IBOutlet weak var tfOption: UITextField!
     @IBOutlet weak var tvMessage: UITextView!
@@ -47,12 +50,24 @@ class SecretaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     func showOptionView(){
         
+        strDocId = ""
+        strPeriodoId = ""
+        
         self.tfOption.text = ""
+        textViewDefaultText()
+        
         let frame = CGRect(x: 0, y: 115, width: self.view.frame.size.width, height: self.view.frame.size.height-115)
         viewOptions.frame = frame
-        AppDel.window?.addSubview(viewOptions)
+        //AppDel.window?.addSubview(viewOptions)
+        self.view.addSubview(viewOptions)
         
         btnBack.isHidden = false
+        self.viewSuccess.isHidden = true
+    }
+    
+    func textViewDefaultText() {
+        tvMessage.text = TextViewMsg
+        tvMessage.textColor = UIColor.lightGray
     }
     
     // MARK: - UIPickerView DataSource
@@ -79,6 +94,22 @@ class SecretaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.tfOption.text = obj.name
         self.view.reloadInputViews()
         strPeriodoId = obj.value
+    }
+    
+    // MARK: - TextView Methods
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if tvMessage.text == TextViewMsg {
+            tvMessage.text = ""
+            tvMessage.textColor = UIColor.black
+        }
+        
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if tvMessage.text == TextViewMsg || tvMessage.text == "" {
+            textViewDefaultText()
+        }
     }
     
     // MARK: - API Methods
@@ -296,7 +327,7 @@ class SecretaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
                                     
                                     //let results = jsonResult["DOCUMENTO"] as? NSArray!
                                     
-                                    self.actionHideView(self)
+                                    self.viewSuccess.isHidden = false
                                 }
                             }
                         }

@@ -1,25 +1,27 @@
+
 //
-//  DisclosureVC.swift
+//  EstagiosVC.swift
 //  AppSchool
 //
-//  Created by Fasih on 1/26/18.
+//  Created by Fasih on 1/30/18.
 //  Copyright © 2018 Ahmad. All rights reserved.
 //
 
 import UIKit
 
-class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
-
+class EstagiosVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet weak var tableView: UITableView!
     
     var refreshControl = UIRefreshControl()
     var loadIndicator: UIView = UIView()
-    var disclosureList = [NotesList]()
-    
+    var estagiosList = [NotesList]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
         initializing()
     }
 
@@ -33,11 +35,12 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
     
     func initializing () {
         self.navigationController?.navigationBar.tintColor=UIColor.white
-        self.title = "DIVULGAÇÃO"
+        self.title = "ESTÁGIOS"
         
         self.setupRefreshControl()
         
-        callDisclosureApi()
+        callEstagioApi()
+        
     }
     
     func setupRefreshControl() {
@@ -52,12 +55,12 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
         // Do something
         
         if (UtilityHelper.isNetworkAvailable() == true) {
-            self.callDisclosureApi()
+            self.callEstagioApi()
         }else{
             refreshControl.endRefreshing()
         }
     }
-
+    
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,14 +75,14 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.disclosureList.count
+        return self.estagiosList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let  cell = tableView.dequeueReusableCell(withIdentifier: "WebCell", for: indexPath) as! WebCellView
         
         // Configure the cell...
-        let obj = self.disclosureList[indexPath.row]
+        let obj = self.estagiosList[indexPath.row]
         cell.btnWeb.titleLabel?.text = obj.name
         cell.underline()
         
@@ -97,11 +100,11 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: - API Methods
     
-    func callDisclosureApi(){
+    func callEstagioApi(){
         
         self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/divulgacaoinscricoes")!)
+        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/estagio")!)
         request.httpMethod = "POST"
         request.addValue("PROD", forHTTPHeaderField: "TAmb")
         request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
@@ -128,9 +131,9 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
                                 
                                 if jsonResult["RESPONSE"] as? String == "200" {
                                     
-                                    let results = jsonResult["DIVULGACAO"] as? NSArray!
+                                    let results = jsonResult["ESTAGIO"] as? NSArray!
                                     
-                                    self.disclosureList.removeAll()
+                                    self.estagiosList.removeAll()
                                     
                                     for result in results! {
                                         
@@ -145,8 +148,9 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
                                             listObj.name = key
                                             listObj.value = value
                                             
-                                            self.disclosureList.append(listObj)
+                                            self.estagiosList.append(listObj)
                                         }
+                                        
                                     }
                                     self.tableView.reloadData()
                                 }
@@ -182,7 +186,7 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func actionOpenWeb(_ sender: UIButton) {
         let btnsendtag: UIButton = sender
-        let object = self.disclosureList[btnsendtag.tag]
+        let object = self.estagiosList[btnsendtag.tag]
         UIApplication.shared.openURL(URL(string: String(format: "%@",object.value))!)
     }
 

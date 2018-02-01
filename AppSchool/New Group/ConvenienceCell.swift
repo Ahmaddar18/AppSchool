@@ -1,14 +1,14 @@
 //
-//  NoteSectionCell.swift
+//  ConvenienceCell.swift
 //  AppSchool
 //
-//  Created by Fasih on 1/26/18.
+//  Created by Fasih on 1/30/18.
 //  Copyright © 2018 Ahmad. All rights reserved.
 //
 
 import UIKit
 
-class NoteSectionCell: UITableViewCell {
+class ConvenienceCell: UITableViewCell {
 
     @IBOutlet weak var lblTitle: UILabel!
     

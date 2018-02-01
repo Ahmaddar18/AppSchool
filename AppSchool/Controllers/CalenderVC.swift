@@ -24,7 +24,7 @@ let Meses = "Meses"
 
 
 
-class CalenderVC: UIViewController {
+class CalenderVC: BaseViewController {
 
     @IBOutlet fileprivate weak var koyomi: Koyomi! {
         didSet {
@@ -81,7 +81,7 @@ class CalenderVC: UIViewController {
     
     func initializing () {
         
-        self.navigationController?.navigationBar.tintColor=UIColor.white
+        //self.navigationController?.navigationBar.tintColor=UIColor.white
         self.title = "Calender"
         
         lblMonth.text = koyomi.currentDateString()
@@ -262,11 +262,6 @@ class CalenderVC: UIViewController {
     @IBAction func actionClosePopup(_ sender: UIButton) {
         viewPopup.removeFromSuperview()
     }
-    
-    @IBAction func actionGoBack(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     
 }
 
