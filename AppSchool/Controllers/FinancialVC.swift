@@ -11,6 +11,9 @@ import UIKit
 class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var viewSituacao: UIView!
+    @IBOutlet weak var viewLista: UIView!
+    @IBOutlet weak var viewTable: UIView!
     
     var loadIndicator: UIView = UIView()
     var financialList = [Financial]()
@@ -148,18 +151,46 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let  cell = tableView.dequeueReusableCell(withIdentifier: "SecCell", for: indexPath) as! FinancialCell
+        let  cell = tableView.dequeueReusableCell(withIdentifier: "FinancialCell", for: indexPath) as! FinancialCell
         
         // Configure the cell...
-        let obj = self.financialList[indexPath.row]
+        let object = self.financialList[indexPath.row]
+        cell.obj = object
         
-        //cell.lblTitle.text = obj.name
+        cell.btnValue.addTarget(self, action: #selector(actionHideList(_:)), for: .touchUpInside)
+        cell.btnValue.tag = indexPath.row
+        
+        cell.btnUpload.addTarget(self, action: #selector(actionShowPopup(_:)), for: .touchUpInside)
+        cell.btnUpload.tag = indexPath.row
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
         tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
+    
+    // MARK: - Action Methods
+    
+    @IBAction func actionShowList(_ sender: Any) {
+        self.viewTable.isHidden = false
+        self.viewLista.isHidden = false
+        self.viewSituacao.isHidden = true
+    }
+    
+    @IBAction func actionHideList(_ sender: UIButton) {
+        self.viewTable.isHidden = true
+        self.viewLista.isHidden = true
+        self.viewSituacao.isHidden = false
+    }
+    
+    @IBAction func actionShowPopup(_ sender: UIButton) {
+        
+        let btnsend: UIButton = sender
+        let object = self.financialList[btnsend.tag]
+        
         
     }
 }

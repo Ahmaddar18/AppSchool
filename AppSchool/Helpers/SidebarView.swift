@@ -103,10 +103,32 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cellDetailLbl.text = "teste@empresa.com"
             cellDetailLbl.font=UIFont.systemFont(ofSize: 17)
             cellDetailLbl.textColor=UIColor.white
+            
             let img = UIImage(named: "blueLine")
             let imgView = UIImageView(image: img!)
-            imgView.frame = CGRect(x: 15, y:( cell.frame.height-5), width: cell.frame.width-30, height: 3)
+            imgView.frame = CGRect(x: 15, y:( cell.frame.height-5), width: cell.frame.width-30, height: 2)
             cell.addSubview(imgView)
+            
+        } else if indexPath.row == titleArr.count - 2 {
+            
+            let img = UIImage(named: "blueLine")
+            let imgView = UIImageView(image: img!)
+            imgView.frame = CGRect(x: 7, y:( cell.frame.height), width: cell.frame.width-30, height: 2)
+            cell.addSubview(imgView)
+            
+            let x = (cell.frame.size.width/16) - 30
+            cell.bounds.origin.x = x
+            cell.textLabel?.text=titleArr[indexPath.row]
+            cell.textLabel?.textColor=UIColor.white
+            
+        } else if indexPath.row == titleArr.count - 1 {
+            
+            let x = (cell.frame.size.width/16) - 10
+            cell.bounds.origin.x = x
+            cell.textLabel?.text=titleArr[indexPath.row]
+            cell.textLabel?.textColor=UIColor.white
+            cell.textLabel?.textAlignment = NSTextAlignment.right
+            
         } else {
             let x = (cell.frame.size.width/16) - 30
             cell.bounds.origin.x = x
@@ -126,6 +148,8 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 100
+        } else if indexPath.row == titleArr.count - 2 {
+            return 54
         } else {
             return 50
         }
