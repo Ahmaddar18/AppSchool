@@ -26,6 +26,7 @@ class FinancialCell: UITableViewCell {
             if obj?.StatusPagto == "Em Aberto" {
                 lblStatus.text = "Aberto"
                 btnUpload.isHidden = false
+                lblValue.isHidden = true
             }else{
                 lblStatus.text = "Pago"
                 btnValue.isHidden = false
@@ -56,7 +57,7 @@ class FinancialCell: UITableViewCell {
         view.layer.shadowColor = UIColor.lightGray.cgColor
         view.layer.shadowOpacity = 1
         view.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        view.layer.shadowRadius = 3
+        view.layer.shadowRadius = 2
     }
 
 }

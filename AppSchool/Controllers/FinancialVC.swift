@@ -142,7 +142,7 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 45
+        return 48
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -191,6 +191,7 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         let btnsend: UIButton = sender
         let object = self.financialList[btnsend.tag]
         
-        
+        let msg = String(format: "%@ \n %@ \n %@", object.Titulo,object.Vencimento, object.CodigoBarras)
+        UtilityHelper.showOKAlert("", message: msg, target: self)
     }
 }
