@@ -20,25 +20,34 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
     }
     
     @IBOutlet weak var mainText: UITextView!
+    @IBOutlet weak var emailTextField: UITextField!
     
-        var loadIndicator: UIView = UIView()
-
+    var loadIndicator: UIView = UIView()
     var strLabel = UILabel()
     var activityIndicator = UIActivityIndicatorView()
     let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-
-    @IBOutlet weak var emailTextField: UITextField!
     
-    @IBAction func doForgotPassword(_ sender: Any) {
-        let email = emailTextField.text
-        if email == "" {
-            UIHelper.showAlertController(uiController: self, message: "Por favor, preencha 0 e-mail")
-            return
-        } else {
-            self.loadIndicator =  UIHelper.activityIndicator(uiController: self, title: "Carregando")
-            doForgotPasswordRequest(email: email!)
-        }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //Hides keyboard automatically
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        mainText.setContentOffset(CGPoint.zero, animated: false)
+    }
+    
+    // MARK: - Helper
     
     func doForgotPasswordRequest(email: String){
         let postString = """
@@ -92,7 +101,7 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
                     pVC?.delegate = self
                     pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
                    // self.present(popupVC, animated: true, completion: nil)
-                    self.navigationController?.pushViewController(popupVC, animated: true)
+                    self.navigationController?.pushViewController(popupVC, animated: false)
                     UIHelper.stopsIndicator(view: self.loadIndicator)
                 }
             }
@@ -100,23 +109,17 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
         task.resume()
     }
     
+    // MARK: - Action Methods
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        //Hides keyboard automatically
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func doForgotPassword(_ sender: Any) {
+        let email = emailTextField.text
+        if email == "" {
+            UIHelper.showAlertController(uiController: self, message: "Por favor, preencha 0 e-mail")
+            return
+        } else {
+            self.loadIndicator =  UIHelper.activityIndicator(view: self.view, title: "Carregando")
+            doForgotPasswordRequest(email: email!)
+        }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        mainText.setContentOffset(CGPoint.zero, animated: false)
-    }
 }

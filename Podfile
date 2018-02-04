@@ -7,4 +7,9 @@ target 'AppSchool' do
 
   # Pods for AppSchool
   pod 'IQKeyboardManagerSwift'
+  pod 'SwiftyJSON', '~> 4.0.0'
+  pod 'MBProgressHUD', '~> 1.1.0'
+  pod 'ReachabilitySwift', '~> 4.1.0'
+  pod 'Koyomi', :path => '../'
+  
 end

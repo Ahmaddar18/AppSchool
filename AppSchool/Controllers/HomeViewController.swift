@@ -22,7 +22,9 @@ struct nestedData : Decodable {
     let ImagemLegenda : String?
     let TituloNews : String?
 }
-class HomeViewController: UIViewController {
+
+class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+    
     struct User : Codable {
         let RESPONSE: String
         let TOKEN: String
@@ -33,50 +35,35 @@ class HomeViewController: UIViewController {
         let NOMEUSER: String?
         let EMAILUSER: String?
     }
-    @IBOutlet weak var imgView: UIImageView!
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var btnCross: UIButton!
+    
     var loadIndicator: UIView = UIView()
     var window: UIWindow?
     var dict: Dictionary = [String: String]()
-    var mylength:Int = 0
-    var dictionaries = [[String: String]]()
-    func calender()
-    {
-        let viewController: CalenderVC = self.storyboard?.instantiateViewController(withIdentifier: "calenderVC") as! CalenderVC
-        self.navigationController?.pushViewController(viewController, animated: false)
-    }
-    var sidebarView: SidebarView!
-    var blackScreen: UIView!
+    var allResults = [Home]()
+    
+    // MARK: - Init
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialSettings()
-    }
-    func initialSettings()
-    {
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
-        self.navigationController?.navigationBar.barTintColor  = UIColor.blue
+        
         self.title = "Home"
-        
-        let btnMenu = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(btnMenuAction))
-        btnMenu.tintColor=UIColor(red: 54/255, green: 55/255, blue: 56/255, alpha: 1.0)
-        self.navigationItem.leftBarButtonItem = btnMenu
-        
-        sidebarView=SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
-        sidebarView.delegate=self
-        sidebarView.layer.zPosition=100
-        self.view.isUserInteractionEnabled=true
-        self.navigationController?.view.addSubview(sidebarView)
-        
-        blackScreen=UIView(frame: self.view.bounds)
-        blackScreen.backgroundColor=UIColor(white: 0, alpha: 0.5)
-        blackScreen.isHidden=true
-        self.navigationController?.view.addSubview(blackScreen)
-        blackScreen.layer.zPosition=99
-        let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
-        blackScreen.addGestureRecognizer(tapGestRecognizer)
         loadDataFromServer()
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - API Methods
+    
     func loadDataFromServer(){
        
+        self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
+        
         var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/bemvindohome")!)
         request.httpMethod = "POST"
         request.addValue("PROD", forHTTPHeaderField: "TAmb")
@@ -93,180 +80,110 @@ class HomeViewController: UIViewController {
             print("httpStatus = \(String(describing: httpStatus))")
             do {
                 let siteData = try JSONDecoder().decode(webData.self, from: data)
-                print(" Worked")
-                print("description = ",siteData.TYPE!)
-                print("fuck you matder chod", siteData.NOTICIA[0].Imagem!)
-                for jsonData in siteData.NOTICIA
-                {
-                     var dictionary1 : [String: String] = [:]
-                    if(jsonData.Imagem != nil)
-                    {
-                     dictionary1["Imagem"] = jsonData.Imagem!
+                let resultList = siteData.NOTICIA
+                
+                for item in resultList {
+                    let order = Home()
+                    
+                    if(item.Imagem != nil){
+                        order.Imagem = item.Imagem!
                     }
-                    if(jsonData.ImagemLegenda != nil)
-                    {
-                        dictionary1["ImagemLegenda"] = jsonData.ImagemLegenda!
+                    if(item.ImagemLegenda != nil){
+                        order.ImagemLegenda = item.ImagemLegenda!
                     }
-                    if(jsonData.LinkDestino != nil)
-                    {
-                        dictionary1["LinkDestino"] = jsonData.LinkDestino!
+                    if(item.LinkDestino != nil){
+                        order.LinkDestino = item.LinkDestino!
                     }
-                    if(jsonData.LinkTexto != nil)
-                    {
-                        dictionary1["LinkTexto"] = jsonData.LinkTexto!
+                    if(item.LinkTexto != nil){
+                        order.LinkTexto = item.LinkTexto!
                     }
-                    if(jsonData.TituloNews != nil)
-                    {
-                        dictionary1["TituloNews"] = jsonData.TituloNews!
+                    if(item.TituloNews != nil){
+                        order.TituloNews = item.TituloNews!
                     }
-                   
-                 //   dictionary1.add("Imagem",jsonData.Imagem)
-                    self.dictionaries.append(dictionary1)
+                    
+                    self.allResults.append(order)
                 }
                 
             } catch let jsonErr {
                 print("error in parsing",jsonErr)
             }
-            self.mylength = self.dictionaries.count
-            var index:Int = 0
-            while index < self.mylength
-            {
-                if(self.dictionaries[index]["Imagem"] != nil)
-                {
-                    print("dict values are", self.dictionaries[index]["Imagem"]!)
-                  //  let dataString:String = self.dictionaries[index]["Imagem"]!
-                  //  let imgData = NSData(contentsOfFile:dataString)
-                    self.imgView.image = UIImage(data:(self.dictionaries[index]["Imagem"] as! Data?)!)
-                }
-                if(self.dictionaries[index]["ImagemLegenda"] != nil)
-                {
-                    print("dict values are", self.dictionaries[index]["ImagemLegenda"]!)
-                }
-                if(self.dictionaries[index]["LinkDestino"] != nil)
-                {
-                    print("dict values are", self.dictionaries[index]["LinkDestino"]!)
-                }
-                if(self.dictionaries[index]["LinkTexto"] != nil)
-                {
-                    print("dict values are", self.dictionaries[index]["LinkTexto"]!)
-                }
-                if(self.dictionaries[index]["TituloNews"] != nil)
-                {
-                   print("dict values are", self.dictionaries[index]["TituloNews"]!)
-                }
-                
-                index+=1
+         
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.btnCross.isHidden = false
+                UIHelper.stopsIndicator(view: self.loadIndicator)
             }
-//            let httpStatus = response as? HTTPURLResponse
-//            print("httpStatus = \(String(describing: httpStatus))")
-//            if httpStatus?.statusCode == 200 {
-//                let responseString = String(data: data, encoding: .utf8)
-//                print("responseString = \(String(describing: responseString))")
-//
-//
-//                    do {
-//                        let json = try JSONSerialization.jsonObject(with: data, options: [])
-//                        print(json)
-//                    } catch {
-//                        print(error)
-//                    }
             
-               
-                
-//                if user.RESPONSE == "200" {
-//                    DispatchQueue.main.async {
-//                        UIHelper.stopsIndicator(view: self.loadIndicator)
-//                        print("ok")
-//                    }
-//                } else {
-//                    DispatchQueue.main.async {
-//                        UIHelper.showAlertController(uiController: self, message: user.MENSAGEMERRO)
-//                        UIHelper.stopsIndicator(view: self.loadIndicator)
-//                    }
-//                }
-            //}
         }
+        
         task.resume()
     }
-    @objc func btnMenuAction() {
-        blackScreen.isHidden=false
-        UIView.animate(withDuration: 0.3, animations: {
-            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 250, height: self.sidebarView.frame.height)
-        }) { (complete) in
-            self.blackScreen.frame=CGRect(x: self.sidebarView.frame.width, y: 0, width: self.view.frame.width-self.sidebarView.frame.width, height: self.view.bounds.height+100)
-        }
+    
+    // MARK: - Table view data source
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
     }
     
-    @objc func blackScreenTapAction(sender: UITapGestureRecognizer) {
-        blackScreen.isHidden=true
-        blackScreen.frame=self.view.bounds
-        UIView.animate(withDuration: 0.3) {
-            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        var rowHeight = 280
+        
+        let obj = self.allResults[indexPath.row]
+        
+        if (obj.Imagem == "") {
+            rowHeight = rowHeight - 130
         }
+        if (obj.LinkDestino == "") {
+            rowHeight = rowHeight - 30
+        }
+        if (obj.ImagemLegenda == "") {
+            rowHeight = rowHeight - 22
+        }
+        
+        print("row height:",rowHeight)
+        return CGFloat(rowHeight)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return self.allResults.count
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let  cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeCellView
+        
+        // Configure the cell...
+        
+        let object = self.allResults[indexPath.row]
+        cell.obj = object
+        
+        cell.btnLink.titleLabel?.text = object.LinkTexto
+        cell.btnLink.addTarget(self, action: #selector(actionOpenWeb(_:)), for: .touchUpInside)
+        cell.btnLink.tag = indexPath.row
+        cell.underline()
+        
+        return cell
     }
-    */
- func signOut()
- {
-    print("signout")
     
-    self.navigationController?.popViewController(animated: false)
-//    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//    let newViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-//    self.present(newViewController, animated: true, completion: nil)
- }
-}
-
-extension HomeViewController: SidebarViewDelegate {
-    func sidebarDidSelectRow(row: Row) {
-        blackScreen.isHidden=true
-        blackScreen.frame=self.view.bounds
-        UIView.animate(withDuration: 0.3) {
-            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
-        }
-        switch row {
-        case .cronograma:
-            let vc=EditProfileVC()
-            self.navigationController?.pushViewController(vc, animated: true)
-        case .notas:
-            calender()
-        case .frequencia:
-            print("Contact")
-        case .financeiro:
-            print("Settings")
-        case .secretaria:
-            print("History")
-        case .divulgacao:
-            print("Help")
-        case .conveniencia:
-            print("conveniencia")
-        case .estagios:
-            print("estagios")
-        case .ambiente:
-            print("ambiente")
-        case .suporte:
-            print("suporte")
-        case .sair:
-            signOut()
-        case .none:
-            break
-            //        default:  //Default will never be executed
-            //            break
-        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
+    
+    // MARK: - Action Methods
+    
+    @IBAction func actionOpenWeb(_ sender: UIButton) {
+        let btnsendtag: UIButton = sender
+        let object = self.allResults[btnsendtag.tag]
+        UIApplication.shared.openURL(URL(string: String(format: "http://%@",object.LinkDestino))!)
+    }
+    
+    @IBAction func actionOpenNotificaiton(_ sender: UIButton) {
+        goToViewControllerIdentifier(identifierName: "NotificationVC", animation: true)
+    }
+    
 }
 

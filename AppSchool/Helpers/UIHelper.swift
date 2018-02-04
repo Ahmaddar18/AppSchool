@@ -24,11 +24,10 @@ class UIHelper{
         alertController.view.layer.cornerRadius = 0.1 * alertController.view.bounds.size.width
     }
     
-    static func activityIndicator(uiController: UIViewController, title: String) -> UIView {
+    static func activityIndicator(view: UIView, title: String) -> UIView {
         var strLabel = UILabel()
         var activityIndicator = UIActivityIndicatorView()
         let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        let view: UIView = uiController.view
         
         let subView: UIView = UIView()
         view.addSubview(subView)
@@ -59,5 +58,14 @@ class UIHelper{
     
     static func stopsIndicator(view: UIView){
         view.subviews.forEach({ $0.removeFromSuperview() })
+    }
+    
+    static func decodeImageFromData( strData: String) -> UIImage {
+        
+        //let dataString:String = strData
+        let dataDecoded:NSData = NSData(base64Encoded: strData, options: NSData.Base64DecodingOptions(rawValue: 0))!
+        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
+        
+        return decodedimage
     }
 }
