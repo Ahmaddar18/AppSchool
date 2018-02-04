@@ -32,7 +32,7 @@ class FrequencyVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     // MARK: - Helper
     
     func initializing () {
-        //self.navigationController?.navigationBar.tintColor=UIColor.white
+        self.navigationController?.navigationBar.tintColor=UIColor.white
         self.title = "FREQUÊNCIA"
         
         callApi()
