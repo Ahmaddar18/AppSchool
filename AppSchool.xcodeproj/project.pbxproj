@@ -15,6 +15,7 @@
 		3917316A201A62600016DF09 /* FinancialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39173169201A62600016DF09 /* FinancialVC.swift */; };
 		3917316C201A62830016DF09 /* SecretaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917316B201A62830016DF09 /* SecretaryVC.swift */; };
 		3917316E201A64210016DF09 /* DisclosureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917316D201A64210016DF09 /* DisclosureVC.swift */; };
+		3950CF142027951E00B6FDCF /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950CF132027951E00B6FDCF /* NotificationVC.swift */; };
 		39AC4CCF20190BA200A976F1 /* CalenderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC4CCE20190BA100A976F1 /* CalenderModel.swift */; };
 		39C0A192202382E500562D15 /* Financial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C0A191202382E500562D15 /* Financial.swift */; };
 		39C0A1942023866B00562D15 /* FinancialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C0A1932023866B00562D15 /* FinancialCell.swift */; };
@@ -72,6 +73,7 @@
 		39173169201A62600016DF09 /* FinancialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialVC.swift; sourceTree = "<group>"; };
 		3917316B201A62830016DF09 /* SecretaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretaryVC.swift; sourceTree = "<group>"; };
 		3917316D201A64210016DF09 /* DisclosureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureVC.swift; sourceTree = "<group>"; };
+		3950CF132027951E00B6FDCF /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		39AC4CCE20190BA100A976F1 /* CalenderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalenderModel.swift; sourceTree = "<group>"; };
 		39C0A191202382E500562D15 /* Financial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Financial.swift; sourceTree = "<group>"; };
 		39C0A1932023866B00562D15 /* FinancialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialCell.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				E096DC092010E95C008F4404 /* SupportViewController.swift */,
 				E08B94542007F82B00F128E3 /* EditProfileVC.swift */,
 				B817961C2023000F006449E2 /* SupportInnerVC.swift */,
+				3950CF132027951E00B6FDCF /* NotificationVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				E069F3CD200A4C1900F17E10 /* HomeViewController.swift in Sources */,
 				B886F4FD2020485F00901D75 /* WebCellView.swift in Sources */,
 				39AC4CCF20190BA200A976F1 /* CalenderModel.swift in Sources */,
+				3950CF142027951E00B6FDCF /* NotificationVC.swift in Sources */,
 				3917316A201A62600016DF09 /* FinancialVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

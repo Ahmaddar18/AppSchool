@@ -16,8 +16,6 @@ class FinancialCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblValue: UILabel!
-    
-    @IBOutlet weak var btnValue: UIButton!
     @IBOutlet weak var btnUpload: UIButton!
 
     var obj: Financial? {
@@ -29,7 +27,6 @@ class FinancialCell: UITableViewCell {
                 lblValue.isHidden = true
             }else{
                 lblStatus.text = "Pago"
-                btnValue.isHidden = false
             }
             
             lblValue.text = obj?.Valor

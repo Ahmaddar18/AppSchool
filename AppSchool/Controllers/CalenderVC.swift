@@ -58,6 +58,7 @@ class CalenderVC: BaseViewController {
     
     var allDays = [CalenderModel]()
     var selectedDays: [Date] = []
+    var selectObj = CalenderModel()
     fileprivate let invalidPeriodLength = 90
     
     override func viewDidLoad() {
@@ -81,12 +82,16 @@ class CalenderVC: BaseViewController {
     
     func initializing () {
         
-        //self.navigationController?.navigationBar.tintColor=UIColor.white
         self.title = "Calender"
         
-        lblMonth.text = koyomi.currentDateString()
+        let dateString = koyomi.currentDateString()
+        let customeMonth = getMonthName(date: UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "MMMM"))
+        let year = UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "yyyy")
+        lblMonth.text = String(format:"%@ %@",customeMonth,year)
         
-        callCalenderApi(month: MONTH, year: YEAR)
+        let month = UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "MM")
+        
+        callCalenderApi(month: month, year: year)
     }
     
     func loadCalenderDays() {
@@ -148,6 +153,8 @@ class CalenderVC: BaseViewController {
         lblPopDocente.text = String(format:"Docente: %@",obj.Professor)
         lblPopLocal.text = String(format:"Local: %@","Laboratorio de Procedimentos")
         lblPopDescricao.text = String(format:"Descricao: %@",obj.TextoDescricao)
+        
+        selectObj = obj
     }
     
     // MARK: - API Methods
@@ -263,6 +270,18 @@ class CalenderVC: BaseViewController {
         viewPopup.removeFromSuperview()
     }
     
+    @IBAction func actionOpenMap(_ sender: UIButton) {
+        
+        //let url = "http://maps.apple.com/?ll=\(31.511075),\(74.340176)"
+        let url = "http://maps.apple.com/?ll=\(String(describing: selectObj.Latitude)),\(String(describing: selectObj.Longitude))"
+
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(URL(string:url)!)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
 }
 
 extension CalenderVC {
@@ -279,6 +298,36 @@ extension CalenderVC {
         koyomi.display(in: month)
     }
     
+    func getMonthName(date: String) -> String {
+        
+        if (date.contains("January")) {
+            return "Janeiro"
+        } else if (date.contains("February")) {
+            return "Fevereiro"
+        } else if (date.contains("March")) {
+            return "Março"
+        } else if (date.contains("April")) {
+            return "Abril"
+        } else if (date.contains("May")) {
+            return "Maio"
+        } else if (date.contains("June")) {
+            return "Junho"
+        } else if (date.contains("July")) {
+            return "Julho"
+        } else if (date.contains("August")) {
+            return "Agosto"
+        } else if (date.contains("September")) {
+            return "Setembro"
+        } else if (date.contains("October")) {
+            return "Outubro"
+        } else if (date.contains("November")) {
+            return "Novembro"
+        } else if (date.contains("December")) {
+            return "Dezembro"
+        } else {
+            return date;
+        }
+    }
 }
 
 // MARK: - KoyomiDelegate -
@@ -295,11 +344,13 @@ extension CalenderVC: KoyomiDelegate {
     }
     
     func koyomi(_ koyomi: Koyomi, currentDateString dateString: String) {
-        lblMonth.text = dateString
         
+        let customeMonth = getMonthName(date: UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "MMMM"))
         let month = UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "MM")
         let year = UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "yyyy")
         callCalenderApi(month: month, year: year)
+        
+        lblMonth.text = String(format:"%@ %@",customeMonth,year)
     }
     
     @objc(koyomi:shouldSelectDates:to:withPeriodLength:)

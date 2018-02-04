@@ -180,5 +180,10 @@ class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let object = self.allResults[btnsendtag.tag]
         UIApplication.shared.openURL(URL(string: String(format: "http://%@",object.LinkDestino))!)
     }
+    
+    @IBAction func actionOpenNotificaiton(_ sender: UIButton) {
+        goToViewControllerIdentifier(identifierName: "NotificationVC", animation: true)
+    }
+    
 }
 

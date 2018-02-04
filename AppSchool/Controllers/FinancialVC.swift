@@ -38,6 +38,29 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         callFinancialApi()
     }
     
+    func confirmationAlert (obj: Financial) {
+        
+        let msg = String(format: "%@ \n %@ \n %@", obj.Titulo,obj.Vencimento, obj.CodigoBarras)
+        
+        let alertController = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {    (action:UIAlertAction!) in
+           print("Ok Press")
+            
+            self.callEMailApi(obj)
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {    (action:UIAlertAction!) in
+        }))
+        
+        self.present(alertController, animated: true, completion:{})
+    }
+    
+    func hideList() {
+        self.viewTable.isHidden = true
+        self.viewLista.isHidden = true
+        self.viewSituacao.isHidden = false
+    }
+    
     // MARK: - API Methods
     
     func callFinancialApi(){
@@ -131,6 +154,72 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         
         task.resume()
     }
+    
+    func callEMailApi(_ obj:Financial){
+        
+        self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
+        
+        let postString = """
+        {
+        \"setIdTitulo\"    :"\(obj.IdTitulo)"
+        }
+        """
+        
+        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/sendmail")!)
+        request.httpMethod = "POST"
+        request.addValue("PROD", forHTTPHeaderField: "TAmb")
+        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        
+        request.httpBody = postString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            guard error == nil else {
+                // check for fundamental networking error
+                print("error=\(String(describing: error))")
+                
+                UIHelper.showAlertController(uiController: self, message: "Não foi possível conectar ao servidor", title: "Erro")
+                return
+            }
+            
+            let httpStatus = response as? HTTPURLResponse
+            
+            if let data = data {
+                do {
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
+                        
+                        if httpStatus?.statusCode == 200 {
+                            
+                            DispatchQueue.main.async{
+                                
+                                if jsonResult["RESPONSE"] as? String == "200" {
+                                    UtilityHelper.showOKAlert("", message: jsonResult["MENSAGEMSUCESSO"] as! String, target: self)
+                                }
+                            }
+                        }
+                        
+                        DispatchQueue.main.async {
+                            UIHelper.stopsIndicator(view: self.loadIndicator)
+                        }
+                    }
+                    
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                    DispatchQueue.main.async {
+                        UIHelper.stopsIndicator(view: self.loadIndicator)
+                    }
+                }
+            } else if let error = error {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    UIHelper.stopsIndicator(view: self.loadIndicator)
+                }
+            }
+            
+        }
+        
+        task.resume()
+    }
 
     
     // MARK: - Table view data source
@@ -157,9 +246,6 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         let object = self.financialList[indexPath.row]
         cell.obj = object
         
-        cell.btnValue.addTarget(self, action: #selector(actionHideList(_:)), for: .touchUpInside)
-        cell.btnValue.tag = indexPath.row
-        
         cell.btnUpload.addTarget(self, action: #selector(actionShowPopup(_:)), for: .touchUpInside)
         cell.btnUpload.tag = indexPath.row
         
@@ -169,7 +255,7 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        hideList()
     }
     
     // MARK: - Action Methods
@@ -180,10 +266,9 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         self.viewSituacao.isHidden = true
     }
     
-    @IBAction func actionHideList(_ sender: UIButton) {
-        self.viewTable.isHidden = true
-        self.viewLista.isHidden = true
-        self.viewSituacao.isHidden = false
+    @IBAction func actionRefresh(_ sender: UIButton) {
+        callFinancialApi()
+        hideList()
     }
     
     @IBAction func actionShowPopup(_ sender: UIButton) {
@@ -191,7 +276,6 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         let btnsend: UIButton = sender
         let object = self.financialList[btnsend.tag]
         
-        let msg = String(format: "%@ \n %@ \n %@", object.Titulo,object.Vencimento, object.CodigoBarras)
-        UtilityHelper.showOKAlert("", message: msg, target: self)
+        confirmationAlert(obj: object)
     }
 }
