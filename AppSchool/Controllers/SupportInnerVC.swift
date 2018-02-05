@@ -17,13 +17,13 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
         let STATUS: String
         let MENSAGEMSUCESSO: String?
         let TYPE: String
+        let NUMCHAMADO: String?
     }
     
     var loadIndicator: UIView = UIView()
     
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var emailTextView: UITextField!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +81,9 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
         messageTextView.layer.borderColor = UIColor.lightGray.cgColor
     }
     
+    
     @IBAction func submitSupportCall(_ sender: Any) {
+        
         if isDataValid() {
             
             loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Enviando dados")
@@ -137,7 +139,9 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
                     }
                     
                     DispatchQueue.main.async {
-                        UIHelper.showAlertController(uiController: self, message: messageAlert!, title: titleAlert)
+                        
+                        SuccessForgottenPasswordViewController.shared.showSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: messageAlert!, isLoggedin: true, code: responseStruct.NUMCHAMADO!)
+                        
                         UIHelper.stopsIndicator(view: self.loadIndicator)
                     }
                 } else {

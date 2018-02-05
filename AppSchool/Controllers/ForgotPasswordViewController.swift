@@ -86,7 +86,7 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
                 
                 DispatchQueue.main.async {
                     let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let popupVC = storyboard.instantiateViewController(withIdentifier: "successForgottenPasswordViewController") as! SuccessForgottenPasswordViewController
+                    let popupVC = storyboard.instantiateViewController(withIdentifier: "successForgottenPasswordVC") as! SuccessForgottenPasswordViewController
                     popupVC.modalPresentationStyle = .popover
                     popupVC.preferredContentSize = CGSize(width: 300, height: 300)
                     
