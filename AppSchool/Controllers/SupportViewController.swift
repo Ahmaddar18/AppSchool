@@ -143,6 +143,8 @@ class SupportViewController: UIViewController, UITextViewDelegate {
                         UIHelper.showAlertController(uiController: self, message: "Chamado não foi aberto, favor refazer a operação")
                         UIHelper.stopsIndicator(view: self.loadIndicator)
                     }
+                    
+                    UIHelper.stopsIndicator(view: self.loadIndicator)
                 }
             }
             task.resume()
