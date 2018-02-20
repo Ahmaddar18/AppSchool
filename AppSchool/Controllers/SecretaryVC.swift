@@ -25,6 +25,8 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     var periodoList = [NotesList]()
     var strDocId : String = ""
     var strPeriodoId : String = ""
+    
+    var frame : CGRect!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +57,13 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         
         self.tfOption.text = ""
         textViewDefaultText()
+    
+        if ConstantDevices.IS_IPHONE_X {
+            frame = CGRect(x: 0, y: 140, width: self.view.frame.size.width, height: self.view.frame.size.height-140)
+        }else{
+            frame = CGRect(x: 0, y: 115, width: self.view.frame.size.width, height: self.view.frame.size.height-115)
+        }
         
-        let frame = CGRect(x: 0, y: 115, width: self.view.frame.size.width, height: self.view.frame.size.height-115)
         viewOptions.frame = frame
         //AppDel.window?.addSubview(viewOptions)
         self.view.addSubview(viewOptions)
@@ -364,6 +371,14 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     
     @IBAction func actionSubmit(_ sender: UIButton) {
         
+        if (self.tfOption.text?.isEmpty)! {
+            UIHelper.showAlertController(uiController: self, message: "Selecione o Período")
+            return
+        }
+        if (self.tvMessage.text.isEmpty || self.tvMessage.text == TextViewMsg) {
+             UIHelper.showAlertController(uiController: self, message: "Please add message")
+            return
+        }
         callSubmitOnlineApi(docId: strDocId, periodoId: strPeriodoId, message: self.tvMessage.text)
     }
     

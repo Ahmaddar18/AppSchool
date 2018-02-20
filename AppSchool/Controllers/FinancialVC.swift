@@ -23,6 +23,8 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
 
         // Do any additional setup after loading the view.
         initializing()
+        
+        showList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,6 +35,8 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     // MARK: - Helper
     
     func initializing () {
+        
+        self.navigationController?.navigationBar.tintColor=UIColor.white
         self.title = "FINANCEIRO"
         
         callFinancialApi()
@@ -40,12 +44,12 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     
     func confirmationAlert (obj: Financial) {
         
-        let msg = String(format: "%@ \n %@ \n %@", obj.Titulo,obj.Vencimento, obj.CodigoBarras)
+        let msg = String(format: "%@ \n %@ \n %@ \n %@", "Enviar Boleto de",obj.Vencimento,"Código de Barras",obj.CodigoBarras) //obj.Titulo
         
         let alertController = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {    (action:UIAlertAction!) in
            print("Ok Press")
-            
+
             self.callEMailApi(obj)
         }))
         
@@ -59,6 +63,12 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         self.viewTable.isHidden = true
         self.viewLista.isHidden = true
         self.viewSituacao.isHidden = false
+    }
+    
+    func showList() {
+        self.viewTable.isHidden = false
+        self.viewLista.isHidden = false
+        self.viewSituacao.isHidden = true
     }
     
     // MARK: - API Methods
@@ -161,7 +171,8 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         
         let postString = """
         {
-        \"setIdTitulo\"    :"\(obj.IdTitulo)"
+        \"setIdTitulo\"    :"\(obj.IdTitulo)",
+        \"setEmail\"    :"\("teste@empresa.com")",
         }
         """
         
@@ -261,9 +272,7 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     // MARK: - Action Methods
     
     @IBAction func actionShowList(_ sender: Any) {
-        self.viewTable.isHidden = false
-        self.viewLista.isHidden = false
-        self.viewSituacao.isHidden = true
+        self.showList()
     }
     
     @IBAction func actionRefresh(_ sender: UIButton) {

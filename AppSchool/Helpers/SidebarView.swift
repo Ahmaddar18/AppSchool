@@ -120,6 +120,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cell.bounds.origin.x = x
             cell.textLabel?.text=titleArr[indexPath.row]
             cell.textLabel?.textColor=UIColor.white
+            cell.textLabel?.font=UIFont.systemFont(ofSize: 14)
             
         } else if indexPath.row == titleArr.count - 1 {
             
@@ -128,12 +129,14 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text=titleArr[indexPath.row]
             cell.textLabel?.textColor=UIColor.white
             cell.textLabel?.textAlignment = NSTextAlignment.right
+            cell.textLabel?.font=UIFont.systemFont(ofSize: 14)
             
         } else {
             let x = (cell.frame.size.width/16) - 30
             cell.bounds.origin.x = x
             cell.textLabel?.text=titleArr[indexPath.row]
             cell.textLabel?.textColor=UIColor.white
+            cell.textLabel?.font=UIFont.systemFont(ofSize: 14)
         }
         return cell
     }
@@ -149,9 +152,9 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             return 100
         } else if indexPath.row == titleArr.count - 2 {
-            return 54
-        } else {
             return 50
+        } else {
+            return 45
         }
     }
     
