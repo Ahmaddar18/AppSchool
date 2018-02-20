@@ -58,9 +58,9 @@ class BaseViewController: UIViewController {
         blackScreen.isHidden=false
         UIView.animate(withDuration: 0.3, animations: {
             if (ConstantDevices.IS_IPHONE && ConstantDevices.IS_IPHONE_5){
-                self.sidebarView.frame=CGRect(x: 0, y: 0, width: 260, height: self.sidebarView.frame.height)
+                self.sidebarView.frame=CGRect(x: 0, y: 0, width: self.view.frame.size.width-75, height: self.sidebarView.frame.height)
             }else{
-                self.sidebarView.frame=CGRect(x: 0, y: 0, width: 290, height: self.sidebarView.frame.height)
+                self.sidebarView.frame=CGRect(x: 0, y: 0, width: self.view.frame.size.width-75, height: self.sidebarView.frame.height)
             }
             
         }) { (complete) in
