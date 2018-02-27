@@ -57,7 +57,12 @@ class BaseViewController: UIViewController {
     @objc func btnMenuAction() {
         blackScreen.isHidden=false
         UIView.animate(withDuration: 0.3, animations: {
-            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 300, height: self.sidebarView.frame.height)
+            if (ConstantDevices.IS_IPHONE && ConstantDevices.IS_IPHONE_5){
+                self.sidebarView.frame=CGRect(x: 0, y: 0, width: self.view.frame.size.width-75, height: self.sidebarView.frame.height)
+            }else{
+                self.sidebarView.frame=CGRect(x: 0, y: 0, width: self.view.frame.size.width-75, height: self.sidebarView.frame.height)
+            }
+            
         }) { (complete) in
             self.blackScreen.frame=CGRect(x: self.sidebarView.frame.width, y: 0, width: self.view.frame.width-self.sidebarView.frame.width, height: self.view.bounds.height+100)
         }

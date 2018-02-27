@@ -20,6 +20,7 @@ import Foundation
     static let IS_IPHONE_5 = (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
     static let IS_IPHONE_6 = (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
     static let IS_IPHONE_6P = (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+    static let IS_IPHONE_X = (IS_IPHONE && SCREEN_MAX_LENGTH > 800.0)
     // Device informations
     static let DEVICE_MODEL = CURRENT_DEVICE.model
     static let DEVICE_LOCALIZED_MODEL = CURRENT_DEVICE.localizedModel

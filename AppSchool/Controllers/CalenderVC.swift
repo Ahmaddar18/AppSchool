@@ -63,7 +63,7 @@ class CalenderVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.title = "Calender"
+        self.navigationController?.title = "Calendário"
         // Do any additional setup after loading the view.
         
         initializing()
@@ -82,7 +82,7 @@ class CalenderVC: BaseViewController {
     
     func initializing () {
         
-        self.title = "Calender"
+        self.title = "Calendário"
         
         let dateString = koyomi.currentDateString()
         let customeMonth = getMonthName(date: UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "MMMM"))

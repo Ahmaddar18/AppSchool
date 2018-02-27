@@ -9,9 +9,10 @@
 import UIKit
 import Reachability
 import IQKeyboardManagerSwift
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     
@@ -32,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         */
         IQKeyboardManager.sharedManager().enable = true
+        
+        //Register notifications
+        //self.athurizeNotifications(application)
         
         //Reachability
         reachability = Reachability()!
@@ -85,7 +89,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Network not reachable")
         }
     }
-
-
+    
+    // MARK: - Push Notifications
+    
+    func athurizeNotifications(_ application: UIApplication) {
+    
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            
+            center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
+                // Enable or disable features based on authorization.
+                guard error == nil else {
+                    //Display Error.. Handle Error.. etc..
+                    return
+                }
+                
+                if granted {
+                    //Register for RemoteNotifications. Your Remote Notifications can display alerts now :)
+                    //application.registerForRemoteNotifications()
+                }
+                else {
+                    //Handle user denying permissions..
+                }
+            }
+            application.registerForRemoteNotifications()
+        } else {
+            // Fallback on earlier versions
+            
+            let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print(deviceTokenString)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("i am not available in simulator \(error)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void){
+        
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        print(userInfo)
+        if application.applicationState == .active {
+            //write your code here when app is in foreground
+        } else {
+            //write your code here for other state
+        }
+    }
 }
 
