@@ -11,6 +11,7 @@ import UIKit
 class HomeCellView: UITableViewCell {
 
     @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var viewLineVertical: UIView!
     @IBOutlet weak var lblDetail: UILabel!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var btnLink: UIButton!
@@ -19,6 +20,7 @@ class HomeCellView: UITableViewCell {
     @IBOutlet weak var imgViewH: NSLayoutConstraint!
     @IBOutlet weak var btnViewH: NSLayoutConstraint!
     @IBOutlet weak var lblDetailH: NSLayoutConstraint!
+    @IBOutlet weak var lblNameH: NSLayoutConstraint!
     @IBOutlet weak var viewInnerH: NSLayoutConstraint!
     
     var indexRow: Int?
@@ -27,6 +29,15 @@ class HomeCellView: UITableViewCell {
         didSet {
             lblName.text = obj?.TituloNews
             lblDetail.text = obj?.ImagemLegenda
+            
+            if (obj?.TituloNews == "") {
+                lblName.isHidden = true
+                viewLineVertical.isHidden = true
+                lblNameH.constant = 0
+            }else{
+                lblName.isHidden = false
+                viewLineVertical.isHidden = false
+            }
             
             if (obj?.Imagem != "") {
                 
@@ -60,7 +71,6 @@ class HomeCellView: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        dropShadow()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -12,7 +12,7 @@ private struct Strings {
 	static let NEUTRAL = "NORMAL"
 	static let COOL = "COOL"
 	static let WARM = "WARM"
-	static let JENNAIR = "JENNAIR"
+	static let APPSCHOOL = "APPSCHOOL"
 }
 
 public struct Palette {
@@ -58,7 +58,7 @@ extension UIColor {
 		case 3:
 			return Palette(id: 3, name: Strings.WARM, startColor: UIColor.warmStartColor(), endColor: UIColor.warmEndColor())
 		default:
-			return Palette(id: 0, name: Strings.JENNAIR, startColor: UIColor.startColor(), endColor: UIColor.blueColor())
+			return Palette(id: 0, name: Strings.APPSCHOOL, startColor: UIColor.startColor(), endColor: UIColor.blueColor())
 		}
 	}
 	
@@ -150,6 +150,10 @@ extension UIColor {
     
     public class func blueColor() -> UIColor {
         return UIColor(red: 60/0xFF, green: 80/0xFF, blue: 180/0xFF, alpha: 1.0)
+    }
+    
+    public class func orangeColor() -> UIColor {
+        return UIColor(red: 244/0xFF, green: 127/0xFF, blue: 22/0xFF, alpha: 1.0)
     }
 	
 	

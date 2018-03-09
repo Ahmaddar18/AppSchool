@@ -33,6 +33,9 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
         
         //Hides keyboard automatically
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
+        UIHelper.addTFLeftPadding(width: 10, textField: emailTextField)
+        navigationHeaderStyling()
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -49,6 +52,12 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
     
     // MARK: - Helper
     
+    func navigationHeaderStyling () {
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
+        self.navigationController?.navigationBar.barTintColor  = UIColor.orangeColor()
+        self.navigationController?.navigationBar.tintColor=UIColor.white
+    }
+    
     func doForgotPasswordRequest(email: String){
         let postString = """
         {
@@ -58,9 +67,9 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
         }
         """
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/redefinirsenha")!)
+        var request = URLRequest(url: URL(string: API_Base_Path+"redefinirsenha")!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
         
         
         request.httpBody = postString.data(using: .utf8)

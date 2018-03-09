@@ -36,7 +36,7 @@ class NotesViewController: BaseViewController, UITableViewDelegate, UITableViewD
     // MARK: - Helper
     
     func initializing () {
-        self.title = "NOTAS"
+        //self.title = "NOTAS"
         
         callApi()        
         self.setupRefreshControl()
@@ -44,7 +44,7 @@ class NotesViewController: BaseViewController, UITableViewDelegate, UITableViewD
     
     func setupRefreshControl() {
         
-        refreshControl.tintColor = UIColor.black
+        refreshControl.tintColor = UIColor.orangeColor()
         self.tableView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(pullRefreshList), for: UIControlEvents.valueChanged)
     }
@@ -66,10 +66,11 @@ class NotesViewController: BaseViewController, UITableViewDelegate, UITableViewD
         
         self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/nota")!)
+        let urlStr = API_Base_Path+"nota"
+        var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
-        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             

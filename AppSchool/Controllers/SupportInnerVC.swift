@@ -30,8 +30,11 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
         inittextView()
         
         self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
-        self.navigationController?.navigationBar.barTintColor  = UIColor.blueColor()
+        self.navigationController?.navigationBar.barTintColor  = UIColor.orangeColor()
         self.navigationController?.navigationBar.tintColor=UIColor.white
+        
+        UIHelper.addTFLeftPadding(width: 10, textField: emailTextView)
+        messageTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
     }
     
@@ -41,7 +44,7 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if messageTextView.textColor == UIColor.lightGray {
+        if messageTextView.textColor == UIColor.init(red: 79/255, green: 87/255, blue: 95/255, alpha: 1.0) {
             messageTextView.text = nil
             messageTextView.textColor = UIColor.black
         }
@@ -49,8 +52,8 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if messageTextView.text.isEmpty {
-            messageTextView.text = "Digite a sua mensagem"
-            messageTextView.textColor = UIColor.lightGray
+            messageTextView.text = SupportMsg
+            messageTextView.textColor = UIColor.init(red: 79/255, green: 87/255, blue: 95/255, alpha: 1.0)
         }
     }
     
@@ -65,7 +68,7 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
             return false
         }
         
-        if message == "" || message == "Digite a sua mensagem" {
+        if message == "" || message == SupportMsg {
             UIHelper.showAlertController(uiController: self, message: "Por favor, a mensagem para o suporte")
             return false
         }
@@ -74,11 +77,8 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
     }
     
     func inittextView(){
-        messageTextView.text = "Digite a sua mensagem"
-        messageTextView.layer.borderWidth = 1
-        messageTextView.layer.cornerRadius = 5
-        messageTextView.textColor = UIColor.lightGray
-        messageTextView.layer.borderColor = UIColor.lightGray.cgColor
+        messageTextView.text = SupportMsg
+        messageTextView.textColor = UIColor.init(red: 79/255, green: 87/255, blue: 95/255, alpha: 1.0)
     }
     
     
@@ -100,12 +100,12 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
             
             print(postString)
             
-            let urlLink = "http://52.10.244.229:8888/rest/wsapimob/suporteinterno"
+            let urlLink = API_Base_Path+"suporteinterno"
             
             var request = URLRequest(url: URL(string: urlLink)!)
             request.httpMethod = "POST"
-            request.addValue("PROD", forHTTPHeaderField: "TAmb")
-            request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+            request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+            request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
             
             request.httpBody = postString.data(using: .utf8)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in

@@ -19,6 +19,8 @@ class SuccessForgottenPasswordViewController: UIViewController {
     @IBOutlet weak var lblCode: UILabel!
     @IBOutlet weak var btnPress: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
+    @IBOutlet weak var lblMsgH: NSLayoutConstraint!
+    @IBOutlet weak var lblCodeY: NSLayoutConstraint!
     
     static let shared = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "successForgottenPasswordVC") as! SuccessForgottenPasswordViewController
     
@@ -46,14 +48,16 @@ class SuccessForgottenPasswordViewController: UIViewController {
         childView.frame = CGRect(x: 0, y: 65, width: view.frame.size.width, height: view.frame.size.height)
         view.addSubview(childView)
         
-        successMessageTextView.text = mesg
+        //successMessageTextView.text = mesg
         
         if isLoggedin {
             btnPress.isHidden = true
             lblCode.isHidden = false
             lblCode.text = String(format: "Chamado: %@",code)
+            lblMsgH.constant = 28
         }else{
             lblCode.isHidden = false
+            lblCodeY.constant = 20
         }
     }
     

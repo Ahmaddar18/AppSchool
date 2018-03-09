@@ -37,7 +37,12 @@ let IN_SIMULATOR = (TARGET_IPHONE_SIMULATOR != 0)
 
 
 // UserDefauld Keys
-let IS_CALL_MAKE = "IS_CALL_MAKE"
+let IS_LOGGEDIN = "IS_LOGGEDIN"
+let LOGGEDIN_USER_INFO = "LOGGEDIN_USER_INFO"
+
+let USER_TOKEN = "TOKEN"
+let NAME = "NOMEUSER"
+let EMAIL = "EMAILUSER"
 
 
 // NSNotifcation
@@ -59,6 +64,20 @@ let TURN_ON_LOCATION_MSG = "1. Tap Settings \n2. Tap Location \n3. Tap While Usi
 let NOT_NOW = "Not Now"
 let SETTINGS = "Settings"
 let LOCATION_PATH = "App-Prefs:root=Privacy&path=LOCATION"
+let SupportMsg = "Digite a sua mensagem"
+
+
+// Server path
+
+//------ TEST SERVER -------
+let API_Base_Path = "http://52.10.244.229:8888/rest/wsapimob/"
+let API_HEADER = "PROD"
+
+//------ LIVE SERVER -------
+
+//let API_Base_Path = "http://apps2.sp.senac.br/rest/wsapimob/"
+//let API_HEADER = "HOM"
+
 
 
 

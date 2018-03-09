@@ -25,6 +25,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var EmailTextView: UITextField!
     @IBOutlet weak var SenhaTextField: UITextField!
+    @IBOutlet weak var viewStatusbarH: NSLayoutConstraint!
+    @IBOutlet weak var tfEmailY: NSLayoutConstraint!
     
     var loadIndicator: UIView = UIView()
     var window: UIWindow?
@@ -36,6 +38,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         EmailTextView?.text = "teste@empresa.com"
         SenhaTextField?.text = "54321"
+        
+        //EmailTextView?.text = "eduardooliveira.duarte@gmail.com"
+        //SenhaTextField?.text = "123456"
+        
+        UIHelper.addTFLeftPadding(width: 10, textField: EmailTextView)
+        UIHelper.addTFLeftPadding(width: 10, textField: SenhaTextField)
+        
+        if (ConstantDevices.IS_IPHONE_5 || ConstantDevices.IS_IPHONE_4_OR_LESS) {
+            self.tfEmailY.constant = 90
+        }else if (ConstantDevices.IS_IPHONE_X){
+            self.viewStatusbarH.constant = 44
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,9 +93,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         """
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/autenticaracesso")!)
+        let urlStr = API_Base_Path+"autenticaracesso"
+        var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
         
         print(postString)
         
@@ -108,9 +123,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let user = try! decoder.decode(User.self, from: retorno!)
                 
                 if user.RESPONSE == "200" {
+                    
+                    let dict : NSDictionary = [ USER_TOKEN : user.TOKEN, NAME : user.NOMEUSER ?? "", EMAIL : user.EMAILUSER ?? ""]
+                    
                     DispatchQueue.main.async {
                         UIHelper.stopsIndicator(view: self.loadIndicator)
                         print("ok")
+                        print(user.TOKEN)
+                        
+                        USER_DEFAULTS.set(dict, forKey: LOGGEDIN_USER_INFO)
+                        USER_DEFAULTS.set(true, forKey: IS_LOGGEDIN)
+                        
                                 self.window = UIWindow(frame:UIScreen.main.bounds)
 
         

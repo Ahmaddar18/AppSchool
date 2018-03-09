@@ -37,7 +37,7 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     func initializing () {
         
         self.navigationController?.navigationBar.tintColor=UIColor.white
-        self.title = "FINANCEIRO"
+        //self.title = "FINANCEIRO"
         
         callFinancialApi()
     }
@@ -77,10 +77,11 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         
         self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/financeiro")!)
+        let urlStr = API_Base_Path+"financeiro"
+        var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
-        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
@@ -176,10 +177,11 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         }
         """
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/sendmail")!)
+        let urlStr = API_Base_Path+"sendmail"
+        var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
-        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         
         request.httpBody = postString.data(using: .utf8)
         

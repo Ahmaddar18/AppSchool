@@ -29,9 +29,11 @@ class SupportViewController: UIViewController, UITextViewDelegate {
         inittextView()
         
         self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
-        self.navigationController?.navigationBar.barTintColor  = UIColor.blueColor()
+        self.navigationController?.navigationBar.barTintColor  = UIColor.orangeColor()
         self.navigationController?.navigationBar.tintColor=UIColor.white
         
+        UIHelper.addTFLeftPadding(width: 10, textField: emailTextView)
+        messageTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,7 +42,7 @@ class SupportViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if messageTextView.textColor == UIColor.lightGray {
+        if messageTextView.textColor == UIColor.init(red: 79/255, green: 87/255, blue: 95/255, alpha: 1.0) {
             messageTextView.text = nil
             messageTextView.textColor = UIColor.black
         }
@@ -48,8 +50,8 @@ class SupportViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if messageTextView.text.isEmpty {
-            messageTextView.text = "Digite a sua mensagem"
-            messageTextView.textColor = UIColor.lightGray
+            messageTextView.text = SupportMsg
+            messageTextView.textColor = UIColor.init(red: 79/255, green: 87/255, blue: 95/255, alpha: 1.0)
         }
     }
     
@@ -64,7 +66,7 @@ class SupportViewController: UIViewController, UITextViewDelegate {
             return false
         }
         
-        if message == "" || message == "Digite a sua mensagem" {
+        if message == "" || message == SupportMsg {
             UIHelper.showAlertController(uiController: self, message: "Por favor, a mensagem para o suporte")
             return false
         }
@@ -73,11 +75,8 @@ class SupportViewController: UIViewController, UITextViewDelegate {
     }
     
     func inittextView(){
-        messageTextView.text = "Digite a sua mensagem"
-        messageTextView.layer.borderWidth = 1
-        messageTextView.layer.cornerRadius = 5
-        messageTextView.textColor = UIColor.lightGray
-        messageTextView.layer.borderColor = UIColor.lightGray.cgColor
+        messageTextView.text = SupportMsg
+        messageTextView.textColor = UIColor.init(red: 79/255, green: 87/255, blue: 95/255, alpha: 1.0)
     }
     
     @IBAction func submitSupportCall(_ sender: Any) {
@@ -97,11 +96,11 @@ class SupportViewController: UIViewController, UITextViewDelegate {
             
             print(postString)
             
-            let urlLink = "http://52.10.244.229:8888/rest/wsapimob/suportechamado"
+            let urlLink = API_Base_Path+"suportechamado"
             
             var request = URLRequest(url: URL(string: urlLink)!)
             request.httpMethod = "POST"
-            request.addValue("PROD", forHTTPHeaderField: "TAmb")
+            request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
             
             request.httpBody = postString.data(using: .utf8)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
