@@ -64,7 +64,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         self.layer.contents = #imageLiteral(resourceName: "bgnormal").cgImage
         
-        titleArr = ["PROFILE","CRONOGRAMA", "NOTAS", "FREQUÊNCIA", "FINANCEIRO", "SECRETARIA ON-LINE", "DIVULGAÇÃO E INSCRIÇÕES","CONVENIÊNCIA","ESTÁGIOS","AMBIENTE EAD","SUPORTE","","SAIR"]//SUGESTÕES
+        titleArr = ["PROFILE","CRONOGRAMA", "NOTAS", "FREQUÊNCIA", "FINANCEIRO", "SECRETARIA ON-LINE", "DIVULGAÇÃO E INSCRIÇÕES","CONVENIÊNCIA","ESTÁGIOS","AMBIENTE EAD","SUPORTE","SUGESTÕES","SAIR"]
         
         setupViews()
         
@@ -114,22 +114,23 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cellDetailLbl.font=UIFont.systemFont(ofSize: 17)
             cellDetailLbl.textColor=UIColor.white
             
-            let img = UIImage(named: "blueLine")
-            let imgView = UIImageView(image: img!)
-            imgView.frame = CGRect(x: 15, y:( cell.frame.height-5), width: cell.frame.width-30, height: 2)
-            cell.addSubview(imgView)
+            let lblLine = UILabel()
+            lblLine.frame = CGRect(x: 15, y:( cell.frame.height-5), width: cell.frame.width-30, height: 2)
+            lblLine.backgroundColor = UIColor.orangeColor()
+            cell.addSubview(lblLine)
             
         } else if indexPath.row == titleArr.count - 2 {
             
-            let img = UIImage(named: "blueLine")
-            let imgView = UIImageView(image: img!)
-            imgView.frame = CGRect(x: 7, y:( cell.frame.height), width: cell.frame.width-30, height: 2)
-            cell.addSubview(imgView)
+            let lblLine = UILabel()
+            lblLine.frame = CGRect(x: 7, y:( cell.frame.height), width: cell.frame.width-30, height: 2)
+            lblLine.backgroundColor = UIColor.orangeColor()
+            cell.addSubview(lblLine)
             
             let x = (cell.frame.size.width/16) - 30
             cell.bounds.origin.x = x
             cell.textLabel?.text=titleArr[indexPath.row]
             cell.textLabel?.textColor=UIColor.white
+            cell.textLabel?.textAlignment = NSTextAlignment.left
             cell.textLabel?.font=UIFont.systemFont(ofSize: 14)
             
         } else if indexPath.row == titleArr.count - 1 {

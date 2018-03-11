@@ -12,6 +12,7 @@ class BaseViewController: UIViewController {
 
     var sidebarView: SidebarView!
     var blackScreen: UIView!
+    //var dictUser: NSDictionary!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,7 +122,7 @@ class BaseViewController: UIViewController {
     }
     
     func openSugestoesView(){
-        goToViewControllerIdentifier(identifierName: "SupportInnerVC", animation: false)
+        goToViewControllerIdentifier(identifierName: "SugestoesVC", animation: false)
     }
     
     func signOut(){
@@ -178,8 +179,8 @@ extension BaseViewController: SidebarViewDelegate {
             print("Support")
             openSupportView()
         case .sugestoes:
-            print("Support")
-            //openSugestoesView()
+            print("Sugestoes")
+            openSugestoesView()
         case .sair:
             signOut()
         case .none:

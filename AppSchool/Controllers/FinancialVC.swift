@@ -11,12 +11,12 @@ import UIKit
 class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var viewSituacao: UIView!
-    @IBOutlet weak var viewLista: UIView!
+    @IBOutlet weak var imgDropDown: UIImageView!
     @IBOutlet weak var viewTable: UIView!
     
     var loadIndicator: UIView = UIView()
     var financialList = [Financial]()
+    var isListDisplaed: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,14 +61,14 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     
     func hideList() {
         self.viewTable.isHidden = true
-        self.viewLista.isHidden = true
-        self.viewSituacao.isHidden = false
+        self.imgDropDown.isHidden = false
+        self.isListDisplaed = false
     }
     
     func showList() {
+        self.isListDisplaed = true
         self.viewTable.isHidden = false
-        self.viewLista.isHidden = false
-        self.viewSituacao.isHidden = true
+        self.imgDropDown.isHidden = true
     }
     
     // MARK: - API Methods
@@ -262,6 +262,12 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         cell.btnUpload.addTarget(self, action: #selector(actionShowPopup(_:)), for: .touchUpInside)
         cell.btnUpload.tag = indexPath.row
         
+        if indexPath.row == 0 {
+            cell.lblLine.isHidden = false
+        }else{
+            cell.lblLine.isHidden = true
+        }
+        
         return cell
     }
     
@@ -274,7 +280,13 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     // MARK: - Action Methods
     
     @IBAction func actionShowList(_ sender: Any) {
-        self.showList()
+        
+        if isListDisplaed {
+            callFinancialApi()
+            hideList()
+        }else{
+            self.showList()
+        }
     }
     
     @IBAction func actionRefresh(_ sender: UIButton) {

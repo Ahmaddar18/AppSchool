@@ -36,6 +36,9 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
         
         UIHelper.addTFLeftPadding(width: 10, textField: emailTextField)
         navigationHeaderStyling()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(goBack), name: Notification.Name(ForgotBackNotification), object: nil)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -56,6 +59,13 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
         self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
         self.navigationController?.navigationBar.barTintColor  = UIColor.orangeColor()
         self.navigationController?.navigationBar.tintColor=UIColor.white
+        
+        self.navigationItem.title = "Recuperar Senha"
+        
+        //For back button in navigation bar
+        let backButton = UIBarButtonItem()
+        backButton.title = "Voltar"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
     func doForgotPasswordRequest(email: String){
@@ -79,6 +89,7 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
                 print("error=\(String(describing: error))")
                 
                 UIHelper.showAlertController(uiController: self, message: "Não foi possível conectar ao servidor", title: "Erro")
+                UIHelper.stopsIndicator(view: self.loadIndicator)
                 return
             }
             
@@ -94,23 +105,20 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
                 let responseStruct = try! decoder.decode(Response.self, from: retorno!)
                 
                 DispatchQueue.main.async {
-                    let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let popupVC = storyboard.instantiateViewController(withIdentifier: "successForgottenPasswordVC") as! SuccessForgottenPasswordViewController
-                    popupVC.modalPresentationStyle = .popover
-                    popupVC.preferredContentSize = CGSize(width: 300, height: 300)
                     
-                    popupVC.stringPassed = responseStruct.MENSAGEMSUCESSO!
+                    var msg: String = ""
+                    
                     if responseStruct.RESPONSE != "200" {
-                        popupVC.stringPassed = responseStruct.MENSAGEMERRO!
+                        msg = responseStruct.MENSAGEMERRO!
+                        SuccessForgottenPasswordViewController.shared.showForgotSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: msg, status: false)
+                    }else{
+                        
+                        msg = responseStruct.MENSAGEMSUCESSO!
+                        SuccessForgottenPasswordViewController.shared.showForgotSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: msg, status: true)
                     }
-                    popupVC.status = responseStruct.STATUS
                     
-                    let pVC = popupVC.popoverPresentationController
-                    pVC?.permittedArrowDirections = .any
-                    pVC?.delegate = self
-                    pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
-                   // self.present(popupVC, animated: true, completion: nil)
-                    self.navigationController?.pushViewController(popupVC, animated: false)
+                    
+                    
                     UIHelper.stopsIndicator(view: self.loadIndicator)
                 }
             }
@@ -129,6 +137,10 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
             self.loadIndicator =  UIHelper.activityIndicator(view: self.view, title: "Carregando")
             doForgotPasswordRequest(email: email!)
         }
+    }
+    
+    @objc func goBack(){
+        self.navigationController?.popViewController(animated: false)
     }
     
 }

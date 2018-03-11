@@ -17,6 +17,7 @@ class SupportViewController: UIViewController, UITextViewDelegate {
         let STATUS: String
         let MENSAGEMSUCESSO: String?
         let TYPE: String
+        let NUMCHAMADO: String?
     }
    
     var loadIndicator: UIView = UIView()
@@ -31,6 +32,12 @@ class SupportViewController: UIViewController, UITextViewDelegate {
         self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
         self.navigationController?.navigationBar.barTintColor  = UIColor.orangeColor()
         self.navigationController?.navigationBar.tintColor=UIColor.white
+        self.navigationItem.title = "Formulário de Suporte"
+        
+        //For back button in navigation bar
+        let backButton = UIBarButtonItem()
+        backButton.title = "Voltar"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
         UIHelper.addTFLeftPadding(width: 10, textField: emailTextView)
         messageTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -134,7 +141,10 @@ class SupportViewController: UIViewController, UITextViewDelegate {
                     }
                     
                     DispatchQueue.main.async {
-                        UIHelper.showAlertController(uiController: self, message: messageAlert!, title: titleAlert)
+                        
+                        SuccessForgottenPasswordViewController.shared.showSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: messageAlert!, isLoggedin: false, code: responseStruct.NUMCHAMADO!)
+                        
+                        //UIHelper.showAlertController(uiController: self, message: messageAlert!, title: titleAlert)
                         UIHelper.stopsIndicator(view: self.loadIndicator)
                     }
                 } else {

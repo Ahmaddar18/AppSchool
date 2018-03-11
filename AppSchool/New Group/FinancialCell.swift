@@ -17,6 +17,7 @@ class FinancialCell: UITableViewCell {
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblValue: UILabel!
     @IBOutlet weak var btnUpload: UIButton!
+    @IBOutlet weak var lblLine: UILabel!
 
     var obj: Financial? {
         didSet {

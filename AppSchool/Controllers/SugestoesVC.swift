@@ -1,14 +1,14 @@
 //
-//  SupportInnerVC.swift
+//  SugestoesVC.swift
 //  AppSchool
 //
-//  Created by Fasih on 2/1/18.
+//  Created by Fasih on 3/10/18.
 //  Copyright © 2018 Ahmad. All rights reserved.
 //
 
 import UIKit
 
-class SupportInnerVC: BaseViewController, UITextViewDelegate {
+class SugestoesVC: BaseViewController, UITextViewDelegate {
     
     struct Response : Codable {
         
@@ -27,6 +27,8 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
         inittextView()
         
         self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
@@ -39,7 +41,7 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
         let dictUser = USER_DEFAULTS.value(forKey: LOGGEDIN_USER_INFO) as? NSDictionary
         emailTextView.text = (dictUser?[EMAIL] as? String)!
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,7 +56,7 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if messageTextView.text.isEmpty {
-            messageTextView.text = SupportMsg
+            messageTextView.text = SugestoMsg
             messageTextView.textColor = UIColor.init(red: 79/255, green: 87/255, blue: 95/255, alpha: 1.0)
         }
     }
@@ -70,7 +72,7 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
             return false
         }
         
-        if message == "" || message == SupportMsg {
+        if message == "" || message == SugestoMsg {
             UIHelper.showAlertController(uiController: self, message: "Por favor, a mensagem para o suporte")
             return false
         }
@@ -79,7 +81,7 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
     }
     
     func inittextView(){
-        messageTextView.text = SupportMsg
+        messageTextView.text = SugestoMsg
         messageTextView.textColor = UIColor.init(red: 79/255, green: 87/255, blue: 95/255, alpha: 1.0)
     }
     
@@ -102,7 +104,7 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
             
             print(postString)
             
-            let urlLink = API_Base_Path+"suporteinterno"
+            let urlLink = API_Base_Path+"sugestao"
             
             var request = URLRequest(url: URL(string: urlLink)!)
             request.httpMethod = "POST"
@@ -132,17 +134,17 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
                     let decoder = JSONDecoder()
                     let responseStruct = try! decoder.decode(Response.self, from: retorno!)
                     
-                    var titleAlert = "Erro"
+                    //var titleAlert = "Erro"
                     var messageAlert = responseStruct.MENSAGEMERRO
                     
                     if responseStruct.RESPONSE == "200" {
-                        titleAlert = "Informação"
+                        //titleAlert = "Informação"
                         messageAlert = responseStruct.MENSAGEMSUCESSO
                     }
                     
                     DispatchQueue.main.async {
                         
-                        SuccessForgottenPasswordViewController.shared.showSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: messageAlert!, isLoggedin: true, code: responseStruct.NUMCHAMADO!)
+                        SuccessForgottenPasswordViewController.shared.showSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: messageAlert!, isLoggedin: true, code: "")
                         
                         UIHelper.stopsIndicator(view: self.loadIndicator)
                     }
@@ -156,5 +158,5 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
             task.resume()
         }
     }
-    
+
 }

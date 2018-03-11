@@ -84,12 +84,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Helper
     
     func doLoginRequest(email: String, senha: String){
+        //\"setSenha\"    :"#Hash('\(senha)', 'MD5')#",
         let postString = """
         {
         \"setEmail\"    :"\(email)",
-        \"setSenha\"    :"#Hash('\(senha)', 'MD5')#",
+        \"setSenha\"    :"\(senha)",
         \"setSistema\"    :"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46",
-        \"setUdid\"    :"93C86FG587487CC4876S454GHT13"
+        \"setUdid\"    : "\(AppDel.deviceToken)"
         }
         """
         

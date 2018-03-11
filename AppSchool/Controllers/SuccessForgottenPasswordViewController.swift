@@ -21,6 +21,7 @@ class SuccessForgottenPasswordViewController: UIViewController {
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var lblMsgH: NSLayoutConstraint!
     @IBOutlet weak var lblCodeY: NSLayoutConstraint!
+    @IBOutlet weak var lblMsgY: NSLayoutConstraint!
     
     static let shared = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "successForgottenPasswordVC") as! SuccessForgottenPasswordViewController
     
@@ -45,19 +46,31 @@ class SuccessForgottenPasswordViewController: UIViewController {
     
     func showSuccessView(view: UIView, childView: UIView, mesg: String, isLoggedin: Bool, code: String){
         
-        childView.frame = CGRect(x: 0, y: 65, width: view.frame.size.width, height: view.frame.size.height)
-        view.addSubview(childView)
-        
-        //successMessageTextView.text = mesg
-        
         if isLoggedin {
+            childView.frame = CGRect(x: 0, y: 65+66, width: view.frame.size.width, height: view.frame.size.height-200)
+            view.addSubview(childView)
+            
             btnPress.isHidden = true
-            lblCode.isHidden = false
-            lblCode.text = String(format: "Chamado: %@",code)
-            lblMsgH.constant = 28
+            lblCode.isHidden = true
+            //lblMsgH.constant = 35
+            lblMsgText.text = mesg
+            if code.count > 0 {
+                lblCode.isHidden = false
+                lblCode.text = String(format: "Chamado: %@",code)
+                lblCodeY.constant = 70
+            }
+            
         }else{
-            lblCode.isHidden = false
-            lblCodeY.constant = 20
+            childView.frame = CGRect(x: 0, y: 65, width: view.frame.size.width, height: view.frame.size.height-65)
+            view.addSubview(childView)
+            
+            lblMsgText.text = mesg
+            if code.count > 0 {
+                lblCode.isHidden = false
+                btnPress.isHidden = false
+                lblCode.text = String(format: "Chamado: %@",code)
+                lblCodeY.constant = 70
+            }
         }
     }
     
@@ -66,12 +79,29 @@ class SuccessForgottenPasswordViewController: UIViewController {
         childView.removeFromSuperview()
     }
     
+    func showForgotSuccessView(view: UIView, childView: UIView, mesg: String, status: Bool){
+        
+        childView.frame = CGRect(x: 0, y: 65, width: view.frame.size.width, height: view.frame.size.height-65)
+        view.addSubview(childView)
+        lblMsgY.constant = 30
+        lblMsgText.text = mesg
+        
+        if !status {
+            successImageView.image = UIImage(named: "ic_action_close")
+        }else{
+            successImageView.image = UIImage(named: "ic_action_confirm")
+        }
+    }
+    
     // MARK: - Action Methods
     
     @IBAction func dismissViewController(_ sender: Any) {
        // dismiss(animated: true, completion: nil)
         //self.navigationController?.popViewController(animated: false)
-        self.navigationController?.popToRootViewController(animated: false)
+        //self.navigationController?.popToRootViewController(animated: false)
+        
+        //self.view.removeFromSuperview()
+        NotificationCenter.default.post(name: Notification.Name(ForgotBackNotification), object: nil)
     }
     
     
