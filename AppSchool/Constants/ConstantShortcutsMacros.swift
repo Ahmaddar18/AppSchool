@@ -65,7 +65,7 @@ let NOT_NOW = "Not Now"
 let SETTINGS = "Settings"
 let LOCATION_PATH = "App-Prefs:root=Privacy&path=LOCATION"
 let SupportMsg = "Digite a sua mensagem"
-let SugestoMsg = "suggesto"
+let SugestoMsg = "Digite sua mensagem"
 
 let ForgotBackNotification = "ForgotBackNotification"
 

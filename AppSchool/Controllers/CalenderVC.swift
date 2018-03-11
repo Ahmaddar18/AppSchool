@@ -36,7 +36,7 @@ class CalenderVC: BaseViewController {
             koyomi.dayPosition = .center
             koyomi.cellSpace = 1
             koyomi.selectionMode = .multiple(style: .background)
-            koyomi.selectedStyleColor = UIColor(red: 230/255, green: 26/255, blue: 24/255, alpha: 1)
+            koyomi.selectedStyleColor = UIColor(red: 245/255, green: 125/255, blue: 0/255, alpha: 1)
             koyomi
                 .setDayFont(size: 12)
                 .setWeekFont(size: 16)

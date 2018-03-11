@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         IQKeyboardManager.sharedManager().enable = true
         
         //Register notifications
-        //self.athurizeNotifications(application)
+        self.athurizeNotifications(application)
         
         //Reachability
         reachability = Reachability()!

@@ -24,6 +24,7 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
     
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var emailTextView: UITextField!
+    @IBOutlet weak var viewHeaderY: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +34,6 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
         self.navigationController?.navigationBar.barTintColor  = UIColor.orangeColor()
         self.navigationController?.navigationBar.tintColor=UIColor.white
         
-        UIHelper.addTFLeftPadding(width: 10, textField: emailTextView)
-        messageTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        
-        let dictUser = USER_DEFAULTS.value(forKey: LOGGEDIN_USER_INFO) as? NSDictionary
-        emailTextView.text = (dictUser?[EMAIL] as? String)!
     }
     
     override func didReceiveMemoryWarning() {
@@ -81,6 +77,16 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
     func inittextView(){
         messageTextView.text = SupportMsg
         messageTextView.textColor = UIColor.init(red: 79/255, green: 87/255, blue: 95/255, alpha: 1.0)
+        
+        UIHelper.addTFLeftPadding(width: 10, textField: emailTextView)
+        messageTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
+        let dictUser = USER_DEFAULTS.value(forKey: LOGGEDIN_USER_INFO) as? NSDictionary
+        emailTextView.text = (dictUser?[EMAIL] as? String)!
+        
+        if ConstantDevices.IS_IPHONE_X {
+            self.viewHeaderY.constant = 93
+        }
     }
     
     

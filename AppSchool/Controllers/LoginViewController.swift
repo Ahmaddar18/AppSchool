@@ -35,10 +35,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
+        // Test server
+        //EmailTextView?.text = "teste@empresa.com"
+        //SenhaTextField?.text = "54321"
         
-        EmailTextView?.text = "teste@empresa.com"
-        SenhaTextField?.text = "54321"
-        
+        // Live server
         //EmailTextView?.text = "eduardooliveira.duarte@gmail.com"
         //SenhaTextField?.text = "123456"
         
@@ -98,6 +99,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
         request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue("application/json", forHTTPHeaderField: "ContentType")
         
         print(postString)
         
