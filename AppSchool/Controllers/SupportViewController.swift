@@ -41,6 +41,8 @@ class SupportViewController: UIViewController, UITextViewDelegate {
         
         UIHelper.addTFLeftPadding(width: 10, textField: emailTextView)
         messageTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(goBack), name: Notification.Name(ForgotBackNotification), object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -158,6 +160,10 @@ class SupportViewController: UIViewController, UITextViewDelegate {
             }
             task.resume()
         }
+    }
+    
+    @objc func goBack(){
+        self.navigationController?.popViewController(animated: false)
     }
     
 }

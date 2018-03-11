@@ -47,7 +47,7 @@ class SuccessForgottenPasswordViewController: UIViewController {
     func showSuccessView(view: UIView, childView: UIView, mesg: String, isLoggedin: Bool, code: String){
         
         if isLoggedin {
-            childView.frame = CGRect(x: 0, y: 65+66, width: view.frame.size.width, height: view.frame.size.height-200)
+            childView.frame = CGRect(x: 0, y: 65+66, width: view.frame.size.width, height: view.frame.size.height-230)
             view.addSubview(childView)
             
             btnPress.isHidden = true
@@ -61,7 +61,7 @@ class SuccessForgottenPasswordViewController: UIViewController {
             }
             
         }else{
-            childView.frame = CGRect(x: 0, y: 65, width: view.frame.size.width, height: view.frame.size.height-65)
+            childView.frame = CGRect(x: 0, y: 65, width: view.frame.size.width, height: view.frame.size.height-95)
             view.addSubview(childView)
             
             lblMsgText.text = mesg

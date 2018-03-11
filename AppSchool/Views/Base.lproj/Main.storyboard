@@ -2139,7 +2139,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgnormal" translatesAutoresizingMaskIntoConstraints="NO" id="QDQ-T8-JFi">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gnV-yh-NDo">
                                 <rect key="frame" x="16" y="50" width="2" height="100"/>
@@ -2205,7 +2205,7 @@
                             <constraint firstItem="PIg-KP-sLy" firstAttribute="trailing" secondItem="LJC-Yc-RBx" secondAttribute="trailing" constant="8" id="4LV-VU-FQA"/>
                             <constraint firstItem="LJC-Yc-RBx" firstAttribute="leading" secondItem="gnV-yh-NDo" secondAttribute="trailing" constant="8" id="96B-7K-gPr"/>
                             <constraint firstAttribute="bottom" secondItem="QDQ-T8-JFi" secondAttribute="bottom" id="Dlq-dN-izY"/>
-                            <constraint firstItem="QDQ-T8-JFi" firstAttribute="top" secondItem="PIg-KP-sLy" secondAttribute="top" id="FCB-Zf-Wmf"/>
+                            <constraint firstItem="QDQ-T8-JFi" firstAttribute="top" secondItem="PIg-KP-sLy" secondAttribute="top" constant="-20" id="FCB-Zf-Wmf"/>
                             <constraint firstItem="PIg-KP-sLy" firstAttribute="trailing" secondItem="QDQ-T8-JFi" secondAttribute="trailing" id="LdR-vX-PcC"/>
                             <constraint firstItem="cDd-gC-QRO" firstAttribute="top" secondItem="n4f-AU-DsE" secondAttribute="bottom" constant="25" id="RBg-4L-CGZ"/>
                             <constraint firstItem="n4f-AU-DsE" firstAttribute="leading" secondItem="PIg-KP-sLy" secondAttribute="leading" constant="16" id="Tlv-30-jEl"/>
