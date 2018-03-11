@@ -49,7 +49,7 @@ class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Home"
+        //self.title = "Home"
         loadDataFromServer()
     }
     
@@ -63,11 +63,12 @@ class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     func loadDataFromServer(){
        
         self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
-        
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/bemvindohome")!)
+        let urlStr = API_Base_Path+"bemvindohome"
+        var request = URLRequest(url: URL(string: urlStr)!)
+        let token = AppDel.getUserToken()
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
-        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 // check for fundamental networking error
@@ -128,9 +129,13 @@ class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        var rowHeight = 280
+        var rowHeight = 300
         
         let obj = self.allResults[indexPath.row]
+        
+        if (obj.TituloNews == "") {
+            rowHeight = rowHeight - 28
+        }
         
         if (obj.Imagem == "") {
             rowHeight = rowHeight - 130

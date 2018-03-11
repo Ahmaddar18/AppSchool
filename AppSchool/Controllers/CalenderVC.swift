@@ -31,12 +31,12 @@ class CalenderVC: BaseViewController {
             koyomi.circularViewDiameter = 0.2
             koyomi.calendarDelegate = self
             koyomi.inset = UIEdgeInsets(top: 0, left: 1, bottom: 1, right: 1)
-            koyomi.weeks = ("S", "M", "T", "W", "T", "F", "S")
+            koyomi.weeks = ("DO", "SE", "TE", "QU", "QU", "SE", "SÁ")
             koyomi.style = .standard
             koyomi.dayPosition = .center
             koyomi.cellSpace = 1
             koyomi.selectionMode = .multiple(style: .background)
-            koyomi.selectedStyleColor = UIColor(red: 230/255, green: 26/255, blue: 24/255, alpha: 1)
+            koyomi.selectedStyleColor = UIColor(red: 245/255, green: 125/255, blue: 0/255, alpha: 1)
             koyomi
                 .setDayFont(size: 12)
                 .setWeekFont(size: 16)
@@ -63,7 +63,7 @@ class CalenderVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.title = "Calendário"
+        
         // Do any additional setup after loading the view.
         
         initializing()
@@ -82,12 +82,12 @@ class CalenderVC: BaseViewController {
     
     func initializing () {
         
-        self.title = "Calendário"
+        //self.title = "Calendário"
         
         let dateString = koyomi.currentDateString()
         let customeMonth = getMonthName(date: UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "MMMM"))
         let year = UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "yyyy")
-        lblMonth.text = String(format:"%@ %@",customeMonth,year)
+        lblMonth.text = String(format:"%@ %@",customeMonth.uppercased(),year)
         
         let month = UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "MM")
         
@@ -170,10 +170,11 @@ class CalenderVC: BaseViewController {
         }
         """
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/cronograma")!)
+        let urlStr = API_Base_Path+"cronograma"
+        var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
-        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         
         request.httpBody = postString.data(using: .utf8)
         
@@ -350,7 +351,7 @@ extension CalenderVC: KoyomiDelegate {
         let year = UtilityHelper.convertStringDate(dateString, formatFrom: "MMMM yyyy", formatTo: "yyyy")
         callCalenderApi(month: month, year: year)
         
-        lblMonth.text = String(format:"%@ %@",customeMonth,year)
+        lblMonth.text = String(format:"%@ %@",customeMonth.uppercased(), year)
     }
     
     @objc(koyomi:shouldSelectDates:to:withPeriodLength:)

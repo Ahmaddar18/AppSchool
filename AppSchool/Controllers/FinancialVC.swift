@@ -11,12 +11,12 @@ import UIKit
 class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var viewSituacao: UIView!
-    @IBOutlet weak var viewLista: UIView!
+    @IBOutlet weak var imgDropDown: UIImageView!
     @IBOutlet weak var viewTable: UIView!
     
     var loadIndicator: UIView = UIView()
     var financialList = [Financial]()
+    var isListDisplaed: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     func initializing () {
         
         self.navigationController?.navigationBar.tintColor=UIColor.white
-        self.title = "FINANCEIRO"
+        //self.title = "FINANCEIRO"
         
         callFinancialApi()
     }
@@ -61,14 +61,14 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     
     func hideList() {
         self.viewTable.isHidden = true
-        self.viewLista.isHidden = true
-        self.viewSituacao.isHidden = false
+        self.imgDropDown.isHidden = false
+        self.isListDisplaed = false
     }
     
     func showList() {
+        self.isListDisplaed = true
         self.viewTable.isHidden = false
-        self.viewLista.isHidden = false
-        self.viewSituacao.isHidden = true
+        self.imgDropDown.isHidden = true
     }
     
     // MARK: - API Methods
@@ -77,10 +77,11 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         
         self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/financeiro")!)
+        let urlStr = API_Base_Path+"financeiro"
+        var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
-        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
@@ -176,10 +177,11 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         }
         """
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/sendmail")!)
+        let urlStr = API_Base_Path+"sendmail"
+        var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
-        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         
         request.httpBody = postString.data(using: .utf8)
         
@@ -260,6 +262,12 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         cell.btnUpload.addTarget(self, action: #selector(actionShowPopup(_:)), for: .touchUpInside)
         cell.btnUpload.tag = indexPath.row
         
+        if indexPath.row == 0 {
+            cell.lblLine.isHidden = false
+        }else{
+            cell.lblLine.isHidden = true
+        }
+        
         return cell
     }
     
@@ -272,7 +280,13 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     // MARK: - Action Methods
     
     @IBAction func actionShowList(_ sender: Any) {
-        self.showList()
+        
+        if isListDisplaed {
+            callFinancialApi()
+            hideList()
+        }else{
+            self.showList()
+        }
     }
     
     @IBAction func actionRefresh(_ sender: UIButton) {

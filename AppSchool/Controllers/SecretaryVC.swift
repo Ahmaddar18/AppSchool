@@ -8,14 +8,16 @@
 
 import UIKit
 
-let TextViewMsg = "mensagem"
+let TextViewMsg = "Digite sua mensagem"
 
 class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var viewBackBtn: UIView!
     @IBOutlet weak var viewOptions: UIView!
     @IBOutlet weak var viewSuccess: UIView!
+    @IBOutlet weak var viewPodio: UIView!
+    @IBOutlet weak var viewTitle: UIView!
     @IBOutlet weak var optionsPickerView: UIPickerView!
     @IBOutlet weak var tfOption: UITextField!
     @IBOutlet weak var tvMessage: UITextView!
@@ -44,7 +46,7 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     
     func initializing () {
         self.navigationController?.navigationBar.tintColor=UIColor.white
-        self.title = "SECRETARIA ON-LINE"
+        //self.title = "SECRETARIA ON-LINE"
         
         self.tfOption.inputView = optionsPickerView
         callApi()
@@ -61,20 +63,21 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         if ConstantDevices.IS_IPHONE_X {
             frame = CGRect(x: 0, y: 140, width: self.view.frame.size.width, height: self.view.frame.size.height-140)
         }else{
-            frame = CGRect(x: 0, y: 115, width: self.view.frame.size.width, height: self.view.frame.size.height-115)
+            frame = CGRect(x: 0, y: 115, width: self.view.frame.size.width, height: self.view.frame.size.height-115)//-60
         }
         
         viewOptions.frame = frame
         //AppDel.window?.addSubview(viewOptions)
         self.view.addSubview(viewOptions)
         
-        btnBack.isHidden = false
+        viewBackBtn.isHidden = false
         self.viewSuccess.isHidden = true
+        self.viewPodio.isHidden = false
     }
     
     func textViewDefaultText() {
         tvMessage.text = TextViewMsg
-        tvMessage.textColor = UIColor.lightGray
+        tvMessage.textColor = UIColor.darkGray
     }
     
     // MARK: - UIPickerView DataSource
@@ -108,7 +111,7 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     func textViewDidBeginEditing(_ textView: UITextView) {
         if tvMessage.text == TextViewMsg {
             tvMessage.text = ""
-            tvMessage.textColor = UIColor.black
+            tvMessage.textColor = UIColor.init(red: 79/255, green: 87/255, blue: 95/255, alpha: 1.0)
         }
         
     }
@@ -125,10 +128,11 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         
         self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/secretariaonlinedocumento")!)
+        let urlStr = API_Base_Path+"secretariaonlinedocumento"
+        var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
-        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
@@ -215,10 +219,11 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         }
         """
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/periodoletivo")!)
+        let urlStr = API_Base_Path+"periodoletivo"
+        var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
-        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         request.httpBody = postString.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -304,10 +309,11 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         }
         """
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/secretariaonline")!)
+        let urlStr = API_Base_Path+"secretariaonline"
+        var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
-        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         request.httpBody = postString.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -335,6 +341,7 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                                     //let results = jsonResult["DOCUMENTO"] as? NSArray!
                                     
                                     self.viewSuccess.isHidden = false
+                                    self.viewPodio.isHidden = true
                                 }
                             }
                         }
@@ -366,7 +373,7 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     
     @IBAction func actionHideView(_ sender: AnyObject) {
         viewOptions.removeFromSuperview()
-        btnBack.isHidden = true
+        viewBackBtn.isHidden = true
     }
     
     @IBAction func actionSubmit(_ sender: UIButton) {

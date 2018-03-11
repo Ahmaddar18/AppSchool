@@ -11,6 +11,7 @@ import UIKit
 class SecretrayCellView: UITableViewCell {
 
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblTopLine: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

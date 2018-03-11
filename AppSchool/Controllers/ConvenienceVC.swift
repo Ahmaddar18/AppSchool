@@ -32,7 +32,7 @@ class ConvenienceVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
     
     func initializing () {
         self.navigationController?.navigationBar.tintColor=UIColor.white
-        self.title = "CONVENIÊNCIA"
+        //self.title = "CONVENIÊNCIA"
         
         self.setupRefreshControl()
         callConvenienceApi()
@@ -40,7 +40,7 @@ class ConvenienceVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
 
     func setupRefreshControl() {
         
-        refreshControl.tintColor = UIColor.black
+        refreshControl.tintColor = UIColor.orangeColor()
         self.tableView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(pullRefreshList), for: UIControlEvents.valueChanged)
     }
@@ -65,7 +65,7 @@ class ConvenienceVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 45
+        return 50
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,11 +74,22 @@ class ConvenienceVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let  cell = tableView.dequeueReusableCell(withIdentifier: "ConvenCell", for: indexPath) as! ConvenienceCell
+        
+        let  cell = tableView.dequeueReusableCell(withIdentifier: "WebCell", for: indexPath) as! WebCellView
         
         // Configure the cell...
         let obj = self.convenienceList[indexPath.row]
-        cell.lblTitle.text = obj.name
+        cell.btnWeb.titleLabel?.text = obj.name
+        cell.underline()
+        
+        if (indexPath.row == 0){
+            cell.lblTopLine.isHidden = false
+        }else{
+            cell.lblTopLine.isHidden = true
+        }
+        
+        cell.btnWeb.addTarget(self, action: #selector(actionOpenWeb(_:)), for: .touchUpInside)
+        cell.btnWeb.tag = indexPath.row
         
         return cell
     }
@@ -97,10 +108,11 @@ class ConvenienceVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
         
         self.loadIndicator = UIHelper.activityIndicator(view: self.view, title: "Carregando")
         
-        var request = URLRequest(url: URL(string: "http://52.10.244.229:8888/rest/wsapimob/conveniencia")!)
+        let urlStr = API_Base_Path+"conveniencia"
+        var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
-        request.addValue("PROD", forHTTPHeaderField: "TAmb")
-        request.addValue("A07EAD82EFB8DDC7DD7E07C9DA46FD36", forHTTPHeaderField: "token")
+        request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
@@ -173,6 +185,13 @@ class ConvenienceVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
         
         task.resume()
     }
-
+    
+    // MARK: - Action Methods
+    
+    @IBAction func actionOpenWeb(_ sender: UIButton) {
+        let btnsendtag: UIButton = sender
+        let object = self.convenienceList[btnsendtag.tag]
+        UIApplication.shared.openURL(URL(string: String(format: "%@",object.value))!)
+    }
 
 }

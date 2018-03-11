@@ -12,6 +12,7 @@ class BaseViewController: UIViewController {
 
     var sidebarView: SidebarView!
     var blackScreen: UIView!
+    //var dictUser: NSDictionary!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +30,11 @@ class BaseViewController: UIViewController {
     
     func initializeMenu() {
         
+        let dictUser = USER_DEFAULTS.value(forKey: LOGGEDIN_USER_INFO) as? NSDictionary
+        self.title = String(format: "Área Exclusiva de %@",(dictUser?[NAME] as? String)!)
+        
         self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
-        self.navigationController?.navigationBar.barTintColor  = UIColor.blueColor()
+        self.navigationController?.navigationBar.barTintColor  = UIColor.orangeColor()
         self.navigationController?.isToolbarHidden = true
         
         let btnMenu = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(btnMenuAction))
@@ -117,6 +121,10 @@ class BaseViewController: UIViewController {
         goToViewControllerIdentifier(identifierName: "SupportInnerVC", animation: false)
     }
     
+    func openSugestoesView(){
+        goToViewControllerIdentifier(identifierName: "SugestoesVC", animation: false)
+    }
+    
     func signOut(){
         setRootController(identifierName: "LoginViewController")
     }
@@ -170,6 +178,9 @@ extension BaseViewController: SidebarViewDelegate {
         case .suporte:
             print("Support")
             openSupportView()
+        case .sugestoes:
+            print("Sugestoes")
+            openSugestoesView()
         case .sair:
             signOut()
         case .none:

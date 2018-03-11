@@ -12,14 +12,12 @@ class WebCellView: UITableViewCell {
     
     @IBOutlet weak var viewInner: UIView!
     @IBOutlet weak var btnWeb: UIButton!
+    @IBOutlet weak var lblTopLine: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        dropShadow()
-        
-        //underline()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

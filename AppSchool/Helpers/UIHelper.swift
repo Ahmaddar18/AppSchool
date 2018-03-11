@@ -68,4 +68,12 @@ class UIHelper{
         
         return decodedimage
     }
+    
+    static func addTFLeftPadding(width: CGFloat, textField:UITextField) {
+        
+        let indentView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 20))
+        textField.leftView = indentView
+        textField.leftViewMode = .always
+    }
+    
 }
