@@ -131,7 +131,7 @@ class AmbienceVC: BaseViewController, UITableViewDelegate, UITableViewDataSource
                             
                             DispatchQueue.main.async{
                                 
-                                if jsonResult["RESPONSE"] as? String == "200" {
+                                if jsonResult["RESPONSE"] as? Int == 200 {
                                     
                                     let results = jsonResult["EAD"] as? NSArray!
                                     

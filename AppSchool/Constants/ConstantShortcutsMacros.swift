@@ -72,13 +72,13 @@ let ForgotBackNotification = "ForgotBackNotification"
 // Server path
 
 //------ TEST SERVER -------
-let API_Base_Path = "http://52.10.244.229:8888/rest/wsapimob/"
-let API_HEADER = "PROD"
+//let API_Base_Path = "http://52.10.244.229:8888/rest/wsapimob/"
+//let API_HEADER = "PROD"
 
 //------ LIVE SERVER -------
 
-//let API_Base_Path = "http://apps2.sp.senac.br/rest/wsapimob/"
-//let API_HEADER = "HOM"
+let API_Base_Path = "http://apps2.sp.senac.br/rest/wsapimob/"
+let API_HEADER = "HOM"
 
 
 

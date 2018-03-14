@@ -21,6 +21,8 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var optionsPickerView: UIPickerView!
     @IBOutlet weak var tfOption: UITextField!
     @IBOutlet weak var tvMessage: UITextView!
+    @IBOutlet weak var lblSuccessMsg: UILabel!
+    @IBOutlet weak var imgSuccess: UIImageView!
     
     var loadIndicator: UIView = UIView()
     var secretaryList = [NotesList]()
@@ -48,6 +50,7 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         self.navigationController?.navigationBar.tintColor=UIColor.white
         //self.title = "SECRETARIA ON-LINE"
         
+        UIHelper.addTFLeftPadding(width: 10, textField: tfOption)
         self.tfOption.inputView = optionsPickerView
         callApi()
     }
@@ -133,6 +136,9 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         request.httpMethod = "POST"
         request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
         request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "accept-language")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
@@ -154,7 +160,7 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                             
                             DispatchQueue.main.async{
                                 
-                                if jsonResult["RESPONSE"] as? String == "200" {
+                                if jsonResult["RESPONSE"] as? Int == 200 {
                                     
                                     let results = jsonResult["FORMULARIO"] as? NSArray!
                                     
@@ -224,6 +230,9 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         request.httpMethod = "POST"
         request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
         request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "accept-language")
         request.httpBody = postString.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -246,7 +255,7 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                             
                             DispatchQueue.main.async{
                                 
-                                if jsonResult["RESPONSE"] as? String == "200" {
+                                if jsonResult["RESPONSE"] as? Int == 200 {
                                     
                                     self.periodoList.removeAll()
                                     
@@ -262,7 +271,7 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                                             let data = listaData[val] as? NSArray!
                                             let reslut = data![0] as! NSDictionary
                                             
-                                            let resultValue = reslut["valor"] as! String
+                                            let resultValue = String(format: "%d",reslut["valor"] as! Int)
                                             
                                             let listObj = NotesList()
                                             listObj.name = val
@@ -303,11 +312,13 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         
         let postString = """
         {
-        \"setIdDoc\"    :"\(docId)",
-        \"setPeriodoLetivo\"    :"\(periodoId)",
-        \"setMensagem\"    :"\(message)",
+        \"setIdDoc\":"\(docId)",
+        \"setPeriodoLetivo\":"\(periodoId)",
+        \"setMensagem\":"\(message)"
         }
         """
+        
+        print(postString)
         
         let urlStr = API_Base_Path+"secretariaonline"
         var request = URLRequest(url: URL(string: urlStr)!)
@@ -315,6 +326,9 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
         request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
         request.httpBody = postString.data(using: .utf8)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "accept-language")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
@@ -327,6 +341,7 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
             }
             
             let httpStatus = response as? HTTPURLResponse
+            print("httpStatus = \(String(describing: httpStatus))")
             
             if let data = data {
                 do {
@@ -336,12 +351,39 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                             
                             DispatchQueue.main.async{
                                 
-                                if jsonResult["RESPONSE"] as? String == "200" {
+                                if jsonResult["RESPONSE"] as? Int == 200 {
                                     
-                                    //let results = jsonResult["DOCUMENTO"] as? NSArray!
+                                    let results = jsonResult["DOCUMENTO"] as? NSArray!
+                                    
+                                    for result in results! {
+                                        
+                                        let listaDetalhe = result as! NSDictionary
+                                        let list = listaDetalhe["Detalhe"] as! NSArray
+                                        
+                                        for object in list {
+                                            
+                                            let dataObject = object as! NSDictionary
+                                            let MENSAGEMSUCESSO = dataObject["MENSAGEMSUCESSO"] as! String
+                                            let NUMCHAMADO = dataObject["NUMCHAMADO"] as! Int
+                                            
+                                            self.lblSuccessMsg.text = String(format:"%@ \n%d",MENSAGEMSUCESSO, NUMCHAMADO)
+                                            self.imgSuccess.image = UIImage(named: "ic_action_confirm")
+                                            
+                                        }
+                                        
+                                    }
                                     
                                     self.viewSuccess.isHidden = false
                                     self.viewPodio.isHidden = true
+                                }
+                                else if jsonResult["RESPONSE"] as? Int == 400 {
+                                    
+                                    self.viewSuccess.isHidden = false
+                                    self.viewPodio.isHidden = true
+                                    
+                                    let MENSAGEMSUCESSO = jsonResult["MENSAGEMERRO"] as! String
+                                    self.lblSuccessMsg.text = MENSAGEMSUCESSO
+                                    self.imgSuccess.image = UIImage(named: "ic_action_close")
                                 }
                             }
                         }

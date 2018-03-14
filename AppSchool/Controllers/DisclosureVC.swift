@@ -112,6 +112,9 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
         request.httpMethod = "POST"
         request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
         request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "accept-language")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
@@ -133,7 +136,7 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
                             
                             DispatchQueue.main.async{
                                 
-                                if jsonResult["RESPONSE"] as? String == "200" {
+                                if jsonResult["RESPONSE"] as? Int == 200 {
                                     
                                     let results = jsonResult["DIVULGACAO"] as? NSArray!
                                     

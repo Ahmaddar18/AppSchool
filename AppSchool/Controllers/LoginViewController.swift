@@ -11,8 +11,22 @@ import UIKit
 var sidebarView: SidebarView!
 var blackScreen: UIView!
 
+// For Live Server
+
+struct User : Codable {
+    let STATUS: String
+    let MENSAGEMERRO: String
+    let NOMEUSER: String?
+    let MENSAGEMSUCESSO: String
+    let RESPONSE: Int
+    let TYPE: String
+    let TOKEN: String
+    let EMAILUSER: String?
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
-    struct User : Codable {
+/* // For test server
+     struct User : Codable {
         let RESPONSE: String
         let TOKEN: String
         let MENSAGEMERRO: String
@@ -21,7 +35,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let TYPE: String
         let NOMEUSER: String?
         let EMAILUSER: String?
-    }
+    }*/
+    
     
     @IBOutlet weak var EmailTextView: UITextField!
     @IBOutlet weak var SenhaTextField: UITextField!
@@ -36,12 +51,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
         // Test server
-        //EmailTextView?.text = "teste@empresa.com"
-        //SenhaTextField?.text = "54321"
+//        EmailTextView?.text = "teste@empresa.com"
+//        SenhaTextField?.text = "54321"
         
         // Live server
-        //EmailTextView?.text = "eduardooliveira.duarte@gmail.com"
-        //SenhaTextField?.text = "123456"
+//        EmailTextView?.text = "eduardooliveira.duarte@gmail.com"
+//        SenhaTextField?.text = "123456"
         
         UIHelper.addTFLeftPadding(width: 10, textField: EmailTextView)
         UIHelper.addTFLeftPadding(width: 10, textField: SenhaTextField)
@@ -86,24 +101,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func doLoginRequest(email: String, senha: String){
         //\"setSenha\"    :"#Hash('\(senha)', 'MD5')#",
+        
         let postString = """
         {
-        \"setEmail\"    :"\(email)",
-        \"setSenha\"    :"\(senha)",
-        \"setSistema\"    :"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46",
-        \"setUdid\"    : "\(AppDel.deviceToken)"
+        "setEmail"  :"\(email)",
+        "setSenha"  :"\(senha)",
+        "setSistema":"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46",
+        "setUdid"   : "\(AppDel.deviceToken)"
         }
         """
+        
+        print(postString)
         
         let urlStr = API_Base_Path+"autenticaracesso"
         var request = URLRequest(url: URL(string: urlStr)!)
         request.httpMethod = "POST"
         request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
-        request.addValue("application/json", forHTTPHeaderField: "ContentType")
-        
-        print(postString)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "accept-language")
         
         request.httpBody = postString.data(using: .utf8)
+        //request.httpBody = jsonData
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 // check for fundamental networking error
@@ -120,37 +140,44 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let responseString = String(data: data, encoding: .utf8)
                 print("responseString = \(String(describing: responseString))")
                 
-                let retorno = responseString?.data(using: .utf8)!
-                
-                let decoder = JSONDecoder()
-                let user = try! decoder.decode(User.self, from: retorno!)
-                
-                if user.RESPONSE == "200" {
+                do {
+                    let user = try JSONDecoder().decode(User.self, from: data)
                     
-                    let dict : NSDictionary = [ USER_TOKEN : user.TOKEN, NAME : user.NOMEUSER ?? "", EMAIL : user.EMAILUSER ?? ""]
+                    print(user.RESPONSE)
                     
-                    DispatchQueue.main.async {
-                        UIHelper.stopsIndicator(view: self.loadIndicator)
-                        print("ok")
-                        print(user.TOKEN)
+                    if user.RESPONSE == 200 {
                         
-                        USER_DEFAULTS.set(dict, forKey: LOGGEDIN_USER_INFO)
-                        USER_DEFAULTS.set(true, forKey: IS_LOGGEDIN)
+                        let dict : NSDictionary = [ USER_TOKEN : user.TOKEN, NAME : user.NOMEUSER ?? "", EMAIL : user.EMAILUSER ?? ""]
                         
-                                self.window = UIWindow(frame:UIScreen.main.bounds)
-
-        
-                        //let viewController: HomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                        //self.navigationController?.pushViewController(viewController, animated: false)
-                        self.setRootController(identifierName: "HomeViewController")
+                        DispatchQueue.main.async {
+                            UIHelper.stopsIndicator(view: self.loadIndicator)
+                            print("ok")
+                            print(user.TOKEN)
+                            
+                            USER_DEFAULTS.set(dict, forKey: LOGGEDIN_USER_INFO)
+                            USER_DEFAULTS.set(true, forKey: IS_LOGGEDIN)
+                            
+                            self.window = UIWindow(frame:UIScreen.main.bounds)
+                            
+                            
+                            //let viewController: HomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+                            //self.navigationController?.pushViewController(viewController, animated: false)
+                            self.setRootController(identifierName: "HomeViewController")
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            UIHelper.showAlertController(uiController: self, message: user.MENSAGEMERRO)
+                            UIHelper.stopsIndicator(view: self.loadIndicator)
+                        }
                     }
-                } else {
-                    DispatchQueue.main.async {
-                        UIHelper.showAlertController(uiController: self, message: user.MENSAGEMERRO)
-                        UIHelper.stopsIndicator(view: self.loadIndicator)
-                    }
+                    
+                } catch let jsonErr {
+                    print("error in parsing",jsonErr)
                 }
+                
             }
+            
+            UIHelper.stopsIndicator(view: self.loadIndicator)
         }
         task.resume()
     }

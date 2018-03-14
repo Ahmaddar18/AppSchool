@@ -25,17 +25,6 @@ struct nestedData : Decodable {
 
 class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
-    struct User : Codable {
-        let RESPONSE: String
-        let TOKEN: String
-        let MENSAGEMERRO: String
-        let MENSAGEMSUCESSO: String
-        let STATUS: String
-        let TYPE: String
-        let NOMEUSER: String?
-        let EMAILUSER: String?
-    }
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnCross: UIButton!
     
