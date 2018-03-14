@@ -19,6 +19,7 @@ class CalenderModel: NSObject {
     var Title: String
     var Month: String
     var Year: String
+    var Local: String
     
     
     override init() {
@@ -32,6 +33,7 @@ class CalenderModel: NSObject {
         self.Title = ""
         self.Month = ""
         self.Year = ""
+        self.Local = ""
 
     }
     

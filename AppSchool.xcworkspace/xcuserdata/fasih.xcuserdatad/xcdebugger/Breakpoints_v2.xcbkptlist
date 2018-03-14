@@ -6,32 +6,112 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppSchool/AppDelegate/AppDelegate.swift"
-            timestampString = "542476530.483929"
+            filePath = "AppSchool/Controllers/LoginViewController.swift"
+            timestampString = "542749260.227829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "application(_:didRegisterForRemoteNotificationsWithDeviceToken:)"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "doLoginRequest(email:senha:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppSchool/Controllers/LoginViewController.swift"
-            timestampString = "542477701.464112"
+            filePath = "AppSchool/Controllers/SecretaryVC.swift"
+            timestampString = "542748801.781482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "doLoginRequest(email:senha:)"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
+            landmarkName = "callSubmitOnlineApi(docId:periodoId:message:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__ObjC.URLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Senac_SP.SecretaryVC.callSubmitOnlineApi(docId: Swift.String, periodoId: Swift.String, message: Swift.String) -&gt; ()"
+                  moduleName = "Senac SP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fasih/Desktop/GIT%20PROJECT/Ahmed%20Ijaz/AppSchool/AppSchool/Controllers/SecretaryVC.swift"
+                  timestampString = "542749261.402835"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "404"
+                  endingLineNumber = "404"
+                  offsetFromSymbolStart = "2324">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 () -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__ObjC.URLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Senac_SP.SecretaryVC.callSubmitOnlineApi(docId: Swift.String, periodoId: Swift.String, message: Swift.String) -&gt; ()"
+                  moduleName = "Senac SP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fasih/Desktop/GIT%20PROJECT/Ahmed%20Ijaz/AppSchool/AppSchool/Controllers/SecretaryVC.swift"
+                  timestampString = "542749261.408"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "405"
+                  endingLineNumber = "405"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppSchool/Controllers/FinancialVC.swift"
+            timestampString = "542748801.781835"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "callEMailApi(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppSchool/Controllers/SupportViewController.swift"
+            timestampString = "542748801.7819721"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "submitSupportCall(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppSchool/Controllers/SupportViewController.swift"
+            timestampString = "542748801.782109"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "submitSupportCall(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

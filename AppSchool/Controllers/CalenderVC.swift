@@ -17,10 +17,12 @@ let Professor = "Professor"
 let Horario = "Horario"
 let Latitude = "Latitude"
 let Longitude = "Longitude"
+let Local = "Local"
 let TextoDescricao = "TextoDescricao"
 let TituloCurso = "TituloCurso"
 let CURSO = "CURSO"
 let Meses = "Meses"
+let CODE = "CODE"
 
 
 
@@ -31,7 +33,7 @@ class CalenderVC: BaseViewController {
             koyomi.circularViewDiameter = 0.2
             koyomi.calendarDelegate = self
             koyomi.inset = UIEdgeInsets(top: 0, left: 1, bottom: 1, right: 1)
-            koyomi.weeks = ("DO", "SE", "TE", "QU", "QU", "SE", "SÁ")
+            koyomi.weeks = ("D", "S", "T", "Q", "Q", "S", "S")
             koyomi.style = .standard
             koyomi.dayPosition = .center
             koyomi.cellSpace = 1
@@ -151,7 +153,7 @@ class CalenderVC: BaseViewController {
         lblPopAula.text = String(format:"Aula: %@",date)
         lblPopHorario.text = String(format:"Horario: %@",obj.Horario)
         lblPopDocente.text = String(format:"Docente: %@",obj.Professor)
-        lblPopLocal.text = String(format:"Local: %@","Laboratorio de Procedimentos")
+        lblPopLocal.text = String(format:"Local: %@",obj.Local)
         lblPopDescricao.text = String(format:"Descricao: %@",obj.TextoDescricao)
         
         selectObj = obj
@@ -175,6 +177,9 @@ class CalenderVC: BaseViewController {
         request.httpMethod = "POST"
         request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
         request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "accept-language")
         
         request.httpBody = postString.data(using: .utf8)
         
@@ -198,7 +203,7 @@ class CalenderVC: BaseViewController {
                             
                             DispatchQueue.main.async{
                                 
-                                if jsonResult["RESPONSE"] as? String == "200" {
+                                if jsonResult["RESPONSE"] as? Int == 200 {
                                 
                                     let results = jsonResult[CURSO] as? NSArray!
                                     let curcoData = results![0] as! NSDictionary
@@ -206,7 +211,7 @@ class CalenderVC: BaseViewController {
                                     let mesesResult = curcoData[Meses] as! NSArray
                                     let messData = mesesResult[0] as! NSDictionary
                                     
-                                    let year = curcoData["ano"] as! String
+                                    let year = String(format:"%d", curcoData["ano"] as! Int)
                                     let title = curcoData[TituloCurso] as! String
                                     let month = messData["mes"] as! String
                                     
@@ -224,10 +229,11 @@ class CalenderVC: BaseViewController {
                                         day.Month = month
                                         day.Year = year
                                         day.Titulo = dayData[Titulo] as! String
-                                        day.Longitude = dayData[Longitude] as! String
+                                        day.Longitude = String(format:"%f",dayData[Longitude] as! Double)
                                         day.Professor = dayData[Professor] as! String
                                         day.Horario = dayData[Horario] as! String
-                                        day.Latitude = dayData[Latitude] as! String
+                                        day.Local = dayData[Local] as! String
+                                        day.Latitude = String(format:"%f",dayData[Latitude] as! Double)
                                         day.TextoDescricao = dayData[TextoDescricao] as! String
                                         day.DateString = String(format:"%@-%@-%@",year,month,key)// 10:30:55
                                         

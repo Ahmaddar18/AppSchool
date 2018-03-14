@@ -103,7 +103,7 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                             
                             DispatchQueue.main.async{
                                 
-                                if jsonResult["RESPONSE"] as? String == "200" {
+                                if jsonResult["RESPONSE"] as? Int == 200 {
                                     
                                     let results = jsonResult["CURSO"] as? NSArray!
                                     self.financialList.removeAll()
@@ -128,10 +128,10 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                                                     listObj.CodigoBarras = data["CodigoBarras"] as! String
                                                 }
                                                 
-                                                listObj.IdTitulo = data["IdTitulo"] as! String
+                                                listObj.IdTitulo = String(format:"%d",data["IdTitulo"] as! Int)
                                                 listObj.StatusPagto = data["StatusPagto"] as! String
                                                 listObj.Titulo = data["Titulo"] as! String
-                                                listObj.Valor = data["Valor"] as! String
+                                                listObj.Valor = String(format:"%d",data["Valor"] as! Int)
                                                 listObj.Vencimento = data["Vencimento"] as! String
                                                     
                                                 self.financialList.append(listObj)
@@ -172,8 +172,7 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         
         let postString = """
         {
-        \"setIdTitulo\"    :"\(obj.IdTitulo)",
-        \"setEmail\"    :"\("teste@empresa.com")",
+        \"setIdTitulo\":"\(obj.IdTitulo)"
         }
         """
         
@@ -182,6 +181,9 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         request.httpMethod = "POST"
         request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
         request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "accept-language")
         
         request.httpBody = postString.data(using: .utf8)
         
@@ -205,7 +207,7 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                             
                             DispatchQueue.main.async{
                                 
-                                if jsonResult["RESPONSE"] as? String == "200" {
+                                if jsonResult["RESPONSE"] as? Int == 200 {
                                     UtilityHelper.showOKAlert("", message: jsonResult["MENSAGEMSUCESSO"] as! String, target: self)
                                 }
                             }

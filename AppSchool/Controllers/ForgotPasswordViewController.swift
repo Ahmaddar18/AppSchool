@@ -12,7 +12,7 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
     
     struct Response : Codable {
        
-        let RESPONSE: String
+        let RESPONSE: Int
         let MENSAGEMERRO: String?
         let STATUS: String
         let MENSAGEMSUCESSO: String?
@@ -80,6 +80,8 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
         var request = URLRequest(url: URL(string: API_Base_Path+"redefinirsenha")!)
         request.httpMethod = "POST"
         request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         
         request.httpBody = postString.data(using: .utf8)
@@ -108,7 +110,7 @@ class ForgotPasswordViewController: UIViewController, UIPopoverPresentationContr
                     
                     var msg: String = ""
                     
-                    if responseStruct.RESPONSE != "200" {
+                    if responseStruct.RESPONSE != 200 {
                         msg = responseStruct.MENSAGEMERRO!
                         SuccessForgottenPasswordViewController.shared.showForgotSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: msg, status: false)
                     }else{

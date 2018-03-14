@@ -12,12 +12,12 @@ class SugestoesVC: BaseViewController, UITextViewDelegate {
     
     struct Response : Codable {
         
-        let RESPONSE: String
+        let RESPONSE: Int
         let MENSAGEMERRO: String?
         let STATUS: String
         let MENSAGEMSUCESSO: String?
         let TYPE: String
-        let NUMCHAMADO: String?
+        let NUMCHAMADO: Int
     }
     
     var loadIndicator: UIView = UIView()
@@ -105,7 +105,7 @@ class SugestoesVC: BaseViewController, UITextViewDelegate {
             let postString = """
             {
             \"setEmail\"    :"\(email)",
-            \"setMensagem\" :"\(message)",
+            \"setMensagem\" :"\(message)"
             }
             """
             
@@ -117,6 +117,7 @@ class SugestoesVC: BaseViewController, UITextViewDelegate {
             request.httpMethod = "POST"
             request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
             request.addValue(AppDel.getUserToken(), forHTTPHeaderField: "token")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
             request.httpBody = postString.data(using: .utf8)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -144,7 +145,7 @@ class SugestoesVC: BaseViewController, UITextViewDelegate {
                     //var titleAlert = "Erro"
                     var messageAlert = responseStruct.MENSAGEMERRO
                     
-                    if responseStruct.RESPONSE == "200" {
+                    if responseStruct.RESPONSE == 200 {
                         //titleAlert = "Informação"
                         messageAlert = responseStruct.MENSAGEMSUCESSO
                     }

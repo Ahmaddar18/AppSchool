@@ -12,12 +12,12 @@ class SupportViewController: UIViewController, UITextViewDelegate {
     
     struct Response : Codable {
         
-        let RESPONSE: String
+        let RESPONSE: Int
         let MENSAGEMERRO: String?
         let STATUS: String
         let MENSAGEMSUCESSO: String?
         let TYPE: String
-        let NUMCHAMADO: String?
+        let NUMCHAMADO: Int
     }
    
     var loadIndicator: UIView = UIView()
@@ -99,7 +99,7 @@ class SupportViewController: UIViewController, UITextViewDelegate {
             let postString = """
             {
             \"setEmail\"    :"\(email)",
-            \"setMensagem\" :"\(message)",
+            \"setMensagem\" :"\(message)"
             }
             """
             
@@ -110,6 +110,7 @@ class SupportViewController: UIViewController, UITextViewDelegate {
             var request = URLRequest(url: URL(string: urlLink)!)
             request.httpMethod = "POST"
             request.addValue(API_HEADER, forHTTPHeaderField: "TAmb")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
             request.httpBody = postString.data(using: .utf8)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -137,14 +138,14 @@ class SupportViewController: UIViewController, UITextViewDelegate {
                     var titleAlert = "Erro"
                     var messageAlert = responseStruct.MENSAGEMERRO
                     
-                    if responseStruct.RESPONSE == "200" {
+                    if responseStruct.RESPONSE == 200 {
                         titleAlert = "Informação"
                         messageAlert = responseStruct.MENSAGEMSUCESSO
                     }
                     
                     DispatchQueue.main.async {
                         
-                        SuccessForgottenPasswordViewController.shared.showSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: messageAlert!, isLoggedin: false, code: responseStruct.NUMCHAMADO!)
+                        SuccessForgottenPasswordViewController.shared.showSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: messageAlert!, isLoggedin: false, code: String(format: "%d",responseStruct.NUMCHAMADO))
                         
                         //UIHelper.showAlertController(uiController: self, message: messageAlert!, title: titleAlert)
                         UIHelper.stopsIndicator(view: self.loadIndicator)

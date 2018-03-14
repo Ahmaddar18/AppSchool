@@ -102,13 +102,13 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
 //            cellImg.image=#imageLiteral(resourceName: "user")
 //            cell.addSubview(cellImg)
             
-            let cellLbl = UILabel(frame: CGRect(x: 30, y: cell.frame.height/2-15, width: cell.frame.width, height: 30))
+            let cellLbl = UILabel(frame: CGRect(x: 30, y: cell.frame.height/2-15, width: cell.frame.width-35, height: 30))
             cell.addSubview(cellLbl)
             cellLbl.text = name //"John Doe"
             cellLbl.font=UIFont.boldSystemFont(ofSize: 18)
             cellLbl.textColor=UIColor.white
             
-            let cellDetailLbl = UILabel(frame: CGRect(x: 30, y:25+( cell.frame.height/2-15), width: cell.frame.width, height: 30))
+            let cellDetailLbl = UILabel(frame: CGRect(x: 30, y:25+( cell.frame.height/2-15), width: cell.frame.width-30, height: 30))
             cell.addSubview(cellDetailLbl)
             cellDetailLbl.text = email//"teste@empresa.com"
             cellDetailLbl.font=UIFont.systemFont(ofSize: 17)

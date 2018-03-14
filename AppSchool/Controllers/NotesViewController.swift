@@ -92,7 +92,7 @@ class NotesViewController: BaseViewController, UITableViewDelegate, UITableViewD
                             
                             DispatchQueue.main.async{
                                 
-                                if jsonResult["RESPONSE"] as? String == "200" {
+                                if jsonResult["RESPONSE"] as? Int == 200 {
                                     
                                     let results = jsonResult[LISTA] as? NSArray!
                                     self.noteList.removeAll()
@@ -113,15 +113,15 @@ class NotesViewController: BaseViewController, UITableViewDelegate, UITableViewD
                                             print(keys)
                                             
                                             noteObj.Titulo = titulo
-                                            noteObj.Periodo = periodosData["Periodo"] as! String
+                                            noteObj.Periodo = String(format:"%d",periodosData["Periodo"] as! Int)
                                             
                                             for key in keys {
-                                                let discriplinaValue = disciplina[key] as! String
+                                                let discriplinaValue = disciplina[key] as AnyObject
                                                 print(discriplinaValue)
                                                 
                                                 let listObj = NotesList()
                                                 listObj.name = key
-                                                listObj.value = discriplinaValue
+                                                listObj.value = String(format:"%@",discriplinaValue as! CVarArg)
                                                 noteObj.DisciplinaList.append(listObj)
                                             }
                                             
