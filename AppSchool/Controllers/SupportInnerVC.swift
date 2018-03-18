@@ -139,11 +139,11 @@ class SupportInnerVC: BaseViewController, UITextViewDelegate {
                     let decoder = JSONDecoder()
                     let responseStruct = try! decoder.decode(Response.self, from: retorno!)
                     
-                    var titleAlert = "Erro"
+                    //var titleAlert = "Erro"
                     var messageAlert = responseStruct.MENSAGEMERRO
                     
                     if responseStruct.RESPONSE == 200 {
-                        titleAlert = "Informação"
+                        //titleAlert = "Informação"
                         messageAlert = responseStruct.MENSAGEMSUCESSO
                     }
                     

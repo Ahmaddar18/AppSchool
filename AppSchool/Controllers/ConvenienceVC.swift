@@ -143,6 +143,10 @@ class ConvenienceVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
                                     
                                     self.convenienceList.removeAll()
                                     
+                                    if results == nil {
+                                        return
+                                    }
+                                    
                                     for result in results! {
                                         
                                         let listData = result as! NSDictionary

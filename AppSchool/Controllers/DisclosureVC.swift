@@ -142,6 +142,10 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
                                     
                                     self.disclosureList.removeAll()
                                     
+                                    if results == nil {
+                                        return
+                                    }
+                                    
                                     for result in results! {
                                         
                                         let listData = result as! NSDictionary

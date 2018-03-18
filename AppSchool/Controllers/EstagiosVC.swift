@@ -145,6 +145,10 @@ class EstagiosVC: BaseViewController, UITableViewDelegate, UITableViewDataSource
                                     
                                     self.estagiosList.removeAll()
                                     
+                                    if results == nil {
+                                        return
+                                    }
+                                    
                                     for result in results! {
                                         
                                         let listData = result as! NSDictionary

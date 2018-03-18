@@ -355,6 +355,10 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                                     
                                     let results = jsonResult["DOCUMENTO"] as? NSArray!
                                     
+                                    if results == nil {
+                                        return
+                                    }
+                                    
                                     for result in results! {
                                         
                                         let listaDetalhe = result as! NSDictionary

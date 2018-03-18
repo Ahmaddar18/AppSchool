@@ -97,6 +97,10 @@ class NotesViewController: BaseViewController, UITableViewDelegate, UITableViewD
                                     let results = jsonResult[LISTA] as? NSArray!
                                     self.noteList.removeAll()
                                     
+                                    if results == nil {
+                                        return
+                                    }
+                                    
                                     for result in results! {
                                     
                                         let listaData = result as! NSDictionary
