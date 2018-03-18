@@ -137,6 +137,10 @@ class AmbienceVC: BaseViewController, UITableViewDelegate, UITableViewDataSource
                                     
                                     self.anbienceList.removeAll()
                                     
+                                    if results == nil {
+                                        return
+                                    }
+                                    
                                     for result in results! {
                                         
                                         let listData = result as! NSDictionary

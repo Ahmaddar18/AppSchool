@@ -95,6 +95,10 @@ class FrequencyVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                                     let results = jsonResult[LISTA] as? NSArray!
                                     self.frequencyList.removeAll()
                                     
+                                    if results == nil {
+                                        return
+                                    }
+                                    
                                     for result in results! {
                                         
                                         let listaData = result as! NSDictionary

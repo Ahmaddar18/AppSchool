@@ -166,9 +166,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         }
                     } else {
                         DispatchQueue.main.async {
-                            UIHelper.showAlertController(uiController: self, message: user.MENSAGEMERRO)
                             UIHelper.stopsIndicator(view: self.loadIndicator)
                         }
+                        
+                        UIHelper.showAlertController(uiController: self, message: user.MENSAGEMERRO)
                     }
                     
                 } catch let jsonErr {

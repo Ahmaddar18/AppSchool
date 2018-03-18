@@ -152,7 +152,7 @@ class SugestoesVC: BaseViewController, UITextViewDelegate {
                     
                     DispatchQueue.main.async {
                         
-                        SuccessForgottenPasswordViewController.shared.showSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: messageAlert!, isLoggedin: true, code: "")
+                        SuccessForgottenPasswordViewController.shared.showSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: messageAlert!, isLoggedin: true, code: String(format: "%d",responseStruct.NUMCHAMADO))
                         
                         UIHelper.stopsIndicator(view: self.loadIndicator)
                     }

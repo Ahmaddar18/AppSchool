@@ -108,6 +108,9 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                                     let results = jsonResult["CURSO"] as? NSArray!
                                     self.financialList.removeAll()
                                     
+                                    if results == nil {
+                                        return
+                                    }
                                     for result in results! {
                                         
                                         let listaData = result as! NSDictionary
