@@ -92,6 +92,8 @@ class SuccessForgottenPasswordViewController: UIViewController {
         lblMsgY.constant = 30
         lblMsgText.text = mesg
         
+        lblCode.isHidden = true
+        
         if !status {
             successImageView.image = UIImage(named: "ic_action_close")
         }else{

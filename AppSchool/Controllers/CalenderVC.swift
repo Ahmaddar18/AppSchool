@@ -213,7 +213,8 @@ class CalenderVC: BaseViewController {
                                     
                                     let year = String(format:"%d", curcoData["ano"] as! Int)
                                     let title = curcoData[TituloCurso] as! String
-                                    let month = messData["mes"] as! String
+                                    let month_val = messData["mes"] as AnyObject
+                                    let month = String(format:"%@",month_val as! CVarArg)
                                     
                                     var keys = messData.allKeys as! [String]
                                     keys = keys.filter(){$0 != "mes"}

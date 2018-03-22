@@ -172,7 +172,7 @@ class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     @IBAction func actionOpenWeb(_ sender: UIButton) {
         let btnsendtag: UIButton = sender
         let object = self.allResults[btnsendtag.tag]
-        UIApplication.shared.openURL(URL(string: String(format: "http://%@",object.LinkDestino))!)
+        UIApplication.shared.openURL(URL(string: String(format: "%@",object.LinkDestino))!)
     }
     
     @IBAction func actionOpenNotificaiton(_ sender: UIButton) {

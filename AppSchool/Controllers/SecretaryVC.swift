@@ -429,7 +429,7 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
             return
         }
         if (self.tvMessage.text.isEmpty || self.tvMessage.text == TextViewMsg) {
-             UIHelper.showAlertController(uiController: self, message: "Please add message")
+             UIHelper.showAlertController(uiController: self, message: "Por favor, preencha a mensagem ")
             return
         }
         callSubmitOnlineApi(docId: strDocId, periodoId: strPeriodoId, message: self.tvMessage.text)
