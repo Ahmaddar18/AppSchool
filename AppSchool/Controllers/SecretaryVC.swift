@@ -10,7 +10,7 @@ import UIKit
 
 let TextViewMsg = "Digite sua mensagem"
 
-class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
+class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewBackBtn: UIView!
@@ -76,6 +76,8 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         viewBackBtn.isHidden = false
         self.viewSuccess.isHidden = true
         self.viewPodio.isHidden = false
+        
+        self.optionsPickerView.selectRow(0, inComponent: 0, animated: true)
     }
     
     func textViewDefaultText() {
@@ -109,6 +111,16 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         strPeriodoId = obj.value
     }
     
+    // MARK: - TextField Methods
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if periodoList.count > 0 && (self.tfOption.text?.isEmpty)! {
+            self.tfOption.text = periodoList[0].name
+            strPeriodoId = periodoList[0].value
+        }
+    }
+        
     // MARK: - TextView Methods
     
     func textViewDidBeginEditing(_ textView: UITextView) {

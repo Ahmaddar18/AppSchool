@@ -22,17 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        /*
-        self.window = UIWindow(frame:UIScreen.main.bounds)
-        if let window = self.window{
-            window.backgroundColor = UIColor.white
-            let nav = UINavigationController()
-            let mainView = ViewController()
-            nav.viewControllers = [mainView]
-            window.rootViewController = nav
-            window.makeKeyAndVisible()
-        }
-        */
+        
+        checkUserInfoAndLoadView()
+        
         IQKeyboardManager.sharedManager().enable = true
         
         //Register notifications
@@ -151,6 +143,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func getUserToken() -> String {
         let dictUser = USER_DEFAULTS.value(forKey: LOGGEDIN_USER_INFO) as? NSDictionary
         return dictUser![USER_TOKEN] as! String
+    }
+    
+    func checkUserInfoAndLoadView() {
+        
+        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+        
+        if USER_DEFAULTS.bool(forKey: IS_LOGGEDIN) {
+            let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as UIViewController
+            navigationController.viewControllers = [rootViewController]
+        }else{
+            let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as UIViewController
+            navigationController.viewControllers = [rootViewController]
+        }
+        self.window?.rootViewController = navigationController
+        
     }
 }
 

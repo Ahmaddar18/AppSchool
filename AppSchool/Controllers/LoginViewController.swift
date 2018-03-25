@@ -55,8 +55,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //        SenhaTextField?.text = "54321"
         
         // Live server
-        EmailTextView?.text = "eduardooliveira.duarte@gmail.com"
-        SenhaTextField?.text = "123456"
+//        EmailTextView?.text = "eduardooliveira.duarte@gmail.com"
+//        SenhaTextField?.text = "123456"
         
         UIHelper.addTFLeftPadding(width: 10, textField: EmailTextView)
         UIHelper.addTFLeftPadding(width: 10, textField: SenhaTextField)

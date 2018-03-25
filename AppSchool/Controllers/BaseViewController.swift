@@ -127,6 +127,7 @@ class BaseViewController: UIViewController {
     
     func signOut(){
         setRootController(identifierName: "LoginViewController")
+        USER_DEFAULTS.set(false, forKey: IS_LOGGEDIN)
     }
     
     // MARK: - Action Method
