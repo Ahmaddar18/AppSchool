@@ -131,10 +131,10 @@ class FinancialVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                                                     listObj.CodigoBarras = data["CodigoBarras"] as! String
                                                 }
                                                 
-                                                listObj.IdTitulo = String(format:"%d",data["IdTitulo"] as! Int)
+                                                listObj.IdTitulo = String(format:"%d",data["IdTitulo"] as AnyObject as! CVarArg)
                                                 listObj.StatusPagto = data["StatusPagto"] as! String
                                                 listObj.Titulo = data["Titulo"] as! String
-                                                listObj.Valor = String(format:"%d",data["Valor"] as! Int)
+                                                listObj.Valor = String(format:"%d",data["Valor"] as AnyObject as! CVarArg)
                                                 listObj.Vencimento = data["Vencimento"] as! String
                                                     
                                                 self.financialList.append(listObj)

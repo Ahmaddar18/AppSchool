@@ -101,6 +101,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func doLoginRequest(email: String, senha: String){
         //\"setSenha\"    :"#Hash('\(senha)', 'MD5')#",
+        self.EmailTextView.resignFirstResponder()
+        self.SenhaTextField.resignFirstResponder()
         
         let postString = """
         {
@@ -176,9 +178,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     print("error in parsing",jsonErr)
                 }
                 
+            }else{
+                
             }
             
-            UIHelper.stopsIndicator(view: self.loadIndicator)
+            DispatchQueue.main.async {
+                UIHelper.stopsIndicator(view: self.loadIndicator)
+            }
         }
         task.resume()
     }
