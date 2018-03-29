@@ -153,10 +153,11 @@ class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let object = self.allResults[indexPath.row]
         cell.obj = object
         
-        cell.btnLink.titleLabel?.text = object.LinkTexto
         cell.btnLink.addTarget(self, action: #selector(actionOpenWeb(_:)), for: .touchUpInside)
         cell.btnLink.tag = indexPath.row
-        cell.underline()
+        cell.btnLink.setTitle(object.LinkTexto,for: .normal)
+        //cell.btnLink.titleLabel?.text = object.LinkTexto
+        //cell.underline()
         
         return cell
     }

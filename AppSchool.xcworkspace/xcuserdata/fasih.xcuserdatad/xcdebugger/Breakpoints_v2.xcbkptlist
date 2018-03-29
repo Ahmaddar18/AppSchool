@@ -15,8 +15,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "104"
             endingLineNumber = "104"
-            landmarkName = "doLoginRequest(email:senha:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,7 +42,7 @@
                   moduleName = "Senac SP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/fasih/Desktop/GIT%20PROJECT/Ahmed%20Ijaz/AppSchool/AppSchool/Controllers/SecretaryVC.swift"
-                  timestampString = "543693725.236563"
+                  timestampString = "544031346.35501"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "420"
@@ -57,7 +57,7 @@
                   moduleName = "Senac SP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/fasih/Desktop/GIT%20PROJECT/Ahmed%20Ijaz/AppSchool/AppSchool/Controllers/SecretaryVC.swift"
-                  timestampString = "543693725.2402231"
+                  timestampString = "544031346.366074"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "421"
@@ -95,8 +95,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
             endingLineNumber = "174"
-            landmarkName = "doLoginRequest(email:senha:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

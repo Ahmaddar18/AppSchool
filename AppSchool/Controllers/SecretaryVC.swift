@@ -64,9 +64,9 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         textViewDefaultText()
     
         if ConstantDevices.IS_IPHONE_X {
-            frame = CGRect(x: 0, y: 140, width: self.view.frame.size.width, height: self.view.frame.size.height-140)
+            frame = CGRect(x: 0, y: 140, width: self.view.frame.size.width, height: self.view.frame.size.height-140-100)
         }else{
-            frame = CGRect(x: 0, y: 115, width: self.view.frame.size.width, height: self.view.frame.size.height-115)//-60
+            frame = CGRect(x: 0, y: 115, width: self.view.frame.size.width, height: self.view.frame.size.height-115-60)
         }
         
         viewOptions.frame = frame
