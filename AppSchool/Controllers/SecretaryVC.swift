@@ -385,21 +385,28 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                                             self.lblSuccessMsg.text = String(format:"%@ \n%d",MENSAGEMSUCESSO, NUMCHAMADO)
                                             self.imgSuccess.image = UIImage(named: "ic_action_confirm")
                                             
+                                            SuccessForgottenPasswordViewController.shared.showSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: MENSAGEMSUCESSO, isLoggedin: true, code: String(format: "%d",NUMCHAMADO))
+                                            
+                                            self.hideMsgView()
+                                            
                                         }
                                         
                                     }
                                     
-                                    self.viewSuccess.isHidden = false
-                                    self.viewPodio.isHidden = true
+                                    //self.viewSuccess.isHidden = false
+                                    //self.viewPodio.isHidden = true
                                 }
                                 else if jsonResult["RESPONSE"] as? Int == 400 {
                                     
-                                    self.viewSuccess.isHidden = false
-                                    self.viewPodio.isHidden = true
+                                    //self.viewSuccess.isHidden = false
+                                    //self.viewPodio.isHidden = true
                                     
                                     let MENSAGEMSUCESSO = jsonResult["MENSAGEMERRO"] as! String
-                                    self.lblSuccessMsg.text = MENSAGEMSUCESSO
-                                    self.imgSuccess.image = UIImage(named: "ic_action_close")
+                                    //self.lblSuccessMsg.text = MENSAGEMSUCESSO
+                                    //self.imgSuccess.image = UIImage(named: "ic_action_close")
+                                    
+                                    self.hideMsgView()
+                                    UIHelper.showAlertController(uiController: self, message: MENSAGEMSUCESSO)
                                 }
                             }
                         }
@@ -426,6 +433,12 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         task.resume()
     }
 
+    func hideMsgView() {
+        viewOptions.removeFromSuperview()
+        viewBackBtn.isHidden = true
+        
+        //SuccessForgottenPasswordViewController.shared.removeLoadingAnimation(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view)
+    }
     
     // MARK: - Action Methods
     
