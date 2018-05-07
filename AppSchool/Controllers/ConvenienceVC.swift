@@ -79,8 +79,9 @@ class ConvenienceVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
         
         // Configure the cell...
         let obj = self.convenienceList[indexPath.row]
-        cell.btnWeb.titleLabel?.text = obj.name
-        cell.underline()
+        cell.btnWeb.setTitle(obj.name,for: .normal)
+        //cell.btnWeb.titleLabel?.text = obj.name
+        //cell.underline()
         
         if (indexPath.row == 0){
             cell.lblTopLine.isHidden = false

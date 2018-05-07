@@ -64,9 +64,9 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         textViewDefaultText()
     
         if ConstantDevices.IS_IPHONE_X {
-            frame = CGRect(x: 0, y: 140, width: self.view.frame.size.width, height: self.view.frame.size.height-140)
+            frame = CGRect(x: 0, y: 140, width: self.view.frame.size.width, height: self.view.frame.size.height-140-100)
         }else{
-            frame = CGRect(x: 0, y: 115, width: self.view.frame.size.width, height: self.view.frame.size.height-115)//-60
+            frame = CGRect(x: 0, y: 115, width: self.view.frame.size.width, height: self.view.frame.size.height-115-60)
         }
         
         viewOptions.frame = frame
@@ -385,21 +385,28 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                                             self.lblSuccessMsg.text = String(format:"%@ \n%d",MENSAGEMSUCESSO, NUMCHAMADO)
                                             self.imgSuccess.image = UIImage(named: "ic_action_confirm")
                                             
+                                            SuccessForgottenPasswordViewController.shared.showSuccessView(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view, mesg: MENSAGEMSUCESSO, isLoggedin: true, code: String(format: "%d",NUMCHAMADO))
+                                            
+                                            self.hideMsgView()
+                                            
                                         }
                                         
                                     }
                                     
-                                    self.viewSuccess.isHidden = false
-                                    self.viewPodio.isHidden = true
+                                    //self.viewSuccess.isHidden = false
+                                    //self.viewPodio.isHidden = true
                                 }
                                 else if jsonResult["RESPONSE"] as? Int == 400 {
                                     
-                                    self.viewSuccess.isHidden = false
-                                    self.viewPodio.isHidden = true
+                                    //self.viewSuccess.isHidden = false
+                                    //self.viewPodio.isHidden = true
                                     
                                     let MENSAGEMSUCESSO = jsonResult["MENSAGEMERRO"] as! String
-                                    self.lblSuccessMsg.text = MENSAGEMSUCESSO
-                                    self.imgSuccess.image = UIImage(named: "ic_action_close")
+                                    //self.lblSuccessMsg.text = MENSAGEMSUCESSO
+                                    //self.imgSuccess.image = UIImage(named: "ic_action_close")
+                                    
+                                    self.hideMsgView()
+                                    UIHelper.showAlertController(uiController: self, message: MENSAGEMSUCESSO)
                                 }
                             }
                         }
@@ -426,6 +433,12 @@ class SecretaryVC: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         task.resume()
     }
 
+    func hideMsgView() {
+        viewOptions.removeFromSuperview()
+        viewBackBtn.isHidden = true
+        
+        //SuccessForgottenPasswordViewController.shared.removeLoadingAnimation(view: self.view, childView: SuccessForgottenPasswordViewController.shared.view)
+    }
     
     // MARK: - Action Methods
     

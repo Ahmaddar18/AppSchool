@@ -80,8 +80,9 @@ class DisclosureVC: BaseViewController, UITableViewDelegate, UITableViewDataSour
         
         // Configure the cell...
         let obj = self.disclosureList[indexPath.row]
-        cell.btnWeb.titleLabel?.text = obj.name
-        cell.underline()
+        cell.btnWeb.setTitle(obj.name,for: .normal)
+        //cell.btnWeb.titleLabel?.text = obj.name
+        //cell.underline()
         
         if (indexPath.row == 0){
             cell.lblTopLine.isHidden = false
